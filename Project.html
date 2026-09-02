@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Resume - Saiful Khan</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header">
+					<div class="container">
+
+						<!-- Logo -->
+							<h1 id="logo"><a href="index.html">Saiful Khan</a></h1>
+							<p>Senior Site Reliability Engineer | AWS | Generative AI | System Design | Solution Architect |</p>
+
+						<!-- Nav -->
+							<nav id="nav">
+								<ul>
+									<li><a class="icon solid fa-home" href="index.html"><span>Home</span></a></li>
+									<li>
+										<a href="#" class="icon solid fa-tasks"><span>AWS Cloud Challenge</span></a>
+										<ul>
+											<li><a href="Project.html">AWS Cloud Challenge</a></li>
+											<li><a href="project_vscode.html">1. VS Code Workflow</a></li>
+											<li><a href="project_awss3hosting.html">2. AWS S3 Hosting</a></li>
+											<li><a href="project_route53.html">3. Route 53 Domain</a></li>
+											<li><a href="project_cloudfront.html">4. CloudFront HTTPS</a></li>
+											<li><a href="project_github.html">5. GitHub CI/CD</a></li>
+											<li><a href="project_costoptimization.html">6. Cost Optimization</a></li>
+											<li><a href="project_visitorcounter.html">7. Visitor Counter</a></li>
+											<li><a href="project_terraform.html">8. IaC with Terraform</a></li>
+											<li><a href="project_ServerlessContactForm.html">9. Serverless Contact Form</a></li>
+											<!--<li><a href="project_advSecExtenstion.html">9. Adv. Security Extension</a></li>-->
+											<!--<li><a href="project_ServerlessContactForm.html">10. Serverless Contact Form</a></li>-->
+										</ul>
+									</li>
+									<!-- Future Links <li><a class="icon solid fa-cog" href="left-sidebar.html"><span>Projects</span></a></li>-->
+									<!-- Future Links <li><a class="icon solid fa-retweet" href="right-sidebar.html"><span>Right Sidebar</span></a></li>-->
+									<li><a class="icon solid fa-user-tie" href="resume.html"><span>Resume</span></a></li>
+								</ul>
+							</nav>
+					</div>
+				</section>
+
+			<div id="wrapper">
+			<!-- Main -->
+			<div id="main">
+			<!-- Post -->
+				<article class="post">
+					<header>
+						<div class="title">
+							<h2><a href="Project.html">My Journey to the Cloud</a></h2>
+							<p>My Journey through the AWS Cloud Resume Challenge.</p>
+							<time class="published">25 August, 2026</time>
+						</div>
+					</header>
+					<section class="project">
+						<img src="images/JourneyToCloud.png" width="840" height="341" alt="My Journey to the Cloud Image" /></br>
+						<strong>Frontend Website Code: </strong><a href="https://github.com/Saifulrubkhan/Saiful_CloudResumeWebsite" target="_blank">  https://github.com/Saifulrubkhan/Saiful_CloudResumeWebsite</a></br>
+						<strong>Backend Serverless Code (Lambda + DynamoDB): </strong><a href="https://github.com/Saifulrubkhan/cloud-resume-backend" target="_blank">  https://github.com/Saifulrubkhan/cloud-resume-backend</a>
+					</br></br>
+						<p>Most of the time, learning tech feels like trying to put together a puzzle without seeing the picture on the box. You learn 
+							a bit of Python here or a bit of networking there, but you rarely get to see the whole "big picture" of how a single click 
+							on a browser travels across the globe to a database in some far-off data center.</p> 
+							
+							<p>That's exactly why I decided to tackle the AWS version of the <a href="https://cloudresumechallenge.dev/docs/the-challenge/aws/" target="_blank" rel="noopener">Cloud Resume Challenge</a>. Created by Forrest Brazeal, this isn't 
+							just another "follow-the-leader" tutorial; it's a total baptism by fire. It forced me to stop thinking about things in question 
+							and answer format and to actually create something that was long lasting and useful to me.  While I did use the challenge steps as a 
+							rough guide, the steps I ended up taking were a bit different, but I feel I still ended up at the same destination.  Anyways, this post is a map of that journey, from 
+							my first messy manual steps to a fully automated system I built myself.</p>
+
+						<h3>The Project Roadmap</h3>
+						I've broken my documentation into five distinct phases. If you're looking for the "how-to" behind the high-level concepts, the links 
+							below will take you to my detailed, service-by-service breakdowns.
+						<ul>
+								<li><strong>Phase 1: Building the Foundation (Jan 28)</strong><br>
+									<p>Before I could even think about the cloud, I had to get my own house in order. This phase wasn't about complex automation 
+									yet; it was about getting comfortable with the tools of the trade. I spent this time learning how to navigate Visual Studio 
+									Code, moving away from basic text editors to a setup that actually felt professional. The real challenge here was a deep 
+									dive back into HTML and CSS. I had to relearn the building blocks of the web, experimenting with different designs and 
+									merging elements from various sites until I found a look that felt cohesive and, more importantly, felt like me.</p>  
+									<strong>Phase 1 Detailed Guide: <a href="project_vscode.html">VS Code Workflow</a></strong>
+								</li>
+								<li><strong>Phase 2: Going Live Globally (Jan 30 - Feb 4)</strong><br>
+									<p>The goal here was simple: put my resume online. The execution, however, was a lesson in global networking. I used Amazon S3 
+									to host the static files, but a bare bucket isn't secure or fast enough for a professional site. I then moved into the 
+									networking side of AWS, using Route 53 to manage my custom domain and wrapping the whole site in Amazon CloudFront. This wasn't 
+									just about speed; it was a deep dive into how HTTPS and SSL certificates actually work to keep a site secure.</p>  
+									<strong>Phase 2 Detailed Guides: <a href="project_awss3hosting.html">AWS S3 Hosting</a> | <a href="project_route53.html">Route 53 Domain</a> | 
+									<a href="project_cloudfront.html">CloudFront HTTPS</a></strong>
+								</li>
+								<li><strong>Phase 3: CI/CD & Cloud Hygiene (Feb 8 - Feb 14)</strong><br>
+									<p>In the professional world, you don't manually upload files; you use a pipeline. I set up GitHub Actions so that every time I 
+									save my code, it automatically runs my tests and deploys itself to AWS. I also took a hard look at the "Cloud Hygiene" of my 
+									project-setting up AWS Budgets and monitoring to ensure my cloud journey didn't result in a surprise bill.</p>  
+									<strong>Phase 3 Detailed Guides: <a href="project_github.html">GitHub CI/CD</a> | <a href="project_costoptimization.html">Cost Optimization</a></strong>
+								</li>
+								<li><strong>Phase 4: The Serverless Back-End & Integration (Feb 15 - Feb 23)</strong><br>
+									<p>This is where the "magic" happens—and where the real frustration began. I needed a way to track visitors without running a 
+									traditional server. I built a serverless stack using DynamoDB and AWS Lambda (Python), connected to the world via the modern 
+									Amazon API Gateway HTTP API. This wasn't a "one and done" setup. I was testing and breaking things the whole time. I ended up 
+									moving away from the common "copy-paste" code I found in tutorials, rewriting my integration to be more secure and robust. 
+									Dealing with CORS (Cross Origin Resource Sharing) was a brutal lesson in web security, but it forced me to understand exactly 
+									how browsers and APIs communicate under the hood.</p>  
+									<strong>Phase 4 Detailed Guides: <a href="project_visitorcounter.html">DynamoDB | Lambda | API Gateway</a></strong>
+								</li>
+								<li><strong>Phase 5 - Completing the Cloud Resume Challenge</strong>
+									<p>The final phase of the Cloud Resume Challenge focused on building the backend services that turn a static website into a dynamic cloud application. During this stage I implemented a serverless visitor counter using AWS Lambda and DynamoDB, allowing the website to record and display page visits in real time. The frontend communicates with the backend through an HTTP API endpoint, which triggers the Lambda function and updates the database.</p>
+
+									<p>After completing the serverless backend, I transitioned the infrastructure into Terraform to move away from manual AWS console configuration. Instead of rebuilding the environment from scratch, I imported the existing resources into Terraform and aligned the configuration until Terraform reported no infrastructure changes. This ensured the live AWS environment matched the Infrastructure as Code configuration while keeping the site fully operational.</p>
+
+									<p>At this point, the core requirements of the AWS Cloud Resume Challenge were complete. The project now included static website hosting, global content delivery, automated deployments, serverless backend functionality, and Infrastructure as Code management.</p>
+									<strong>Phase 5 Detailed Guide: <a href="project_terraform.html">The Terraform Migration</a></strong>
+								</li>
+								<li>
+									<strong>Phase 6 - Extending the Project Beyond the Challenge</strong>
+									<p>After completing the official challenge requirements, I began expanding the project with additional features to further develop my cloud engineering skills. Rather than simply stopping once the challenge was finished, this phase focuses on building new capabilities using the infrastructure already in place.</p>
+
+									<p>The first extension is a serverless email messaging feature integrated into the footer of the website. This will allow visitors to submit their name, email address, and a message directly through the site. When the form is submitted, the request will trigger a backend API endpoint, invoke an AWS Lambda function, and deliver the message to my email using AWS services.</p>
+
+									<p>Unlike earlier parts of the project that were initially created through the AWS console, this feature will be built entirely using Terraform from the start. This approach reinforces Infrastructure as Code practices and demonstrates how new services can be added to an existing cloud architecture in a repeatable and automated way.</p>
+								</li>
+							</ul>
+
+							<h3>High-Level Architecture</h3>
+							My architecture follows a standard “Serverless Three-Tier” pattern:
+							<p><strong>The Edge Layer:</strong> When you visit JonathanLayman.com, Route 53 directs you to a CloudFront edge location. This ensures 
+								the site loads instantly, whether you're in New York or Tokyo.</p>
+							<p><strong>The Logic Layer:</strong> As the page loads, JavaScript sends a request to the API Gateway (HTTP API). This triggers an 
+								AWS Lambda function—a piece of “serverless” Python code that wakes up just long enough to process the visit.</p>
+							<p><strong>The Data Layer:</strong> The Lambda function talks to DynamoDB, retrieving and incrementing the visitor count before sending 
+								the number back to your screen.</p>
+
+							<h3>Why This Project Matters</h3>
+							I wanted to move beyond abstract certifications. This project was my chance to prove that I can handle the actual friction of modern 
+								technology:
+
+							<p><strong>Troubleshooting:</strong> I spent hours staring at “Access Denied” screens until I truly understood IAM policies.</p>
+							<p><strong>Security:</strong> I followed the “Principle of Least Privilege,” ensuring my code only has the exact permissions it needs to run.</p>
+							<p><strong>Modern Thinking:</strong> I opted for the HTTP API, proving I can evaluate technical trade-offs based on cost and performance rather than 
+									just following old tutorials.</p>
+							<p><strong>Resilience:</strong> By using Terraform and CI/CD, I've ensured that my resume isn't just a static page—it's a living, automated piece of 
+									infrastructure.</p>
+							<strong>Where I am now:</strong> I am currently in the thick of Phase'5, re-engineering this project to be “Infrastructure as Code” native. Follow 
+								along as I turn manual clicks into reproducible code.
+						</section>
+				</article>
+			<!-- Post -->
+			</div>
+
+			<!-- Projects --><!-- Projects
+				<section id="projects">
+					<div class="container">
+						<section class="posts">
+							<article>
+								<header>
+									<span class="date">April 24, 2017</span>
+									<h2><a href="#">Sed magna<br />
+									ipsum faucibus</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 22, 2017</span>
+									<h2><a href="#">Primis eget<br />
+									imperdiet lorem</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 18, 2017</span>
+									<h2><a href="#">Ante mattis<br />
+									interdum dolor</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 14, 2017</span>
+									<h2><a href="#">Tempus sed<br />
+									nulla imperdiet</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+						</section>
+					</div>
+				</section>-->
+			<!-- Sidebar -->
+					<section id="sidebar">
+						<!-- Mini Posts -->
+							<!-- Sidebar <section>
+								<div class="mini-posts">
+										<article class="mini-post">
+											<header>
+												<h3><a href="single.html">Future Project #1</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+											</header>
+											<a href="single.html" class="image"><img src="images/pic04.jpg" alt="" /></a>
+										</article>
+							</section>
+						 Mini Post -->
+						<!-- UL Posts List -->
+							<section>
+								<ul class="posts">
+									<li><center>AWS Cloud Resume Challenge Projects</center></li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="project_vscode.html">VS Code Workflow</a></h3>
+												<time class="published" datetime="2015-10-20">August 25, 2026</time>
+											</header>
+											<a href="project_vscode.html" class="image"><img src="images/VSCodeProject.png" alt="VS Code Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="project_awss3hosting.html">AWS S3 Hosting</a></h3>
+												<time class="published" datetime="2015-10-15">August 30, 2026</time>
+											</header>
+											<a href="project_awss3hosting.html" class="image"><img src="images/AWS_S3Logo.png" alt="Modified AWS S3 Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="project_route53.html">Route 53 Domain</a></h3>
+												<time class="published" datetime="2015-10-10">September 1, 2026</time>
+											</header>
+											<a href="project_route53.html" class="image"><img src="images/AWS_Route53Logo.png" alt="AWS Route 53 Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="project_cloudfront.html">CloudFront HTTPS</a></h3>
+												<time class="published" datetime="2015-10-08">September 5, 2026</time>
+											</header>
+											<a href="project_cloudfront.html" class="image"><img src="images/AWS_CloudFrontLogo.png" alt="Amazon CloudFront Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="project_github.html">GitHub CI/CD</a></h3>
+												<time class="published" datetime="2015-10-06">September 7, 2026</time>
+											</header>
+											<a href="project_github.html" class="image"><img src="images/GitHubLogo.png" alt="GitHub Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="project_costoptimization.html">Cost Optimization</a></h3>
+												<time class="published" datetime="2015-10-06">September 11, 2026</time>
+											</header>
+											<a href="project_costoptimization.html" class="image"><img src="images/AWS_CostOpt.png" alt="Coin and Down Arrow" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="project_visitorcounter.html">Creating a Visitor Counter</a></h3>
+												<time class="published" datetime="2015-10-06">September 15, 2026</time>
+											</header>
+											<a href="project_visitorcounter.html" class="image"><img src="images/VisitorCounter.png" alt="Visitor Counter Logo" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="project_terraform.html">IaC with Terraform</a></h3>
+												<time class="published" datetime="2015-10-06">September 18, 2026</time>
+											</header>
+											<a href="project_terraform.html" class="image"><img src="images/TerraformLogo.png" alt="Terraform Logo" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="project_ServerlessContactForm.html">Serverless Contact Form</a></h3>
+												<time class="published" datetime="2015-10-06">September 21, 2026</time>
+											</header>
+											<a href="project_ServerlessContactForm.html" class="image"><img src="images/ServerlessContactForm.png" alt="Serverless Contact Form Logo" /></a>
+										</article>
+									</li>
+								</ul>
+							</section>
+						</section>
+					</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+				<section id="footer">
+					<div class="container">
+						<header>
+							<h2>Questions or comments? <strong>Get in touch:</strong></h2>
+						</header>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<section>
+									<form id="contact-form">
+										<div class="row gtr-50">
+
+										<div class="col-6 col-12-small">
+											<input id="name" name="name" placeholder="Name" type="text" required />
+										</div>
+
+										<div class="col-6 col-12-small">
+											<input id="email" name="email" placeholder="Email" type="email" required />
+										</div>
+
+										<div class="col-12">
+											<textarea id="message" name="message" placeholder="Message" required></textarea>
+										</div>
+
+										<!-- Honeypot spam trap -->
+										<input type="text" name="company" id="company" style="display:none">
+
+										<div class="col-12">
+											<button type="submit" class="form-button-submit button icon solid fa-envelope">
+											Send Message
+											</button>
+										</div>
+
+										<div class="col-12">
+											<p id="contact-status"></p>
+										</div>
+
+										</div>
+									</form>
+								</section>
+							</div>
+							<div class="col-6 col-12-medium">
+								<section>
+									<p>I'm based in Edmonton, Alberta, and always open to discussing cloud, AI, and system design projects, roles, or collaborations. Feel free 
+										to reach out using the form or the contact details below.</p>
+									<div class="row">
+										<div class="col-6 col-12-small">
+											<ul class="icons">
+												<li class="icon brands fa-linkedin">
+													<a href="https://www.linkedin.com/in/saiful-khan-29810426b/" target="_blank" rel="noopener noreferrer">
+														linkedin.com/in/saiful-khan-29810426b
+													</a>
+												</li>
+												<!--<li class="icon solid fa-envelope">
+												<a href=""></a>
+												</li>-->
+											</ul>
+										</div>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+					<div id="copyright" class="container">
+						<ul class="links">
+						<li>&copy; All rights reserved.</li><li>Design: Saiful Khan & <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>Visitors: <span id="visitor-count">0</span></li>
+					</ul>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/visitor-counter.js"></script>
+			<script src="assets/js/contact-form.js"></script>
+
+	</body>
+</html>
