@@ -1,6 +1,4 @@
-# ☁️ Cloud Resume Challenge
-
-## Saiful Rub
+## ☁️ Cloud Resume Challenge Saiful Rub
 
 A production-style AWS cloud project built to demonstrate real-world DevOps, cloud architecture, and serverless engineering skills.
 
