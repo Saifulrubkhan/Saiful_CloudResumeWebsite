@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Resume - Saiful Khan</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css?v=20260906" />
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header">
+					<div class="container">
+
+						<!-- Logo -->
+							<h1 id="logo"><a href="index.html">Saiful Khan</a></h1>
+							<p>DevOps &amp; Solutions Architect | Designing secure, scalable AWS solutions</p>
+							<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+								<img class="theme-icon" src="images/darkmode.png" alt="" aria-hidden="true" />
+								<span class="sr-only">Switch to dark mode</span>
+							</button>
+
+						<!-- Nav -->
+							<nav id="nav">
+								<ul>
+									<li><a class="icon solid fa-home" href="index.html"><span>Home</span></a></li>
+									<li>
+										<a href="#" class="icon solid fa-tasks"><span>AWS Cloud Challenge</span></a>
+										<ul>
+											<li><a href="Project.html">AWS Cloud Challenge</a></li>
+											<li><a href="vscode.html">1. VS Code Workflow</a></li>
+											<li><a href="awss3Hosting.html">2. AWS S3 Hosting</a></li>
+											<li><a href="aws_route53.html">3. Route 53 Domain</a></li>
+											<li><a href="awscloufront.html">4. CloudFront HTTPS</a></li>
+											<li><a href="github.html">5. GitHub CI/CD</a></li>
+											<li><a href="cost_optimization.html">6. Cost Optimization</a></li>
+											<li><a href="visitor_counter.html">7. Visitor Counter</a></li>
+											<li><a href="terraform.html">8. IaC with Terraform</a></li>
+											<li><a href="#footer">9. Serverless Contact Form</a></li>
+											<!--<li><a href="#footer">10. Serverless Contact Form</a></li>-->
+										</ul>
+									</li>
+									<li><a class="icon solid fa-user-tie" href="resume.html"><span>Resume</span></a></li>
+								</ul>
+							</nav>
+
+					</div>
+				</section>
+
+			<!-- Main -->
+			<div id="wrapper">
+			<!-- Main -->
+			<div id="main">
+			<!-- Post -->
+			<article class="post resume">
+				<section class="project">
+					<h5>Professional Experience</h5>
+					<h4><strong>Senior DevOps Engineer</strong></h4>
+					<h6><strong>Wood Mackenzie</strong> &ndash; Edmonton, Canada<br>
+					05/2023 &ndash; 07/2026</h6>
+					<ul>
+						<li>Designed and implemented a serverless credential management platform using AWS Lambda, Secrets Manager, EventBridge scheduled rules and CloudFormation StackSets, automating token lifecycle management across a multi-account AWS environment and eliminating manual secret rotation.</li>
+						<li>Built event-driven integration patterns with SNS/SQS fan-out, dead-letter queues and EventBridge rule-based routing to decouple services and guarantee reliable, replayable message processing across production workloads.</li>
+						<li>Implemented AWS Step Functions state machines orchestrating Lambda functions for a large-scale repository backup and migration pipeline &mdash; 6,000+ repositories archived to S3 Glacier via parallel Python workers with zero data loss.</li>
+						<li>Architected and operated enterprise container platforms on Amazon ECS Fargate and EKS: ECR image build/publish pipelines, EFS-backed persistent storage, ALB ingress, autoscaling policies and multi-environment deployment patterns serving 10+ product teams.</li>
+						<li>Implemented Kinesis Data Streams/Firehose ingestion pipelines feeding S3 and OpenSearch to stream operational telemetry and application events for real-time analytics and alerting.</li>
+						<li>Implemented Amazon Cognito user pools with API Gateway authorizers to secure internal APIs and engineering dashboards with federated sign-in and fine-grained IAM access.</li>
+						<li>Defined infrastructure with AWS CDK and CloudFormation alongside Terraform, and built reusable GitHub Actions workflows adopted by 20+ business-critical applications, cutting deployment time 30%.</li>
+						<li>Automated database schema management for RDS/Aurora with Liquibase integrated into CI/CD pipelines, enabling versioned, repeatable schema releases across environments.</li>
+						<li>Implemented AWS Bedrock, Azure AI Foundry and GCP Vertex AI services, provisioning secure data pipelines and LLM Ops infrastructure for multi-cloud AI workloads.</li>
+						<li>Led cloud cost optimization across EC2, ECS, S3 and EBS &mdash; rightsizing, autoscaling and lifecycle policies &mdash; reducing infrastructure spend 25% with no performance impact.</li>
+						<li>Established observability architecture with CloudWatch, Prometheus, Grafana and ELK, improving incident detection and driving 40% MTTR improvement and 50% toil reduction through Python automation.</li>
+						<li>Mentored engineers on cloud-native architecture, serverless patterns, IaC and AWS Well-Architected Framework principles.</li>
+					</ul>
+					<h4><strong>DevOps Engineer</strong></h4>
+					<h6><strong>Amazon</strong> &ndash; Canada<br>
+					03/2022 &ndash; 05/2023</h6>
+					<ul>
+						<li>Built serverless applications on Amazon API Gateway, AWS Lambda, DynamoDB, S3 and Aurora supporting scalable event-driven architectures and data-processing workloads.</li>
+						<li>Implemented event-driven deployment automation using S3 event notifications, SNS/SQS messaging and Lambda, reducing manual effort and improving release reliability.</li>
+						<li>Developed a serverless credential rotation solution (Lambda, Secrets Manager, Systems Manager Parameter Store, EventBridge schedules) rotating service-account tokens monthly with zero manual intervention.</li>
+						<li>Containerized enterprise applications with Docker and deployed to Amazon ECS (Fargate) and Kubernetes with ECR image pipelines, rolling and blue/green deployment strategies and automated scaling.</li>
+						<li>Designed cloud-native AWS architectures per the Well-Architected Framework &mdash; scalability, high availability, disaster recovery, security and cost optimization.</li>
+						<li>Provisioned VPCs, subnets, NAT gateways, ALBs, security groups, IAM roles, RDS, S3, Route 53, SQS and SNS across environments with CloudFormation and Terraform.</li>
+						<li>Developed Python and Node.js automation for infrastructure management, deployment workflows and platform maintenance.</li>
+						<li>Implemented observability with CloudWatch, Prometheus, Grafana and ELK/EFK for centralized logging, monitoring and alerting.</li>
+					</ul>
+					<h4><strong>Infra Engineer</strong></h4>
+					<h6><strong>GlobalLogic (Rogers)</strong> &ndash; Canada<br>
+					07/2021 &ndash; 10/2021</h6>
+					<ul>
+						<li>Designed and implemented highly available AWS infrastructure spanning EC2, VPC, ECS, ALB, Auto Scaling, Route 53, CloudFront, API Gateway, RDS, ElastiCache, SNS, SQS, Lambda, IAM, CloudWatch and CloudTrail.</li>
+						<li>Implemented AWS Lambda functions and Python automation to eliminate repetitive operational processes; benchmarked serverless architectures (Lambda vs. Azure Functions) for scalability, concurrency, latency and cost to guide adoption decisions.</li>
+						<li>Managed containerized workloads on Amazon ECS with blue/green deployments, service discovery and load balancing for zero-downtime releases.</li>
+						<li>Provisioned secure networking (custom VPCs, subnets, NAT/Internet gateways, NACLs) and least-privilege IAM with Terraform and CloudFormation.</li>
+						<li>Built monitoring and alerting with CloudWatch, SNS, Prometheus and Grafana, reducing mean time to detect</li>
+					</ul>
+					<h4><strong>Support Associate</strong></h4>
+					<h6><strong>Amazon</strong> &ndash; Canada<br>
+					08/2020 &ndash; 03/2021</h6>
+					<ul>
+						<li>Deployed and maintained enterprise data-center compute, storage and network infrastructure; resolved Layer 1/2 network and server hardware issues within customer SLAs.</li>
+					</ul>
+					<h4><strong>Technical Support Engineer</strong></h4>
+					<h6><strong>Ceragon Networks</strong> &ndash; India<br>
+					04/2017 &ndash; 12/2019</h6>
+					<ul>
+						<li>Managed Cisco routing/switching, DHCP/DNS, Linux/Windows systems and disaster-recovery procedures for carrier network infrastructure.</li>
+					</ul>
+					<h4><strong>Field Engineer</strong></h4>
+					<h6><strong>IMS Infotech Pvt Ltd</strong> &ndash; India<br>
+					12/2015 &ndash; 04/2017</h6>
+					<ul>
+						<li>Configured and troubleshot Cisco network switches and Layer 2/3 technologies (VLANs, STP, OSPF, MPLS).</li>
+					</ul>
+				<!-- Education Section -->
+				<h5>Education</h5>
+				<section class="education-entry">
+					<div class="education-text">
+						<h4><strong>BTech</strong></h4>
+						<h6><strong>Sikkim Manipal Institute of Technology</strong> &ndash; India<br>
+						2014</h6>
+					</div>
+				</section>
+				</section>
+			</article>
+			</div>
+					<section id="sidebar">
+						<ul class="actions">
+							<li><a href="assets/documents/Saiful_Khan_Resume.pdf" class="button large" download>Resume Download</a></li>
+						</ul>
+						</section>
+		</div>
+
+			<!-- Footer -->
+				<section id="footer">
+					<div class="container">
+						<header>
+							<h2>Questions or comments? <strong>Get in touch:</strong></h2>
+						</header>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<section>
+									<form id="contact-form">
+										<div class="row gtr-50">
+
+										<div class="col-6 col-12-small">
+											<input id="name" name="name" placeholder="Name" type="text" required />
+										</div>
+
+										<div class="col-6 col-12-small">
+											<input id="email" name="email" placeholder="Email" type="email" required />
+										</div>
+
+										<div class="col-12">
+											<textarea id="message" name="message" placeholder="Message" required></textarea>
+										</div>
+
+										<!-- Honeypot spam trap -->
+										<input type="text" name="company" id="company" style="display:none">
+
+										<div class="col-12">
+											<button type="submit" class="form-button-submit button icon solid fa-envelope">
+											Send Message
+											</button>
+										</div>
+
+										<div class="col-12">
+											<p id="contact-status"></p>
+										</div>
+
+										</div>
+									</form>
+								</section>
+							</div>
+							<div class="col-6 col-12-medium">
+								<section>
+									<p>I'm based in Edmonton, Alberta, and always open to discussing cloud, AI, and system design projects, roles, or collaborations. Feel free to reach out using the form or the contact details below.</p>
+									<div class="row">
+										<!-- <div class="col-6 col-12-small">
+											<ul class="icons">
+												<li class="icon solid fa-home">
+															Edmonton, Alberta
+												</li>
+												Phone Number Area <li class="icon solid fa-phone">
+													(123) 456-7890
+												</li>
+											</ul>
+										</div>-->
+										<div class="col-6 col-12-small">
+											<ul class="icons">
+												<li class="icon brands fa-linkedin">
+													<a href="https://www.linkedin.com/in/saiful-khan-29810426b/" target="_blank" rel="noopener noreferrer">
+														linkedin.com/in/saiful-khan-29810426b
+													</a>
+												</li>
+												<!--<li class="icon solid fa-envelope">
+												<a href=""></a>
+												</li>-->
+											</ul>
+										</div>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+					<div id="copyright" class="container">
+						<ul class="links">
+							<li>&copy; All rights reserved.</li><li>Design: Saiful Khan</li>
+							<li>Visitors: <span id="visitor-count">0</span></li>						
+						</ul>
+					</div>
+				</section>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/theme-toggle.js?v=20260907"></script>
+			<script src="assets/js/visitor-counter.js"></script>
+			<script src="assets/js/contact-form.js"></script>
+</html>
