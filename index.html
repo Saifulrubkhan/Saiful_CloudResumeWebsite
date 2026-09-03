@@ -4,7 +4,8 @@
 		<title>Saiful Khan</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css?v=20260906" />
+		<meta name="description" content="Saiful Khan, DevOps and Solutions Architect building secure, scalable AWS and multi-cloud platforms." />
+		<link rel="stylesheet" href="assets/css/main.css?v=20260927" />
 		<style>
 			.project-icon { height: 80px; object-fit: contain; width: 80px; }
 		</style>
@@ -16,7 +17,7 @@
 					<div class="container">
 						<!-- Logo -->
 							<h1 id="logo"><a href="index.html">Saiful Khan</a></h1>
-							<p>DevOps &amp; Solutions Architect | Designing secure, scalable AWS solutions</p>
+							<p class="hero-title">DevOps &amp; Solutions Architect</p>
 							<h2 class="availability-status" aria-label="Open for work and visitor count">
 								<span class="availability-indicator" aria-hidden="true"></span>
 								<strong>Open for work</strong>
@@ -30,9 +31,9 @@
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
-									<li><a class="icon solid fa-home" href="index.html"><span>Home</span></a></li>
+									<li><a class="nav-link nav-home" href="index.html"><img class="nav-icon" src="images/homeicon.png" alt="" aria-hidden="true" /><span>Home</span></a></li>
 									<li>
-										<a href="#" class="icon solid fa-tasks"><span>AWS Cloud Challenge</span></a>
+										<a href="#" class="nav-link nav-challenge"><img class="nav-icon" src="images/task.png" alt="" aria-hidden="true" /><span>AWS Cloud Challenge</span></a>
 										<ul>
 											<li><a href="Project.html">AWS Cloud Challenge</a></li>
 											<li><a href="vscode.html">1. VS Code Workflow</a></li>
@@ -47,7 +48,8 @@
 											<!--<li><a href="#footer">10. Serverless Contact Form</a></li>-->
 										</ul>
 									</li>
-									<li><a class="icon solid fa-user-tie" href="resume.html"><span>Resume</span></a></li>
+									<li><a class="nav-link nav-resume" href="resume.html"><img class="nav-icon" src="images/resumes-icon.png" alt="" aria-hidden="true" /><span>Resume</span></a></li>
+									<li><a class="nav-link nav-contact" href="#footer"><img class="nav-icon" src="images/contactme.png" alt="" aria-hidden="true" /><span>Contact Me</span></a></li>
 								</ul>
 							</nav>
 
@@ -61,7 +63,7 @@
 							<div class="col-4 col-6-medium col-12-small">
 
 								<!-- Feature -->
-									<section>
+									<section class="feature-card">
 										<a href="journey.html" class="image featured feature-image"><img src="images/feature_journey.png" alt="" /></a>
 										<header>
 											<a href="journey.html"><h3>My Journey</h3></a>
@@ -74,7 +76,7 @@
 							<div class="col-4 col-6-medium col-12-small">
 
 								<!-- Feature -->
-									<section>
+									<section class="feature-card">
 										<a href="resume.html" class="image featured feature-image"><img src="images/feataure_resume.jpg" alt="" /></a>
 										<header>
 											<a href="resume.html"><h3>My Resume</h3></a>
@@ -86,7 +88,7 @@
 							<div class="col-4 col-6-medium col-12-small">
 
 								<!-- Feature -->
-									<section>
+									<section class="feature-card">
 										<a href="Project.html" class="image featured feature-image"><img src="images/feature_project.jpg" alt="" /></a>
 										<header>
 											<a href="Project.html"><h3>Featured Projects</h3></a>
@@ -96,11 +98,6 @@
 									</section>
 
 							</div>
-							<div class="col-12">
-								<ul class="actions">
-									<li><a href="#footer" class="button icon solid fa-file">Contact Me</a></li>
-								</ul>
-							</div>
 						</div>
 					</div>
 				</section>
@@ -108,8 +105,8 @@
 			<!-- Banner -->
 				<section id="banner">
 					<div class="container">
-						<p><strong>Analyst</strong> At Heart. <strong>Teacher</strong> in Practice.<br />
-						<strong>Driven to create and solve</strong>
+						<p class="quote-banner" aria-live="polite">
+							<span id="rotating-quote"><strong>Analyst</strong> at heart. <strong>Teacher</strong> in practice. Driven to create and solve.</span>
 						</p>
 					</div>
 				</section>
@@ -312,7 +309,7 @@
 				<section id="footer">
 					<div class="container">
 						<header>
-							<h2>Questions or comments? <strong>Get in touch:</strong></h2>
+							<h2>Contact Me</h2>
 						</header>
 						<div class="row">
 							<div class="col-6 col-12-medium">
@@ -388,6 +385,7 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/theme-toggle.js?v=20260907"></script>
+			<script src="assets/js/quote-rotator.js?v=20260910"></script>
 			<script src="assets/js/visitor-counter.js?v=20260908"></script>
 			<script src="assets/js/contact-form.js"></script>
 
