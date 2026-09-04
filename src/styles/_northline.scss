@@ -422,27 +422,110 @@ a {
 }
 
 @media screen and (max-width: 980px) {
+  :root {
+    --bar-h: 4.35rem;
+  }
+
   .site-bar #nav {
     display: none !important;
+  }
+
+  /* Keep header in normal flow; leave room for the menu toggle on the left */
+  #header.site-bar,
+  .site-bar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.75rem;
+    min-height: calc(var(--bar-h) + env(safe-area-inset-top, 0px));
+    padding:
+      calc(0.75rem + env(safe-area-inset-top, 0px))
+      clamp(0.85rem, 3.5vw, 1.25rem)
+      0.75rem
+      4.15rem !important;
+    overflow: visible !important;
+  }
+
+  .site-bar__brand,
+  .site-bar__actions {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+  }
+
+  .site-bar__brand {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .site-bar .brand {
+    max-width: 100%;
+  }
+
+  .site-bar .brand__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .site-bar__actions {
+    flex: 0 0 auto;
   }
 
   #page-wrapper {
     padding-top: 0 !important;
   }
+
+  .hero--portfolio {
+    padding-top: clamp(1.25rem, 3.5vh, 2rem);
+  }
+
+  /* Transparent overlay bar: only the hamburger, aligned with the site bar */
+  #titleBar {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(var(--bar-h) + env(safe-area-inset-top, 0px)) !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    z-index: 220 !important;
+    pointer-events: none;
+  }
+
+  #titleBar .toggle {
+    pointer-events: auto;
+    position: absolute !important;
+    left: 0.7rem !important;
+    top: calc(env(safe-area-inset-top, 0px) + 0.7rem) !important;
+    width: 2.7rem !important;
+    height: 2.7rem !important;
+  }
+
+  #titleBar .toggle:before {
+    content: '\f0c9' !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 2.7rem !important;
+    height: 2.7rem !important;
+    left: 0 !important;
+    top: 0 !important;
+    line-height: 1 !important;
+    border-radius: 0.55rem !important;
+    background: var(--paper-2) !important;
+    color: var(--ink) !important;
+    box-shadow:
+      0 1px 0 color-mix(in srgb, #fff 45%, transparent) inset,
+      0 2px 8px color-mix(in srgb, var(--ink) 12%, transparent) !important;
+    font-size: 1rem !important;
+  }
 }
 
-/* Mobile panel restyle */
-#titleBar {
-  background: var(--paper) !important;
-  border-bottom: 1px solid var(--line) !important;
-}
-
-#titleBar .toggle:before {
-  background: var(--paper-2) !important;
-  color: var(--ink) !important;
-  box-shadow: none !important;
-}
-
+/* Mobile panel restyle (desktop: titleBar stays hidden via site.css) */
 #navPanel {
   background: var(--paper-2) !important;
 }
