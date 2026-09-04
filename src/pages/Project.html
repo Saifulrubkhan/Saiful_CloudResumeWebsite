@@ -75,12 +75,12 @@
 									<strong>Phase 4 Detailed Guides: <a href="visitor_counter.html">DynamoDB | Lambda | API Gateway</a></strong>
 								</li>
 								<li><strong>Phase 5 - Completing the Cloud Resume Challenge</strong>
-									<p>The final phase of the Cloud Resume Challenge focused on building the backend services that turn a static website into a dynamic cloud application. During this stage I implemented a serverless visitor counter using AWS Lambda and DynamoDB, allowing the website to record and display page visits in real time. The frontend communicates with the backend through an HTTP API endpoint, which triggers the Lambda function and updates the database.</p>
+									<p>The final core phase focused on the serverless backend that turns a static site into a dynamic cloud app: Lambda + DynamoDB visitor counting behind an HTTP API, wired into the frontend.</p>
 
-									<p>After completing the serverless backend, I transitioned the infrastructure into Terraform to move away from manual AWS console configuration. Instead of rebuilding the environment from scratch, I imported the existing resources into Terraform and aligned the configuration until Terraform reported no infrastructure changes. This ensured the live AWS environment matched the Infrastructure as Code configuration while keeping the site fully operational.</p>
+									<p>Infrastructure as Code with Terraform is the next evolution of this project. Today the live stack is still provisioned and updated through AWS console work, CLI helpers, and GitHub Actions. I am documenting and starting the Terraform migration so hosting, APIs, and data stores can be versioned and reproduced as code — without rebuilding production from scratch.</p>
 
-									<p>At this point, the core requirements of the AWS Cloud Resume Challenge were complete. The project now included static website hosting, global content delivery, automated deployments, serverless backend functionality, and Infrastructure as Code management.</p>
-									<strong>Phase 5 Detailed Guide: <a href="terraform.html">The Terraform Migration</a></strong>
+									<p>At this point the site includes static hosting, global HTTPS delivery, automated deployments, serverless APIs, and a contact form extension. Terraform IaC is actively in progress.</p>
+									<strong>Phase 5 guide (roadmap): <a href="terraform.html">Terraform migration — in progress</a></strong>
 								</li>
 								<li>
 									<strong>Phase 6 - Extending the Project Beyond the Challenge</strong>
@@ -109,10 +109,8 @@
 							<p><strong>Security:</strong> I followed the “Principle of Least Privilege,” ensuring my code only has the exact permissions it needs to run.</p>
 							<p><strong>Modern Thinking:</strong> I opted for the HTTP API, proving I can evaluate technical trade-offs based on cost and performance rather than 
 									just following old tutorials.</p>
-							<p><strong>Resilience:</strong> By using Terraform and CI/CD, I've ensured that my resume isn't just a static page—it's a living, automated piece of 
-									infrastructure.</p>
-							<strong>Where I am now:</strong> I am currently in the thick of Phase'5, re-engineering this project to be “Infrastructure as Code” native. Follow
-								along as I turn manual clicks into reproducible code.
+							<p><strong>Resilience:</strong> With CI/CD already in place and Terraform IaC in progress, this resume is becoming a living, automated piece of infrastructure — not just a static page.</p>
+							<strong>Where I am now:</strong> I am working through the Terraform migration so the live AWS environment can be managed as code. Follow along as manual ClickOps becomes reproducible IaC.
 
 							<p>See my full <a href="resume.html#skills">skills</a> and <a href="resume.html#certifications">certifications</a> on the Resume page.</p>
 						</section>

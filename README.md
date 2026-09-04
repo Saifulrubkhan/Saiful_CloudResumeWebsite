@@ -18,7 +18,7 @@ The goal of this project is to design, secure, and deploy a personal website on 
 - Secure HTTPS delivery through CloudFront
 - Serverless visitor counter with API integration
 - CI/CD automation for continuous deployment
-- Infrastructure managed with code-first principles
+- Infrastructure managed with code-first principles (Terraform migration in progress)
 - Cloud architecture documentation and operational practices
 
 ---
@@ -94,9 +94,10 @@ This project is documented through a phased implementation, with each step refle
   - Amazon API Gateway
 - Integrated frontend JavaScript to display the live count
 
-### Phase 8 — Infrastructure as Code
-- Migrating infrastructure to Terraform
-- Aim: manage AWS resources consistently with IaC best practices
+### Phase 8 — Infrastructure as Code (in progress)
+- Planning and documenting the Terraform migration for existing AWS resources
+- Current infra is still operated via AWS console, CLI deploy scripts, and GitHub Actions
+- Next: check `.tf` into a dedicated IaC repo and manage visitor/contact APIs + hosting as code
 
 ### Phase 9 — Serverless Contact Form
 - Dedicated API repo: [cloud-resume-api](https://github.com/Saifulrubkhan/cloud-resume-api)

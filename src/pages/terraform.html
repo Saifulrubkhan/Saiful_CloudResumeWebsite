@@ -13,26 +13,35 @@
 				<article class="post">
 					<header>
 						<div class="title">
-							<h2>Rebuilding the Infrastructure with Terraform</h2>
-							<p>Part 8 of the AWS Cloud Resume Challenge.</p>
+							<h2>Infrastructure as Code with Terraform</h2>
+							<p>Part 8 of the AWS Cloud Resume Challenge — <strong>in progress</strong>.</p>
 						</div>
 					</header>
 					<section class="project">
-						<!--<a href="Project.html" class="image featured"><img src="/images/Project_HTML_Img.png" width="840" height="341" alt="HTLM code" /></a>-->
-						<p>After completing the frontend and backend portions of my Cloud Resume Challenge using the AWS console, I reached an important realization. While manually configuring infrastructure is useful for learning, it is not how production cloud environments are managed.</p>
+						<p><strong>Status:</strong> Terraform for this project is actively in progress. The live site and APIs already run in AWS; they were built with the console, CLI deploy helpers, and GitHub Actions. The next change is to bring that infrastructure under Terraform so future updates are versioned, reviewable, and reproducible.</p>
 
-						<p>Modern cloud infrastructure is built using Infrastructure as Code (IaC). Instead of manually clicking through the AWS console, engineers define infrastructure in code so it can be version controlled, replicated, and deployed automatically.</p>
+						<p>After completing the frontend and backend portions of my Cloud Resume Challenge using the AWS console, I reached an important realization. While manually configuring infrastructure is useful for learning, it is not how production cloud environments are managed long term.</p>
 
-						<p>To bring this project closer to real world DevOps practices, and to deepen my understanding of Terraform, I migrated my existing AWS infrastructure into HashiCorp Terraform. The goal was to place my backend resources under Terraform management without destroying or recreating anything already running in production.</p>
+						<p>Modern cloud infrastructure is built using Infrastructure as Code (IaC). Instead of only clicking through the AWS console, engineers define infrastructure in code so it can be version controlled, replicated, and deployed automatically.</p>
 
-						This migration consisted of two main phases:
+						<p>This page is the roadmap and working notes for migrating the existing stack into HashiCorp Terraform — without destroying or recreating production. When the <code>.tf</code> modules are ready, they will live in a dedicated IaC repo and manage resources such as DynamoDB, Lambda, API Gateway, and (later) hosting components.</p>
+
+						<pre class="mermaid">
+flowchart TD
+  today[Today: Console + CLI scripts + GitHub Actions] --> next[Next: Terraform modules in git]
+  next --> import[Import or redefine live AWS resources]
+  import --> plan["terraform plan until clean"]
+  plan --> apply[Manage future changes as code]
+						</pre>
+
+						This migration is planned in two main phases:
 						<ul>
-							<li>Importing existing AWS resources into Terraform</li>
-							<li>Automating infrastructure management using Terraform configuration files</li>
+							<li>Importing or mapping existing AWS resources into Terraform</li>
+							<li>Automating ongoing infrastructure changes with Terraform configuration in git</li>
 						</ul>
 
-						<h3>Infrastructure Before Terraform</h3>
-						<p>Before Terraform was introduced, the website was already fully operational using resources created through the AWS console.</p>
+						<h3>Infrastructure today (before Terraform owns it)</h3>
+						<p>The website is already fully operational. Current management is still a mix of AWS console history, PowerShell/AWS CLI deploy scripts, and GitHub Actions — not checked-in <code>.tf</code> files yet.</p>
 						The backend architecture included:
 						<ul>
 							<li><strong>Amazon S3</strong> - Static website hosting</li>
@@ -43,7 +52,7 @@
 							<li><strong>Amazon API Gateway</strong> - Public API endpoint used by the website</li>
 						</ul>
 
-						Because the site was already live, deleting and recreating these resources would have caused unnecessary downtime. Instead, I used Terraform Import to bring these existing resources under Terraform management.
+						Because the site is already live, deleting and recreating these resources would cause unnecessary downtime. The plan is to use Terraform Import (or carefully authored config aligned to live IDs) so existing resources move under Terraform management safely.
 
 						<!-- IMAGE 1 - Project Structure -->
 						<!-- Missing screenshot (add later): /images/P8_Img1_ProjectStructure.png
@@ -60,8 +69,8 @@
 						</ul>
 						The AWS CLI was configured with credentials from an IAM user that has permission to manage the resources used in the project. This allows Terraform to authenticate with AWS and interact with infrastructure programmatically.
 
-						<h3>Phase 1 - Importing Existing Infrastructure</h3>
-						<p>The first phase involved importing the existing AWS infrastructure into Terraform. Instead of recreating resources, Terraform can link configuration files to infrastructure that already exists.</p>
+						<h3>Phase 1 - Importing Existing Infrastructure (planned / in progress)</h3>
+						<p>The first phase imports existing AWS infrastructure into Terraform. Instead of recreating resources, Terraform can link configuration files to infrastructure that already exists.</p>
 
 						<h4>Step 1.1 - Initializing the Terraform Project</h4>
 						I created a Terraform project directory and defined the AWS provider configuration.
@@ -193,37 +202,36 @@ build/</code></pre>
 						<img src="/images/P8_Img9_GitIgnore.png" width="640" height="341" alt="Preventing Terraform state files and sensitive data from being committed to version control."  />
 						<em>Preventing Terraform state files and sensitive data from being committed to version control.</em> -->
 
-						<h3>Final Architecture</h3>
-						<p>After completing the migration, the entire backend infrastructure is now managed through Terraform.</p>
-						The architecture includes:
+						<h3>Target architecture under Terraform</h3>
+						<p>When this migration is complete, the same live backend and hosting components will be managed through Terraform modules in git — not recreated from scratch on day one.</p>
+						The target set includes:
 						<ul>
 							<li><strong>S3</strong> - Static website hosting</li>
 							<li><strong>CloudFront</strong> - Global CDN and HTTPS</li>
 							<li><strong>Route 53</strong> - DNS management</li>
 							<li><strong>Lambda</strong> - Serverless compute</li>
-							<li><strong>DynamoDB</strong> - Visitor counter database</li>
+							<li><strong>DynamoDB</strong> - Visitor counter / contact storage</li>
 							<li><strong>API Gateway</strong> - Backend API endpoints</li>
 						</ul>
-						All of these resources can now be deployed or recreated using Terraform configuration files stored in GitHub.
+						<p>Until then, deploy scripts and GitHub Actions remain the operational path. Terraform is the next change, not a finished claim.</p>
 
 						<!-- IMAGE 10 - Terraform Repository -->
 						<!-- Missing screenshot (add later): /images/P8_Img10_TerraformRepo.png
 						<img src="/images/P8_Img10_TerraformRepo.png" width="640" height="341" alt="Terraform infrastructure configuration stored in GitHub."  />
 						<em>Terraform infrastructure configuration stored in GitHub.</em> -->
 
-						<h3>Lessons Learned</h3>
-						Migrating this project to Terraform reinforced several important lessons about managing cloud infrastructure.
+						<h3>What I’m optimizing for</h3>
+						<p>Moving this project to Terraform is about production habits, not checkbox completion:</p>
 						<ul>
-							<li><strong>Infrastructure Should Be Reproducible</strong> - Manual configuration makes infrastructure difficult to replicate. By defining infrastructure in Terraform, the entire backend environment can now be recreated consistently.</li>
-							<li><strong>Terraform Import Is Essential for Existing Projects</strong> - Many tutorials assume infrastructure will be built from scratch. In real environments, engineers often inherit existing systems. Terraform Import makes it possible to transition those systems into Infrastructure as Code safely.</li>
-							<li><strong>State Management Matters</strong> - Terraform state files contain critical information about infrastructure. Protecting and managing the state file properly is essential for maintaining stable environments.</li>
-							<li><strong>Testing Changes Prevents Production Issues</strong> - Running <code>terraform plan</code> repeatedly helped verify that Terraform accurately reflected the real infrastructure. This step is critical to avoid accidental changes in production environments.</li>
+							<li><strong>Reproducible infrastructure</strong> — define once, recreate consistently</li>
+							<li><strong>Safe adoption of existing systems</strong> — import/align live resources instead of tearing them down</li>
+							<li><strong>State and secrets hygiene</strong> — keep <code>tfstate</code> and sensitive values out of git</li>
+							<li><strong>Plan before apply</strong> — use <code>terraform plan</code> to avoid accidental production drift</li>
 						</ul>
 
-						<h3>Conclusion</h3>
-						<p>Learning Terraform fundamentally changed how I approach cloud infrastructure. Instead of manually configuring services through the AWS console, the entire backend environment is now described in code. This makes the infrastructure easier to manage, easier to replicate, and far more scalable.</p>
-						<p>If this environment ever needed to be rebuilt, the entire architecture could be redeployed in minutes using Terraform.</p>
-						<p>Completing this stage of the Cloud Resume Challenge marks a major milestone. What started as a simple static website evolved into a fully automated serverless cloud architecture managed through Infrastructure as Code.</p>
+						<h3>What's Next</h3>
+						<p>CI/CD already ships the website. The immediate Terraform steps are publishing starter <code>.tf</code> modules, importing the visitor and contact APIs, then expanding to edge/DNS resources.</p>
+						<p>Follow this page for updates as the Terraform repo and state backend come online.</p>
 					</section>
 				</article>
 			<!-- Post -->

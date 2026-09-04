@@ -177,7 +177,7 @@ flowchart TD
 						<h3>What Is Next</h3>
 						<p>Up to this point most of the infrastructure for this project was created manually through the AWS console. This approach is often referred to as ClickOps.</p>
 						<p>While this method works well for learning, production environments rely on Infrastructure as Code to ensure infrastructure is reproducible, version controlled, and easier to maintain.</p>
-						<p>In the next stage of the project I begin converting the infrastructure into code using Terraform. This will allow the entire environment including Lambda, DynamoDB, and supporting services to be managed through configuration files rather than manual setup.</p>
+						<p>In the next stage of the project I am converting this infrastructure into Terraform. That work is in progress: the visitor counter already runs via API Gateway, Lambda, and DynamoDB, and Terraform will take over provisioning those resources as code.</p>
 
 						</br>
 						<strong>Next Up:</strong> <a href="terraform.html">Infrastructure as Code - Rebuilding the Project with Terraform</a>
