@@ -20,44 +20,42 @@
 					<section class="project">
 						<!--<a href="Project.html" class="image featured"><img src="/images/project_HTML.png" width="840" height="341" alt="HTML code" /></a>-->
 						<p>Before building the backend portion of my project—specifically the Lambda functions and DynamoDB tables—I wanted to make sure I had proper cost monitoring in place.</p>
-						<p>AWS provides a powerful platform, but with that flexibility comes responsibility. A misconfigured service, an unexpected spike in traffic, or a forgotten resource can quickly lead to charges that exceed the Free Tier. To avoid any surprises, I took time during this stage of the AWS Cloud Resume Challenge to set up proactive cost monitoring and alerts. This gives me a safety net as I begin experimenting with more dynamic AWS services.</p>
+						<p>AWS provides a powerful platform, but with that flexibility comes responsibility. A misconfigured service, an unexpected spike in traffic, or a forgotten resource can quickly lead to charges that exceed the Free Tier. To avoid surprises, I set up proactive cost controls with <strong>AWS Budgets</strong>. Budgets tracks account spend and emails me when thresholds are crossed, so I do not need CloudWatch billing alarms for this safety net.</p>
 
-						<h3>Step 1: Enabling Billing Alerts</h3>
-						<p>Before creating alarms, AWS must first allow billing metrics to be accessed by CloudWatch. By default, billing alerts are not enabled for new AWS accounts, so this needs to be turned on manually.</p>
-						<p>To enable them, I navigated to the Billing and Cost Management Console and opened Billing Preferences. From there, I enabled the option: <strong>Receive Billing Alerts</strong>.</p>
-						<p>Once enabled, AWS begins publishing billing data that CloudWatch can monitor. An important detail is that billing metrics are always stored in the US East (N. Virginia) region (us-east-1). Because of this, any CloudWatch alarms that monitor billing metrics must also be created in that same region.</p>
-
-						<h3>Step 2: Creating a $1 “Early Warning” Alarm</h3>
-						<p>The first alarm I created was a $1 billing alert. The purpose of this alarm is not to warn about spending a dollar, but to act as an early signal that something has moved beyond the Free Tier.</p>
-						I created a CloudWatch alarm using the following settings:
+						<h3>Step 1: Creating a Monthly Cost Budget</h3>
+						<p>In Billing and Cost Management, I opened <strong>Budgets</strong> and created a cost budget for the whole account.</p>
 						<ul>
-							<li><strong>Service:</strong> CloudWatch</li>
-							<li><strong>Metric:</strong> EstimatedCharges</li>
-							<li><strong>Currency:</strong> USD</li>
-							<li><strong>Threshold:</strong> $1.00</li>
+							<li><strong>Budget type:</strong> Cost budget</li>
+							<li><strong>Period:</strong> Monthly</li>
+							<li><strong>Budget amount:</strong> $10.00</li>
+							<li><strong>Scope:</strong> Overall account spending</li>
 						</ul>
-						<p>For notifications, I created an Amazon SNS (Simple Notification Service) topic that sends an email directly to my inbox whenever the alarm is triggered. This means if my account generates even a small charge, I will know immediately and can investigate the cause.</p>
-						<img src="/images/cost_optimization.png?v=1" width="960" height="540" alt="Screenshot of the CloudWatch Alarms dashboard showing the $1 billing alarm" />
+						<p>A $10 monthly ceiling is enough headroom for this Cloud Resume project while still catching runaway usage early. Once the budget is active, AWS shows its health status in the Budgets console so I can confirm it is tracking correctly.</p>
+						<img src="/images/cost_optimization.png?v=2" width="960" height="540" alt="AWS Budgets details showing a healthy $10 monthly cost budget" />
+						<em>AWS Budgets details for my $10 monthly cost budget (Healthy).</em>
 
-						<h3>Step 3: Creating a $10 “Stop and Investigate” Alarm</h3>
-						<p>The second alarm serves as a stronger safety measure. If my account reaches $10 in estimated charges, it likely indicates that something unexpected is running or scaling beyond what I intended.</p>
-						To create this alert, I repeated the same CloudWatch alarm setup but adjusted the threshold:
+						<h3>Step 2: Configuring Budget Alert Thresholds</h3>
+						<p>Budgets can notify me directly by email when actual or forecasted spend approaches the limit. I configured threshold alerts so I get warned before the full amount is used:</p>
 						<ul>
-							<li><strong>Threshold:</strong> $10.00</li>
+							<li><strong>Early warning:</strong> notify when actual costs reach a percentage of the budget (for example 50% or 80%)</li>
+							<li><strong>Limit reached:</strong> notify when actual costs reach 100% of the $10 budget</li>
+							<li><strong>Optional forecast alert:</strong> notify if AWS forecasts that the month will exceed the budget</li>
 						</ul>
-						This alarm uses the same SNS notification topic so that I receive an immediate email alert if this level is reached. Having two alarms creates a simple escalation model:
-						<ul>
-							<li><strong>$1 alert:</strong> Early warning that spending has started</li>
-							<li><strong>$10 alert:</strong> Investigate immediately</li>
-						</ul>
+						<p>These notifications are managed by AWS Budgets itself. I do not create CloudWatch alarms on <code>EstimatedCharges</code> or wire SNS topics just to get billing emails for this project.</p>
 
-						<h3>Step 4: Setting Up Budget Threshold Notifications</h3>
-						<p>In addition to CloudWatch alarms, AWS also provides a service specifically designed for cost management called AWS Budgets. Within the AWS Budgets console, I created a monthly cost budget to track overall account spending.</p>
-						<p>I configured the budget to send a notification when usage reaches 80% of the budget threshold. This provides a proactive warning before the full limit is reached, giving me time to investigate or optimize resources. Budget alerts are sent via email, allowing me to stay informed about spending trends throughout the month.</p>
+						<h3>Step 3: Why Budgets Instead of CloudWatch Alerts</h3>
+						<p>CloudWatch billing alarms are a valid pattern, but for account-level spend control AWS Budgets is the clearer fit:</p>
+						<ul>
+							<li>Budgets are purpose-built for cost and usage thresholds</li>
+							<li>Alerting is configured on the budget, without a separate CloudWatch metric alarm</li>
+							<li>I can track actual and forecasted spend in one place</li>
+							<li>The console health view makes it obvious the control is active</li>
+						</ul>
+						<p>For this stage of the challenge, one monthly cost budget with email thresholds is enough. I can add service filters or tighter limits later if the architecture grows.</p>
 
 						<h3>Why Proactive Monitoring Matters</h3>
-						<p>Setting up cost monitoring early is an important part of responsible cloud architecture. As I move into the backend development phase of this project, I will begin working with services like Lambda, DynamoDB, and API Gateway. While these services are serverless and highly scalable, incorrect configurations—such as infinite loops or unexpected traffic—can cause usage to increase rapidly.</p>
-						<p>With billing alarms and budget alerts in place, I can experiment and build with confidence knowing that any unusual spending will trigger an alert. This small amount of preparation helps prevent unpleasant surprises when the monthly bill arrives.</p>
+						<p>Setting up cost monitoring early is part of responsible cloud architecture. As I move into the backend phase, I will use Lambda, DynamoDB, and API Gateway. Those services scale easily—and so can the bill if something misbehaves (for example a loop or unexpected traffic).</p>
+						<p>With AWS Budgets watching a $10 monthly limit, I can experiment knowing unusual spend will trigger an email before it becomes a surprise invoice.</p>
 
 						<h3>What's Next?</h3>
 						<p>With cost monitoring in place and the frontend infrastructure fully automated, it's time to begin building the dynamic backend components of the website.</p>
