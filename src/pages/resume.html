@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		{{> head title="Resume - Saiful Khan" }}
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+			{{> header }}
+			<div id="wrapper" class="resume-layout">
+				<div id="main">
+					<article class="post resume">
+						<section class="project">
+							<h5>Professional Experience</h5>
+							<h4><strong>Senior DevOps Engineer</strong></h4>
+							<h6><strong>Wood Mackenzie</strong> &ndash; Edmonton, Canada<br>
+							05/2023 &ndash; 07/2026</h6>
+							<ul>
+								<li>Designed and implemented a serverless credential management platform using AWS Lambda, Secrets Manager, EventBridge scheduled rules and CloudFormation StackSets, automating token lifecycle management across a multi-account AWS environment and eliminating manual secret rotation.</li>
+								<li>Built event-driven integration patterns with SNS/SQS fan-out, dead-letter queues and EventBridge rule-based routing to decouple services and guarantee reliable, replayable message processing across production workloads.</li>
+								<li>Implemented AWS Step Functions state machines orchestrating Lambda functions for a large-scale repository backup and migration pipeline &mdash; 6,000+ repositories archived to S3 Glacier via parallel Python workers with zero data loss.</li>
+								<li>Architected and operated enterprise container platforms on Amazon ECS Fargate and EKS: ECR image build/publish pipelines, EFS-backed persistent storage, ALB ingress, autoscaling policies and multi-environment deployment patterns serving 10+ product teams.</li>
+								<li>Implemented Kinesis Data Streams/Firehose ingestion pipelines feeding S3 and OpenSearch to stream operational telemetry and application events for real-time analytics and alerting.</li>
+								<li>Implemented Amazon Cognito user pools with API Gateway authorizers to secure internal APIs and engineering dashboards with federated sign-in and fine-grained IAM access.</li>
+								<li>Defined infrastructure with AWS CDK and CloudFormation alongside Terraform, and built reusable GitHub Actions workflows adopted by 20+ business-critical applications, cutting deployment time 30%.</li>
+								<li>Automated database schema management for RDS/Aurora with Liquibase integrated into CI/CD pipelines, enabling versioned, repeatable schema releases across environments.</li>
+								<li>Implemented AWS Bedrock, Azure AI Foundry and GCP Vertex AI services, provisioning secure data pipelines and LLM Ops infrastructure for multi-cloud AI workloads.</li>
+								<li>Led cloud cost optimization across EC2, ECS, S3 and EBS &mdash; rightsizing, autoscaling and lifecycle policies &mdash; reducing infrastructure spend 25% with no performance impact.</li>
+								<li>Established observability architecture with CloudWatch, Prometheus, Grafana and ELK, improving incident detection and driving 40% MTTR improvement and 50% toil reduction through Python automation.</li>
+								<li>Mentored engineers on cloud-native architecture, serverless patterns, IaC and AWS Well-Architected Framework principles.</li>
+							</ul>
+							<h4><strong>DevOps Engineer</strong></h4>
+							<h6><strong>Amazon</strong> &ndash; Canada<br>
+							03/2022 &ndash; 05/2023</h6>
+							<ul>
+								<li>Built serverless applications on Amazon API Gateway, AWS Lambda, DynamoDB, S3 and Aurora supporting scalable event-driven architectures and data-processing workloads.</li>
+								<li>Implemented event-driven deployment automation using S3 event notifications, SNS/SQS messaging and Lambda, reducing manual effort and improving release reliability.</li>
+								<li>Developed a serverless credential rotation solution (Lambda, Secrets Manager, Systems Manager Parameter Store, EventBridge schedules) rotating service-account tokens monthly with zero manual intervention.</li>
+								<li>Containerized enterprise applications with Docker and deployed to Amazon ECS (Fargate) and Kubernetes with ECR image pipelines, rolling and blue/green deployment strategies and automated scaling.</li>
+								<li>Designed cloud-native AWS architectures per the Well-Architected Framework &mdash; scalability, high availability, disaster recovery, security and cost optimization.</li>
+								<li>Provisioned VPCs, subnets, NAT gateways, ALBs, security groups, IAM roles, RDS, S3, Route 53, SQS and SNS across environments with CloudFormation and Terraform.</li>
+								<li>Developed Python and Node.js automation for infrastructure management, deployment workflows and platform maintenance.</li>
+								<li>Implemented observability with CloudWatch, Prometheus, Grafana and ELK/EFK for centralized logging, monitoring and alerting.</li>
+							</ul>
+							<h4><strong>Infra Engineer</strong></h4>
+							<h6><strong>GlobalLogic (Rogers)</strong> &ndash; Canada<br>
+							07/2021 &ndash; 10/2021</h6>
+							<ul>
+								<li>Designed and implemented highly available AWS infrastructure spanning EC2, VPC, ECS, ALB, Auto Scaling, Route 53, CloudFront, API Gateway, RDS, ElastiCache, SNS, SQS, Lambda, IAM, CloudWatch and CloudTrail.</li>
+								<li>Implemented AWS Lambda functions and Python automation to eliminate repetitive operational processes; benchmarked serverless architectures (Lambda vs. Azure Functions) for scalability, concurrency, latency and cost to guide adoption decisions.</li>
+								<li>Managed containerized workloads on Amazon ECS with blue/green deployments, service discovery and load balancing for zero-downtime releases.</li>
+								<li>Provisioned secure networking (custom VPCs, subnets, NAT/Internet gateways, NACLs) and least-privilege IAM with Terraform and CloudFormation.</li>
+								<li>Built monitoring and alerting with CloudWatch, SNS, Prometheus and Grafana, reducing mean time to detect</li>
+							</ul>
+							<h4><strong>Support Associate</strong></h4>
+							<h6><strong>Amazon</strong> &ndash; Canada<br>
+							08/2020 &ndash; 03/2021</h6>
+							<ul>
+								<li>Deployed and maintained enterprise data-center compute, storage and network infrastructure; resolved Layer 1/2 network and server hardware issues within customer SLAs.</li>
+							</ul>
+							<h4><strong>Technical Support Engineer</strong></h4>
+							<h6><strong>Ceragon Networks</strong> &ndash; India<br>
+							04/2017 &ndash; 12/2019</h6>
+							<ul>
+								<li>Managed Cisco routing/switching, DHCP/DNS, Linux/Windows systems and disaster-recovery procedures for carrier network infrastructure.</li>
+							</ul>
+							<h4><strong>Field Engineer</strong></h4>
+							<h6><strong>IMS Infotech Pvt Ltd</strong> &ndash; India<br>
+							12/2015 &ndash; 04/2017</h6>
+							<ul>
+								<li>Configured and troubleshot Cisco network switches and Layer 2/3 technologies (VLANs, STP, OSPF, MPLS).</li>
+							</ul>
+							<h5>Education</h5>
+							<section class="education-entry">
+								<div class="education-text">
+									<h4><strong>BTech</strong></h4>
+									<h6><strong>Sikkim Manipal Institute of Technology</strong> &ndash; India<br>
+									2014</h6>
+								</div>
+							</section>
+						</section>
+					</article>
+				</div>
+				<section id="sidebar">
+					<ul class="actions">
+						<li><a href="/assets/documents/Saiful_Khan_Resume.pdf" class="button large" download>Resume Download</a></li>
+					</ul>
+				</section>
+				<section class="skills" id="skills" aria-labelledby="skills-heading">
+					<h2 class="skills__title" id="skills-heading">Skills</h2>
+					<div class="skills__grid">
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+								</span>
+								Cloud &amp; Infrastructure
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="/images/skills/aws.svg" alt="" width="22" height="22" />
+									<span>AWS</span>
+								</li>
+								<li>
+									<img src="/images/skills/azure.svg" alt="" width="22" height="22" />
+									<span>Microsoft Azure</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="" width="22" height="22" />
+									<span>Google Cloud</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/></svg>
+								</span>
+								CI/CD &amp; DevOps
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="" width="22" height="22" />
+									<span>GitHub Actions</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/gitlab/FC6D26" alt="" width="22" height="22" />
+									<span>GitLab CI</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/jenkins/D24939" alt="" width="22" height="22" />
+									<span>Jenkins</span>
+								</li>
+								<li>
+									<img src="/images/skills/aws.svg" alt="" width="22" height="22" />
+									<span>AWS CodePipeline</span>
+								</li>
+								<li>
+									<img src="/images/skills/sonar.svg" alt="" width="22" height="22" />
+									<span>SonarQube</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M2 20h20v-4H2v4zm0-6h20v-4H2v4zm0-6h20V4H2v4z"/></svg>
+								</span>
+								Containers &amp; Orchestration
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/docker/2496ED" alt="" width="22" height="22" />
+									<span>Docker</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="" width="22" height="22" />
+									<span>Kubernetes</span>
+								</li>
+								<li>
+									<img src="/images/skills/aws-orange.svg" alt="" width="22" height="22" />
+									<span>Amazon ECS</span>
+								</li>
+								<li>
+									<img src="/images/skills/aws-orange.svg" alt="" width="22" height="22" />
+									<span>Amazon EKS</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/helm/0F1689" alt="" width="22" height="22" />
+									<span>Helm</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/redhat/EE0000" alt="" width="22" height="22" />
+									<span>OpenShift</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8.5 6.5 4 12l4.5 5.5L10 16l-3-4 3-4-1.5-1.5zm7 0L14 8l3 4-3 4 1.5 1.5L20 12l-4.5-5.5z"/></svg>
+								</span>
+								Infrastructure as Code &amp; Configuration Management
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="" width="22" height="22" />
+									<span>Terraform</span>
+								</li>
+								<li>
+									<img src="/images/skills/aws.svg" alt="" width="22" height="22" />
+									<span>AWS CloudFormation</span>
+								</li>
+								<li>
+									<img src="/images/skills/aws-orange.svg" alt="" width="22" height="22" />
+									<span>AWS CDK</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/ansible/EE0000" alt="" width="22" height="22" />
+									<span>Ansible</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3.5 18.5 12 5l8.5 13.5H3.5zm9.5-2.2a1.1 1.1 0 1 0 0-2.2 1.1 1.1 0 0 0 0 2.2zM11 9.5h2v4h-2v-4z"/></svg>
+								</span>
+								Monitoring &amp; Logging
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="" width="22" height="22" />
+									<span>Prometheus</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/grafana/F46800" alt="" width="22" height="22" />
+									<span>Grafana</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/elasticsearch/005571" alt="" width="22" height="22" />
+									<span>ELK Stack</span>
+								</li>
+								<li>
+									<img src="/images/skills/cloudwatch.svg" alt="" width="22" height="22" />
+									<span>CloudWatch</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v4.5c0 1.7 3.6 3 8 3s8-1.3 8-3V5c0 1.7-3.6 3-8 3S4 6.7 4 5zm0 6v4.5c0 1.7 3.6 3 8 3s8-1.3 8-3V11c0 1.7-3.6 3-8 3s-8-1.3-8-3zm0 6V21c0 1.7 3.6 3 8 3s8-1.3 8-3v-4c0 1.7-3.6 3-8 3s-8-1.3-8-3z"/></svg>
+								</span>
+								Databases &amp; Servers
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="" width="22" height="22" />
+									<span>PostgreSQL</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/mysql/4479A1" alt="" width="22" height="22" />
+									<span>MySQL</span>
+								</li>
+								<li>
+									<img src="/images/skills/oracle.svg" alt="" width="22" height="22" />
+									<span>Oracle SQL</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/mongodb/47A248" alt="" width="22" height="22" />
+									<span>MongoDB</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 3v6H3V3h6zm2 0h10v2H11V3zm0 4h7v2h-7V7zM3 11h6v10H3V11zm8 2h10v2H11v-2zm0 4h7v2h-7v-2z"/></svg>
+								</span>
+								Version Control &amp; Collaboration
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/git/F05032" alt="" width="22" height="22" />
+									<span>Git</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/github/181717" alt="" width="22" height="22" />
+									<span>GitHub</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/gitlab/FC6D26" alt="" width="22" height="22" />
+									<span>GitLab</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/jira/0052CC" alt="" width="22" height="22" />
+									<span>Jira</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 4h16v3H4V4zm0 5h16v3H4V9zm0 5h16v3H4v-3zm0 5h16v3H4v-3z"/></svg>
+								</span>
+								Linux Distributions
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/ubuntu/E95420" alt="" width="22" height="22" />
+									<span>Ubuntu</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/centos/262577" alt="" width="22" height="22" />
+									<span>CentOS</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/redhat/EE0000" alt="" width="22" height="22" />
+									<span>RHEL</span>
+								</li>
+								<li>
+									<img src="/images/skills/aws-orange.svg" alt="" width="22" height="22" />
+									<span>Amazon Linux</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10.7C16.6 21.4 20 17 20 12V6l-8-4zm0 3.1 5.5 2.7v4.2c0 3.6-2.3 6.8-5.5 7.9-3.2-1.1-5.5-4.3-5.5-7.9V7.8L12 5.1z"/></svg>
+								</span>
+								Networking &amp; Service Mesh
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/istio/466BB0" alt="" width="22" height="22" />
+									<span>Istio</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/cilium/F8C517" alt="" width="22" height="22" />
+									<span>Cilium</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/traefikproxy/24A1C1" alt="" width="22" height="22" />
+									<span>Traefik</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="" width="22" height="22" />
+									<span>Ingress</span>
+								</li>
+								<li>
+									<img src="/images/skills/dns.svg" alt="" width="22" height="22" />
+									<span>DNS</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/nginx/009639" alt="" width="22" height="22" />
+									<span>Load Balancing</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2 4 5v6.1c0 5.1 3.4 9.8 8 11 4.6-1.2 8-5.9 8-11V5l-8-3zm0 3.1 5.2 2v4c0 3.5-2.2 6.7-5.2 7.8-3-1.1-5.2-4.3-5.2-7.8v-4L12 5.1z"/></svg>
+								</span>
+								Security
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/vault/FFEC6E" alt="" width="22" height="22" />
+									<span>HashiCorp Vault</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3.5 5.5L6 12l2.5 3.5L10 14l-1.8-2L10 10 8.5 8.5zm7 0L14 10l1.8 2L14 14l1.5 1.5L18 12l-2.5-3.5z"/></svg>
+								</span>
+								Languages &amp; Scripting
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/python/3776AB" alt="" width="22" height="22" />
+									<span>Python</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="" width="22" height="22" />
+									<span>Bash</span>
+								</li>
+								<li>
+									<img src="/images/skills/powershell.svg" alt="" width="22" height="22" />
+									<span>PowerShell</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/apachegroovy/4298B8" alt="" width="22" height="22" />
+									<span>Groovy</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/yaml/CB171E" alt="" width="22" height="22" />
+									<span>YAML</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="skills__col">
+							<h3 class="skills__cat">
+								<span class="skills__cat-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 4h16v11H8l-4 4V4zm2 3v2h12V7H6zm0 4v2h8v-2H6z"/></svg>
+								</span>
+								Virtualization &amp; Platforms
+							</h3>
+							<ul class="skills__list">
+								<li>
+									<img src="https://cdn.simpleicons.org/vmware/607078" alt="" width="22" height="22" />
+									<span>VMware</span>
+								</li>
+								<li>
+									<img src="https://cdn.simpleicons.org/virtualbox/183A61" alt="" width="22" height="22" />
+									<span>VirtualBox</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section class="certifications" id="certifications" aria-labelledby="certifications-heading">
+					<h2 class="skills__title" id="certifications-heading">Certifications</h2>
+					<div class="cert-grid">
+						<div class="cert-card">
+							<span class="cert-icon" aria-hidden="true">
+								<img src="/images/certs/aws.svg" alt="" width="40" height="40" />
+							</span>
+							<div class="cert-card__body">
+								<h4>AWS Certified Solutions Architect &ndash; Associate</h4>
+								<p>Amazon Web Services</p>
+							</div>
+						</div>
+						<div class="cert-card">
+							<span class="cert-icon" aria-hidden="true">
+								<img src="/images/certs/aws.svg" alt="" width="40" height="40" />
+							</span>
+							<div class="cert-card__body">
+								<h4>AWS Certified AI Practitioner</h4>
+								<p>Amazon Web Services</p>
+							</div>
+						</div>
+						<div class="cert-card">
+							<span class="cert-icon" aria-hidden="true">
+								<img src="/images/certs/cncf.svg" alt="" width="40" height="40" />
+							</span>
+							<div class="cert-card__body">
+								<h4>Kubernetes and Cloud Native Associate (KCNA)</h4>
+								<p>Cloud Native Computing Foundation</p>
+							</div>
+						</div>
+						<div class="cert-card">
+							<span class="cert-icon" aria-hidden="true">
+								<img src="/images/certs/cisco.svg" alt="" width="40" height="40" />
+							</span>
+							<div class="cert-card__body">
+								<h4>Cisco Certified Network Associate (CCNA)</h4>
+								<p>Cisco</p>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			{{> footer }}
+		</div>
+	</body>
+</html>

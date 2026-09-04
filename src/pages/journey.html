@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		{{> head title="My Journey to the Cloud - Saiful Khan" }}
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+			{{> header }}
+			<div id="wrapper">
+				<div id="main">
+					<article class="post">
+						<header>
+							<div class="title">
+								<h2>From operations to architecture</h2>
+								<p>How DevOps and SRE experience became a cloud systems portfolio</p>
+								<time class="published">September 2, 2026</time>
+							</div>
+						</header>
+						<section class="project">
+							<p>This site is a working record of my move from DevOps and site reliability engineering into Solutions Architecture. The goal was never only credentials — it was to design, deploy, secure, and operate real infrastructure, then document the trade-offs.</p>
+							<p>That goal led me to the <a href="https://cloudresumechallenge.dev/docs/the-challenge/aws/" target="_blank" rel="noopener noreferrer">AWS Cloud Resume Challenge</a>, rebuilt here as a production-style platform on AWS.</p>
+
+							<h3>Background</h3>
+							<p>My work combines DevOps, reliability engineering, teaching, networking, and systems thinking. Operations taught me to investigate methodically; delivery work taught me to automate feedback loops. Architecture is the natural next step: apply that operational judgment earlier in the design.</p>
+
+							<h3>From certifications to systems</h3>
+							<p>Certifications structured my learning in AWS, AI, networking, and cloud-native platforms. They also made a limit clear: exams do not show how someone designs, troubleshoots, or improves a live system. Projects I own end to end do.</p>
+
+							<h3>Why this challenge</h3>
+							<p>The challenge connects DevOps practice to architecture: secure hosting, DNS, HTTPS, automation, serverless services, infrastructure as code, and documentation. The visitor counter and contact form make the site an active application, not a brochure.</p>
+
+							<h3>What I built</h3>
+							<ul>
+								<li><strong>Static delivery:</strong> S3 + CloudFront for the resume and project pages.</li>
+								<li><strong>Secure edge:</strong> Route 53 DNS and ACM HTTPS.</li>
+								<li><strong>Automation:</strong> Git-based publishing into the static origin.</li>
+								<li><strong>Serverless data path:</strong> Lambda, API Gateway, and DynamoDB for visitor counts.</li>
+								<li><strong>IaC:</strong> Terraform for repeatable cloud resources.</li>
+								<li><strong>Contact path:</strong> A serverless form with least-privilege design in mind.</li>
+							</ul>
+
+							<h3>Where this is going</h3>
+							<p>The challenge is a foundation. Next work expands into platform engineering, observability, security, and generative AI from an architectural lens — still documented in public.</p>
+							<p>Explore the <a href="Project.html">challenge build</a> or the <a href="resume.html">resume</a> for experience and certifications.</p>
+						</section>
+					</article>
+				</div>
+			</div>
+			{{> footer }}
+		</div>
+	</body>
+</html>

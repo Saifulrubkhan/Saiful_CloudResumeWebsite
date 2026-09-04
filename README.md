@@ -25,21 +25,7 @@ The goal of this project is to design, secure, and deploy a personal website on 
 
 ## Architecture
 
-```text
-User Browser
-    ↓
-CloudFront CDN
-    ↓
-S3 Static Website
-    ↓
-JavaScript API Call
-    ↓
-API Gateway
-    ↓
-AWS Lambda (Python)
-    ↓
-DynamoDB
-```
+![Cloud Resume architecture](public/images/Cloud_Resume.png)
 
 ### Core AWS services used
 
@@ -101,6 +87,26 @@ This project is documented through a phased implementation, with each step refle
 
 ---
 
+## Local development
+
+```bash
+npm install
+npm run dev      # http://localhost:5173/src/pages/index.html
+npm run build    # production files → dist/
+npm run preview  # serve dist/
+```
+
+**Deploy `dist/` to S3** (not the repo root). Update CodePipeline / sync steps to:
+
+1. `npm ci`
+2. `npm run build`
+3. `aws s3 sync dist/ s3://YOUR_BUCKET --delete`
+4. CloudFront invalidation
+
+Shared header, nav, and footer live in `src/partials/`. Page content lives in `src/pages/`. Styles: prefer `src/styles/_custom.scss` / `_nav.scss`; base template CSS is `src/styles/site.css`.
+
+---
+
 ## Deployment workflow
 
 ```text
@@ -108,9 +114,9 @@ Developer updates website code
     ↓
 Push to GitHub repository
     ↓
-CI/CD pipeline runs
+CI/CD: npm ci && npm run build
     ↓
-Website files deploy to Amazon S3
+Sync dist/ to Amazon S3
     ↓
 CloudFront cache refreshes
     ↓

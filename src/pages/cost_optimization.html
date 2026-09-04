@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		{{> head title="AWS Cost Optimization - Saiful Khan" }}
+	</head>
+	<body class="challenge no-sidebar is-preload">
+		<div id="page-wrapper">
+			{{> header }}
+			<div id="wrapper">
+			<!-- Main -->
+			<div id="main">
+			<!-- Post -->
+				<article class="post">
+					<header>
+						<div class="title">
+							<h2>Tracking and Controlling AWS Costs</h2>
+							<p>Part 6 of the AWS Cloud Resume Challenge.</p>
+						</div>
+					</header>
+					<section class="project">
+						<!--<a href="Project.html" class="image featured"><img src="/images/project_HTML.png" width="840" height="341" alt="HTML code" /></a>-->
+						<p>Before building the backend portion of my project—specifically the Lambda functions and DynamoDB tables—I wanted to make sure I had proper cost monitoring in place.</p>
+						<p>AWS provides a powerful platform, but with that flexibility comes responsibility. A misconfigured service, an unexpected spike in traffic, or a forgotten resource can quickly lead to charges that exceed the Free Tier. To avoid any surprises, I took time during this stage of the AWS Cloud Resume Challenge to set up proactive cost monitoring and alerts. This gives me a safety net as I begin experimenting with more dynamic AWS services.</p>
+
+						<h3>Step 1: Enabling Billing Alerts</h3>
+						<p>Before creating alarms, AWS must first allow billing metrics to be accessed by CloudWatch. By default, billing alerts are not enabled for new AWS accounts, so this needs to be turned on manually.</p>
+						<p>To enable them, I navigated to the Billing and Cost Management Console and opened Billing Preferences. From there, I enabled the option: <strong>Receive Billing Alerts</strong>.</p>
+						<p>Once enabled, AWS begins publishing billing data that CloudWatch can monitor. An important detail is that billing metrics are always stored in the US East (N. Virginia) region (us-east-1). Because of this, any CloudWatch alarms that monitor billing metrics must also be created in that same region.</p>
+
+						<h3>Step 2: Creating a $1 “Early Warning” Alarm</h3>
+						<p>The first alarm I created was a $1 billing alert. The purpose of this alarm is not to warn about spending a dollar, but to act as an early signal that something has moved beyond the Free Tier.</p>
+						I created a CloudWatch alarm using the following settings:
+						<ul>
+							<li><strong>Service:</strong> CloudWatch</li>
+							<li><strong>Metric:</strong> EstimatedCharges</li>
+							<li><strong>Currency:</strong> USD</li>
+							<li><strong>Threshold:</strong> $1.00</li>
+						</ul>
+						<p>For notifications, I created an Amazon SNS (Simple Notification Service) topic that sends an email directly to my inbox whenever the alarm is triggered. This means if my account generates even a small charge, I will know immediately and can investigate the cause.</p>
+						<img src="/images/P6_Step2_1DAlarm.png" width="640" height="341" alt="Screenshot of the CloudWatch Alarms dashboard showing the $1 billing alarm" />
+
+						<h3>Step 3: Creating a $10 “Stop and Investigate” Alarm</h3>
+						<p>The second alarm serves as a stronger safety measure. If my account reaches $10 in estimated charges, it likely indicates that something unexpected is running or scaling beyond what I intended.</p>
+						To create this alert, I repeated the same CloudWatch alarm setup but adjusted the threshold:
+						<ul>
+							<li><strong>Threshold:</strong> $10.00</li>
+						</ul>
+						This alarm uses the same SNS notification topic so that I receive an immediate email alert if this level is reached. Having two alarms creates a simple escalation model:
+						<ul>
+							<li><strong>$1 alert:</strong> Early warning that spending has started</li>
+							<li><strong>$10 alert:</strong> Investigate immediately</li>
+						</ul>
+
+						<h3>Step 4: Setting Up Budget Threshold Notifications</h3>
+						<p>In addition to CloudWatch alarms, AWS also provides a service specifically designed for cost management called AWS Budgets. Within the AWS Budgets console, I created a monthly cost budget to track overall account spending.</p>
+						<p>I configured the budget to send a notification when usage reaches 80% of the budget threshold. This provides a proactive warning before the full limit is reached, giving me time to investigate or optimize resources. Budget alerts are sent via email, allowing me to stay informed about spending trends throughout the month.</p>
+
+						<h3>Why Proactive Monitoring Matters</h3>
+						<p>Setting up cost monitoring early is an important part of responsible cloud architecture. As I move into the backend development phase of this project, I will begin working with services like Lambda, DynamoDB, and API Gateway. While these services are serverless and highly scalable, incorrect configurations—such as infinite loops or unexpected traffic—can cause usage to increase rapidly.</p>
+						<p>With billing alarms and budget alerts in place, I can experiment and build with confidence knowing that any unusual spending will trigger an alert. This small amount of preparation helps prevent unpleasant surprises when the monthly bill arrives.</p>
+
+						<h3>What's Next?</h3>
+						<p>With cost monitoring in place and the frontend infrastructure fully automated, it's time to begin building the dynamic backend components of the website.</p>
+						<p>In the next post, I'll walk through how I created a serverless visitor counter using AWS Lambda and DynamoDB. This feature tracks how many people visit the site and displays the count directly on the homepage.</p>
+						</br>
+						<strong>Next Up:</strong> <a href="visitor_counter.html">Building the Backend - Creating the Visitor Counter with Lambda and DynamoDB</a>
+					</section>
+				</article>
+			<!-- Post -->
+			</div>
+
+			<!-- Projects --><!-- Projects
+				<section id="projects">
+					<div class="container">
+						<section class="posts">
+							<article>
+								<header>
+									<span class="date">April 24, 2017</span>
+									<h2><a href="#">Sed magna<br />
+									ipsum faucibus</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic02.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 22, 2017</span>
+									<h2><a href="#">Primis eget<br />
+									imperdiet lorem</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic03.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 18, 2017</span>
+									<h2><a href="#">Ante mattis<br />
+									interdum dolor</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic04.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 14, 2017</span>
+									<h2><a href="#">Tempus sed<br />
+									nulla imperdiet</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic05.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+						</section>
+					</div>
+				</section>-->
+			<!-- Sidebar -->
+					<section id="sidebar">
+						<!-- Mini Posts -->
+							<!-- Sidebar <section>
+								<div class="mini-posts">
+										<article class="mini-post">
+											<header>
+												<h3><a href="Project.html">Future Project #1</a></h3>
+											</header>
+											<a href="Project.html" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+							</section>
+						 Mini Post -->
+						<!-- UL Posts List -->
+							<section>
+								<ul class="posts">
+									<li><center>AWS Cloud Resume Challenge Projects</center></li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="vscode.html">VS Code Workflow</a></h3>
+											</header>
+											<a href="vscode.html" class="image"><img src="/images/VSCodeProject.png" alt="VS Code Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="awss3Hosting.html">AWS S3 Hosting</a></h3>
+											</header>
+											<a href="awss3Hosting.html" class="image"><img src="/images/AWS_S3.png" alt="AWS S3 Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="aws_route53.html">Route 53 Domain</a></h3>
+											</header>
+											<a href="aws_route53.html" class="image"><img src="/images/AWS_Route53.png" alt="AWS Route 53 Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="aws-cloudfront.html">CloudFront HTTPS</a></h3>
+											</header>
+											<a href="aws-cloudfront.html" class="image"><img src="/images/AWS_Cloudfront.png" alt="Amazon CloudFront Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="github.html">GitHub CI/CD</a></h3>
+											</header>
+											<a href="github.html" class="image"><img src="/images/GitHub-logo.png" alt="GitHub Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="cost_optimization.html">Cost Optimization</a></h3>
+											</header>
+											<a href="cost_optimization.html" class="image"><img src="/images/AWS_ReducingCost.jpg" alt="Coin and Down Arrow" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="visitor_counter.html">Creating a Visitor Counter</a></h3>
+											</header>
+											<a href="visitor_counter.html" class="image"><img src="/images/visitor_counter.png" alt="Visitor Counter Logo" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="terraform.html">IaC with Terraform</a></h3>
+											</header>
+											<a href="terraform.html" class="image"><img src="/images/TerraformLogo.png" alt="Terraform Logo" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="#footer">Serverless Contact Form</a></h3>
+											</header>
+											<a href="#footer" class="image"><img src="/images/ServerlessContactForm.png" alt="Serverless Contact Form Logo" /></a>
+										</article>
+									</li>
+								</ul>
+							</section>
+						</section>
+					</div>
+			{{> footer }}
+		</div>
+	</body>
+</html>

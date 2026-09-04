@@ -1,0 +1,30 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="description" content="{{#if description}}{{description}}{{else}}Saiful Khan, DevOps and Solutions Architect building secure, scalable AWS and multi-cloud platforms.{{/if}}" />
+<title>{{title}}</title>
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+  })();
+</script>
+<style>
+  .site-bar .theme-toggle .theme-icon {
+    width: 1.15rem !important;
+    height: 1.15rem !important;
+    max-width: 1.15rem !important;
+    max-height: 1.15rem !important;
+    object-fit: contain !important;
+  }
+  .site-bar .theme-toggle {
+    position: static;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    overflow: hidden;
+  }
+</style>
+<link rel="stylesheet" href="/src/styles/site.css" />
+<link rel="stylesheet" href="/src/styles/main.scss" />
+<script type="module" src="/src/js/site.js"></script>

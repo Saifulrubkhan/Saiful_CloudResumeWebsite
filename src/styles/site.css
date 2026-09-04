@@ -1,4 +1,4 @@
-@import url("fontawesome-all.min.css");
+@import url("/assets/css/fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap");
 
 html, body, div, span, applet, object,
@@ -2032,6 +2032,14 @@ input, select, textarea {
 		cursor: default;
 	}
 
+	/* Northline site bar: keep nav in normal flow (do not overlay header) */
+	#header.site-bar #nav {
+		position: static;
+		top: auto;
+		left: auto;
+		width: auto;
+	}
+
 		#nav > ul > li {
 			display: inline-block;
 			padding-right: 7em;
@@ -2339,7 +2347,7 @@ input, select, textarea {
 		box-shadow: inset 0px -8px 0px 0px #fff, inset 0px 8px 0px 0px #fff;
 		position: relative;
 		text-transform: uppercase;
-		background: url("../../images/banner.jpg");
+		background: url("/images/banner.jpg");
 		background-size: cover;
 		padding: 6em 0;
 	}
@@ -2366,7 +2374,7 @@ input, select, textarea {
 				width: 35px;
 				height: 141px;
 				margin-top: -70px;
-				background: url("images/bracket.svg");
+				background: url("/assets/css/images/bracket.svg");
 				opacity: 0.15;
 			}
 			#banner > .container:before {

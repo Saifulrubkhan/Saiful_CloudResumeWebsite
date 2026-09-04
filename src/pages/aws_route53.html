@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		{{> head title="Route 53 Domain - Saiful Khan" }}
+	</head>
+	<body class="challenge no-sidebar is-preload">
+		<div id="page-wrapper">
+			{{> header }}
+			<div id="wrapper">
+			<!-- Main -->
+			<div id="main">
+			<!-- Post -->
+				<article class="post">
+					<header>
+						<div class="title">
+							<h2>Connecting My Domain with Route 53</h2>
+							<p>Part 3 of my AWS Cloud Resume Challenge</p>
+						</div>
+					</header>
+					<section class="project">
+						<!--<img src="/images/Project_HTML_Img.png" width="840" height="341" alt="HTLM code" />-->
+						<p>After getting my website content hosted in an S3 bucket, the next step was giving the site a real domain name. Instead of accessing the site through the long S3 website endpoint, I wanted visitors to simply type <code>khansaiful.com</code>.</p>
+						<p>To accomplish this, I used Amazon Route 53, AWS's managed Domain Name System (DNS) service. DNS functions like the phonebook of the internet. When a user types a domain name into their browser, DNS translates that human-readable name into the network location of the server hosting the website. In this stage of the Cloud Resume Challenge, I used Route 53 to connect my domain to the S3 static website endpoint that serves the content stored in my bucket.</p>
+						<h3>Step 1: Registering the Domain</h3>
+						Before I could direct any traffic to my website, I first needed to own the domain. I chose to register <code>khansaiful.com</code> directly through Amazon Route 53. Keeping the domain registration inside AWS simplifies the integration with other services later in the project. In the Route 53 dashboard, I navigated to Registered Domains and purchased the domain. During the registration process, Route 53 can automatically create a Hosted Zone for the domain. The hosted zone stores the DNS records that control how traffic is routed to the domain. This is where the records live that tell the internet where requests for <code>khansaiful.com</code> should be sent. The most important records inside a hosted zone are A records, AAAA records, and CNAME records, which determine how traffic is directed to infrastructure such as servers, load balancers, or AWS services.
+						<img src="/images/P3_Step1_SearchDomain.png" width="640" height="341" alt="Search for a Domain in Route 53" />
+						<img src="/images/P3_Step1_RegisteredDomain.png" width="640" height="341" alt="Register a Domain in Route 53" />
+						<h3>Step 2: The S3 Naming Rule</h3>
+						There is one specific rule that trips up a lot of people: For the S3 static website endpoint to work directly with a root domain, the bucket name must exactly match the domain name. This is because the S3 website endpoint uses the bucket name to determine which site content to serve.
+						<ul>
+							<li><strong>Verification:</strong> I made sure my bucket was named <code>khansaiful.com</code>.</li>
+							<li><strong>Static Hosting:</strong> Inside the S3 console under the Properties tab, I confirmed that Static Website Hosting was enabled and noted the provided endpoint URL.</li>
+						</ul>
+						<img src="/images/P3_Step2_S3Bucket.png" width="640" height="341" alt="AWS S3 Bucket - Create Bucket" />
+						<img src="/images/P3_Step2_StaticHosting.png" width="640" height="341" alt="Enable Static Hosting" />
+						
+						<h3>Step 3: Creating the Alias Record</h3>
+						With the domain registered and the S3 bucket configured for static hosting, the next step was creating a DNS record that tells the internet where my website lives. Inside the hosted zone for <code>khansaiful.com</code>, I created a new record with the following settings:
+						<ul>
+							<li><strong>Record Type:</strong> A — IPv4 address</li>
+							<li><strong>Alias:</strong> Enabled</li>
+							<li><strong>Route Traffic To:</strong> Alias to S3 website endpoint</li>
+							<li><strong>Region:</strong> The region where my S3 bucket was created</li>
+						</ul>
+						<p>Instead of using a traditional CNAME record, AWS provides an Alias record, which allows a root domain (such as <code>khansaiful.com</code>) to point directly to AWS resources like S3 or CloudFront. This is important because standard DNS rules normally prevent CNAME records from being used at the root domain.</p>
+						<p>At this point I also created a matching AAAA (IPv6) Alias record. While the S3 website endpoint itself does not natively support IPv6, this will become useful later when the domain is routed through CloudFront, which supports IPv6 natively.</p>
+
+						<img src="/images/P3_Step3_DefSimpRecord.png" style="width: 450px;" width="450" height="491" alt="Define a Simple Record - Route 53" />
+
+						<h3>Step 4: Verification and Propagation</h3>
+						Once the record is saved, you have to wait for the DNS changes to "propagate" across the internet. DNS propagation can technically take up to 48 hours, though in practice Route 53 updates usually become visible within a few minutes.
+						<ul>
+							<li><strong>Testing:</strong> I used the terminal command <code>dig khansaiful.com +short</code> and kept refreshing my browser.</li>
+							<li><strong>Success:</strong> Eventually, typing <code>khansaiful.com</code> into the address bar successfully loaded my index page from S3.</li>
+						</ul>
+						<h3>What's Next?</h3>
+						Right now, the site is reachable, but it's using HTTP, which isn't secure. In my next post, I'll be setting up Amazon CloudFront to add a layer of security (HTTPS) and make the site load faster for visitors around the world.
+					</br>
+						<strong>Next Up:</strong> <a href="aws-cloudfront.html">Setting up CloudFront and SSL for my Resume Site</a>
+					</section>
+				</article>
+			<!-- Post -->
+			</div>
+
+			<!-- Projects --><!-- Projects
+				<section id="projects">
+					<div class="container">
+						<section class="posts">
+							<article>
+								<header>
+									<span class="date">April 24, 2017</span>
+									<h2><a href="#">Sed magna<br />
+									ipsum faucibus</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic02.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 22, 2017</span>
+									<h2><a href="#">Primis eget<br />
+									imperdiet lorem</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic03.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 18, 2017</span>
+									<h2><a href="#">Ante mattis<br />
+									interdum dolor</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic04.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 14, 2017</span>
+									<h2><a href="#">Tempus sed<br />
+									nulla imperdiet</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic05.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+						</section>
+					</div>
+				</section>-->
+			<!-- Sidebar -->
+					<section id="sidebar">
+						<!-- Mini Posts -->
+							<!-- Sidebar <section>
+								<div class="mini-posts">
+										<article class="mini-post">
+											<header>
+												<h3><a href="Project.html">Future Project #1</a></h3>
+											</header>
+											<a href="Project.html" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+							</section>
+						 Mini Post -->
+						<!-- UL Posts List -->
+							<section>
+								<ul class="posts">
+									<li><center>AWS Cloud Resume Challenge Projects</center></li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="vscode.html">VS Code Workflow</a></h3>
+											</header>
+											<a href="vscode.html" class="image"><img src="/images/VSCodeProject.png" alt="VS Code Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="awss3Hosting.html">AWS S3 Hosting</a></h3>
+											</header>
+											<a href="awss3Hosting.html" class="image"><img src="/images/AWS_S3.png" alt="AWS S3 Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="aws_route53.html">Route 53 Domain</a></h3>
+											</header>
+											<a href="aws_route53.html" class="image"><img src="/images/AWS_Route53.png" alt="AWS Route 53 Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="aws-cloudfront.html">CloudFront HTTPS</a></h3>
+											</header>
+											<a href="aws-cloudfront.html" class="image"><img src="/images/AWS_Cloudfront.png" alt="Amazon CloudFront Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="github.html">GitHub CI/CD</a></h3>
+											</header>
+											<a href="github.html" class="image"><img src="/images/GitHub-logo.png" alt="GitHub Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="cost_optimization.html">Cost Optimization</a></h3>
+											</header>
+											<a href="cost_optimization.html" class="image"><img src="/images/AWS_ReducingCost.jpg" alt="Coin and Down Arrow" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="visitor_counter.html">Creating a Visitor Counter</a></h3>
+											</header>
+											<a href="visitor_counter.html" class="image"><img src="/images/visitor_counter.png" alt="Visitor Counter Logo" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="terraform.html">IaC with Terraform</a></h3>
+											</header>
+											<a href="terraform.html" class="image"><img src="/images/TerraformLogo.png" alt="Terraform Logo" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="#footer">Serverless Contact Form</a></h3>
+											</header>
+											<a href="#footer" class="image"><img src="/images/ServerlessContactForm.png" alt="Serverless Contact Form Logo" /></a>
+										</article>
+									</li>
+								</ul>
+							</section>
+						</section>
+					</div>
+			{{> footer }}
+		</div>
+	</body>
+</html>

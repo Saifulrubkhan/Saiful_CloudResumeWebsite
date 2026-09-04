@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		{{> head title="Terraform Infrastructure - Saiful Khan" }}
+	</head>
+	<body class="challenge no-sidebar is-preload">
+		<div id="page-wrapper">
+			{{> header }}
+			<div id="wrapper">
+			<!-- Main -->
+			<div id="main">
+			<!-- Post -->
+				<article class="post">
+					<header>
+						<div class="title">
+							<h2>Rebuilding the Infrastructure with Terraform</h2>
+							<p>Part 8 of the AWS Cloud Resume Challenge.</p>
+						</div>
+					</header>
+					<section class="project">
+						<!--<a href="Project.html" class="image featured"><img src="/images/Project_HTML_Img.png" width="840" height="341" alt="HTLM code" /></a>-->
+						<p>After completing the frontend and backend portions of my Cloud Resume Challenge using the AWS console, I reached an important realization. While manually configuring infrastructure is useful for learning, it is not how production cloud environments are managed.</p>
+
+						<p>Modern cloud infrastructure is built using Infrastructure as Code (IaC). Instead of manually clicking through the AWS console, engineers define infrastructure in code so it can be version controlled, replicated, and deployed automatically.</p>
+
+						<p>To bring this project closer to real world DevOps practices, and to deepen my understanding of Terraform, I migrated my existing AWS infrastructure into HashiCorp Terraform. The goal was to place my backend resources under Terraform management without destroying or recreating anything already running in production.</p>
+
+						This migration consisted of two main phases:
+						<ul>
+							<li>Importing existing AWS resources into Terraform</li>
+							<li>Automating infrastructure management using Terraform configuration files</li>
+						</ul>
+
+						<h3>Infrastructure Before Terraform</h3>
+						<p>Before Terraform was introduced, the website was already fully operational using resources created through the AWS console.</p>
+						The backend architecture included:
+						<ul>
+							<li><strong>Amazon S3</strong> - Static website hosting</li>
+							<li><strong>Amazon CloudFront</strong> - Global CDN and HTTPS</li>
+							<li><strong>Amazon Route 53</strong> - DNS configuration</li>
+							<li><strong>AWS Lambda</strong> - Serverless compute for the visitor counter</li>
+							<li><strong>Amazon DynamoDB</strong> - Database storing visitor count</li>
+							<li><strong>Amazon API Gateway</strong> - Public API endpoint used by the website</li>
+						</ul>
+
+						Because the site was already live, deleting and recreating these resources would have caused unnecessary downtime. Instead, I used Terraform Import to bring these existing resources under Terraform management.
+
+						<!-- IMAGE 1 - Project Structure -->
+						<img src="/images/P8_Img1_ProjectStructure.png" style="width: 300px;" width="300" height="341" alt="Terraform project structure used to manage the backend infrastructure." />
+						<em>Terraform project structure used to manage the backend infrastructure.</em>
+
+						<h3>Preparing the Terraform Environment</h3>
+						<p>Before beginning the migration, I configured my local development environment with the tools required to manage infrastructure through Terraform.</p>
+						Tools used:
+						<ul>
+							<li>Visual Studio Code</li>
+							<li>Terraform CLI</li>
+							<li>AWS CLI</li>
+						</ul>
+						The AWS CLI was configured with credentials from an IAM user that has permission to manage the resources used in the project. This allows Terraform to authenticate with AWS and interact with infrastructure programmatically.
+
+						<h3>Phase 1 - Importing Existing Infrastructure</h3>
+						<p>The first phase involved importing the existing AWS infrastructure into Terraform. Instead of recreating resources, Terraform can link configuration files to infrastructure that already exists.</p>
+
+						<h4>Step 1.1 - Initializing the Terraform Project</h4>
+						I created a Terraform project directory and defined the AWS provider configuration.
+						<pre><code>terraform {
+required_providers {
+    aws = {
+source  = "hashicorp/aws"
+version = "~> 5.0"
+    }
+  }
+}
+							
+
+provider "aws" {
+region = "us-east-1"
+}</code></pre>
+						This tells Terraform which provider to use and which AWS region the resources exist in.<br>
+						After creating these files, I initialized the project using:
+						<pre><code>terraform init</code></pre>
+						This downloads the necessary Terraform providers and prepares the project for use.
+
+						<!-- IMAGE 2 - Terraform Initialization -->
+						<img src="/images/P8_Img2_TerraformInit.png" width="640" height="341" alt="Initializing the Terraform working directory and downloading required providers." />
+						<em>Initializing the Terraform working directory and downloading required providers.</em>
+
+						<h4>Step 1.2 - Creating Resource Skeletons</h4>
+						<p>Terraform requires a resource block to exist before infrastructure can be imported. To prepare for importing the resources, I created minimal placeholder definitions for the existing infrastructure.</p>
+						Example DynamoDB definition:
+						<pre><code>resource "aws_dynamodb_table" "visitor_counter" {
+name         = "MyResumeViewCount"
+billing_mode = "PAY_PER_REQUEST"
+hash_key     = "id"
+
+attribute {
+name = "id"
+type = "S"
+  }
+}</code></pre>
+						These resource definitions act as placeholders so Terraform can map them to the real AWS resources.
+
+						<!-- IMAGE 3 - Terraform Resource Definitions -->
+						<img src="/images/P8_Img3_ResourceDef.png" width="640" height="341" alt="Defining Terraform resource blocks before importing existing AWS infrastructure." />
+						<em>Defining Terraform resource blocks before importing existing AWS infrastructure.</em>
+
+						<h4>Step 1.3 - Importing Existing Resources</h4>
+						<p>With the Terraform resource blocks defined, I used the Terraform CLI to import the existing AWS resources.</p>
+						Example import commands:
+						<pre><code>terraform import aws_dynamodb_table.visitor_counter MyResumeViewCount
+terraform import aws_lambda_function.visitor_counter MyResumeViewCount
+terraform import aws_apigatewayv2_api.visitor_counter_api pzazgc34z6</code></pre>
+						Each command connects Terraform configuration to an existing AWS resource using its unique identifier. After importing, Terraform now recognizes these resources as part of its managed infrastructure.
+
+						<!-- IMAGE 4 - Terraform Import Command -->
+						<!--<img src="/images/P8_Img4_ImportCommand.png" width="640" height="341" alt="Terraform state confirming the imported AWS infrastructure." />
+						<em>Terraform state confirming the imported AWS infrastructure.</em>-->
+
+						<h4>Step 1.4 - Verifying Terraform State</h4>
+						<p>After importing the resources, Terraform stores their information in the state file. To verify the resources were successfully imported, I ran:</p>
+						<pre><code>terraform state list</code></pre>
+						Example output:
+						<pre><code>aws_apigatewayv2_api.visitor_counter_api
+aws_dynamodb_table.visitor_counter
+aws_lambda_function.visitor_counter</code></pre>
+						This confirmed that Terraform was now aware of the existing infrastructure.
+
+						<!-- IMAGE 5 - Terraform State List -->
+						<img src="/images/P8_Img5_StateList.png" width="640" height="341" alt="Terraform state showing the imported AWS infrastructure." />
+						<em>Terraform state showing the imported AWS infrastructure.</em>
+
+						<h4>Step 1.5 - Reconciling Terraform Configuration</h4>
+						<p>Once resources are imported, Terraform may detect differences between the configuration files and the real infrastructure. To reconcile these differences, I repeatedly ran:</p>
+						<pre><code>terraform plan</code></pre>
+						Terraform compares the configuration files with the live infrastructure and displays any discrepancies. The goal was to update the Terraform configuration until Terraform reported:
+						<pre><code>No changes. Your infrastructure matches the configuration.</code></pre>
+						At that point, Terraform was fully aligned with the real AWS environment.
+
+						<!-- IMAGE 6 - Terraform Plan (No Changes) -->
+						<img src="/images/P8_Img6_TerraformPlan.png" width="640" height="341" alt="Terraform successfully aligned with the existing AWS infrastructure." />
+						<em>Terraform successfully aligned with the existing AWS infrastructure.</em>
+
+						<h3>Phase 2 - Automating Lambda Packaging</h3>
+						<p>Once Terraform was managing the infrastructure, I improved the Lambda deployment process. Previously, the Lambda function had been uploaded manually as a ZIP file. Using Terraform, I automated this process using the archive provider.</p>
+						Example configuration:
+						<pre><code>data "archive_file" "visitor_counter_zip" {
+  type        = "zip"
+  source_file = "../lambda/lambda_function.py"
+  output_path = "${path.module}/build/visitor_counter.zip"
+}</code></pre>
+						Terraform now automatically packages the Lambda code during deployment.
+
+						<!-- IMAGE 7 - Lambda Packaging with Terraform -->
+						<img src="/images/P8_Img7_LambdaPackaging.png" width="640" height="341" alt="Terraform automatically packaging the Lambda function before deployment." />
+						<em>Terraform automatically packaging the Lambda function before deployment.</em>
+
+						<h3>Protecting the Live Infrastructure</h3>
+						<p>Because the visitor counter Lambda function was already running in production, I added safeguards to prevent Terraform from redeploying the function during the migration.</p>
+						Example lifecycle rule:
+						<pre><code>lifecycle {
+  ignore_changes = [
+    filename,
+    source_code_hash
+  ]
+}</code></pre>
+						This allowed Terraform to manage the infrastructure safely without disrupting the live website.
+
+						<!-- IMAGE 8 - Terraform Lifecycle Protection -->
+						<img src="/images/P8_Img8_Lifecycle.png" width="640" height="341" alt="Using lifecycle rules to prevent Terraform from redeploying production code during migration." />
+						<em>Using lifecycle rules to prevent Terraform from redeploying production code during migration.</em>
+
+						<h3>Terraform Best Practices Implemented</h3>
+						<p>While migrating the infrastructure, I implemented several Terraform best practices.</p>
+
+						<h4>Git Ignore Rules</h4>
+						To prevent sensitive information from being committed to GitHub, I added Terraform state files to <code>.gitignore</code>.
+						Example entries:
+						<pre><code>terraform.tfstate
+terraform.tfstate.*
+*.tfvars
+build/</code></pre>
+
+						<!-- IMAGE 9 - Git Ignore Configuration -->
+						<img src="/images/P8_Img9_GitIgnore.png" width="640" height="341" alt="Preventing Terraform state files and sensitive data from being committed to version control." />
+						<em>Preventing Terraform state files and sensitive data from being committed to version control.</em>
+
+						<h3>Final Architecture</h3>
+						<p>After completing the migration, the entire backend infrastructure is now managed through Terraform.</p>
+						The architecture includes:
+						<ul>
+							<li><strong>S3</strong> - Static website hosting</li>
+							<li><strong>CloudFront</strong> - Global CDN and HTTPS</li>
+							<li><strong>Route 53</strong> - DNS management</li>
+							<li><strong>Lambda</strong> - Serverless compute</li>
+							<li><strong>DynamoDB</strong> - Visitor counter database</li>
+							<li><strong>API Gateway</strong> - Backend API endpoints</li>
+						</ul>
+						All of these resources can now be deployed or recreated using Terraform configuration files stored in GitHub.
+
+						<!-- IMAGE 10 - Terraform Repository -->
+						<img src="/images/P8_Img10_TerraformRepo.png" width="640" height="341" alt="Terraform infrastructure configuration stored in GitHub." />
+						<em>Terraform infrastructure configuration stored in GitHub.</em>
+
+						<h3>Lessons Learned</h3>
+						Migrating this project to Terraform reinforced several important lessons about managing cloud infrastructure.
+						<ul>
+							<li><strong>Infrastructure Should Be Reproducible</strong> - Manual configuration makes infrastructure difficult to replicate. By defining infrastructure in Terraform, the entire backend environment can now be recreated consistently.</li>
+							<li><strong>Terraform Import Is Essential for Existing Projects</strong> - Many tutorials assume infrastructure will be built from scratch. In real environments, engineers often inherit existing systems. Terraform Import makes it possible to transition those systems into Infrastructure as Code safely.</li>
+							<li><strong>State Management Matters</strong> - Terraform state files contain critical information about infrastructure. Protecting and managing the state file properly is essential for maintaining stable environments.</li>
+							<li><strong>Testing Changes Prevents Production Issues</strong> - Running <code>terraform plan</code> repeatedly helped verify that Terraform accurately reflected the real infrastructure. This step is critical to avoid accidental changes in production environments.</li>
+						</ul>
+
+						<h3>Conclusion</h3>
+						<p>Learning Terraform fundamentally changed how I approach cloud infrastructure. Instead of manually configuring services through the AWS console, the entire backend environment is now described in code. This makes the infrastructure easier to manage, easier to replicate, and far more scalable.</p>
+						<p>If this environment ever needed to be rebuilt, the entire architecture could be redeployed in minutes using Terraform.</p>
+						<p>Completing this stage of the Cloud Resume Challenge marks a major milestone. What started as a simple static website evolved into a fully automated serverless cloud architecture managed through Infrastructure as Code.</p>
+					</section>
+				</article>
+			<!-- Post -->
+			</div>
+
+			<!-- Projects --><!-- Projects
+				<section id="projects">
+					<div class="container">
+						<section class="posts">
+							<article>
+								<header>
+									<span class="date">April 24, 2017</span>
+									<h2><a href="#">Sed magna<br />
+									ipsum faucibus</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic02.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 22, 2017</span>
+									<h2><a href="#">Primis eget<br />
+									imperdiet lorem</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic03.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 18, 2017</span>
+									<h2><a href="#">Ante mattis<br />
+									interdum dolor</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic04.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<span class="date">April 14, 2017</span>
+									<h2><a href="#">Tempus sed<br />
+									nulla imperdiet</a></h2>
+								</header>
+								<a href="#" class="image fit"><img src="/images/pic05.jpg" alt="" /></a>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+								<ul class="actions special">
+									<li><a href="#" class="button">Full Story</a></li>
+								</ul>
+							</article>
+						</section>
+					</div>
+				</section>-->
+			<!-- Sidebar -->
+					<section id="sidebar">
+						<!-- Mini Posts -->
+							<!-- Sidebar <section>
+								<div class="mini-posts">
+										<article class="mini-post">
+											<header>
+												<h3><a href="Project.html">Future Project #1</a></h3>
+											</header>
+											<a href="Project.html" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+							</section>
+						 Mini Post -->
+						<!-- UL Posts List -->
+							<section>
+								<ul class="posts">
+									<li><center>AWS Cloud Resume Challenge Projects</center></li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="vscode.html">VS Code Workflow</a></h3>
+											</header>
+											<a href="vscode.html" class="image"><img src="/images/VSCodeProject.png" alt="VS Code Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="awss3Hosting.html">AWS S3 Hosting</a></h3>
+											</header>
+											<a href="awss3Hosting.html" class="image"><img src="/images/AWS_S3.png" alt="Modified AWS S3 Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="aws_route53.html">Route 53 Domain</a></h3>
+											</header>
+											<a href="aws_route53.html" class="image"><img src="/images/AWS_Route53.png" alt="AWS Route 53 Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="aws-cloudfront.html">CloudFront HTTPS</a></h3>
+											</header>
+											<a href="aws-cloudfront.html" class="image"><img src="/images/AWS_Cloudfront.png" alt="Amazon CloudFront Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="github.html">GitHub CI/CD</a></h3>
+											</header>
+											<a href="github.html" class="image"><img src="/images/GitHub-logo.png" alt="GitHub Logo"/></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="cost_optimization.html">Cost Optimization</a></h3>
+											</header>
+											<a href="cost_optimization.html" class="image"><img src="/images/AWS_ReducingCost.jpg" alt="Coin and Down Arrow" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="visitor_counter.html">Creating a Visitor Counter</a></h3>
+											</header>
+											<a href="visitor_counter.html" class="image"><img src="/images/visitor_counter.png" alt="Visitor Counter Logo" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="terraform.html">IaC with Terraform</a></h3>
+											</header>
+											<a href="terraform.html" class="image"><img src="/images/TerraformLogo.png" alt="Terraform Logo" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="#footer">Serverless Contact Form</a></h3>
+											</header>
+											<a href="#footer" class="image"><img src="/images/ServerlessContactForm.png" alt="Serverless Contact Form Logo" /></a>
+										</article>
+									</li>
+								</ul>
+							</section>
+						</section>
+					</div>
+			{{> footer }}
+		</div>
+	</body>
+</html>

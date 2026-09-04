@@ -1,0 +1,145 @@
+// Small site tweaks on top of Northline.
+
+.project-icon {
+  height: 80px;
+  object-fit: contain;
+  width: 80px;
+}
+
+.journey-visual {
+  margin: 0 0 1.5rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: #2a2a2a;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 35%, transparent) inset,
+    0 14px 32px color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+.journey-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 28rem;
+  object-fit: cover;
+}
+
+.journey-visual figcaption {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: var(--ink-soft) !important;
+  background: color-mix(in srgb, var(--paper-2) 80%, transparent);
+  border-top: 1px solid var(--line);
+}
+
+/* Certifications */
+.certifications {
+  width: 100%;
+  margin: 2.5rem 0 0;
+  padding: 2rem 0 0.5rem;
+  border-top: 1px solid var(--line);
+  box-sizing: border-box;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+  margin: 0.75rem 0 1.5rem;
+  max-width: 100%;
+}
+
+.cert-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 55%, transparent), transparent),
+    color-mix(in srgb, var(--ink) 3%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 45%, transparent) inset,
+    0 6px 16px color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+.cert-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 0;
+  padding: 0.45rem;
+  border-radius: 0.85rem;
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 80%, transparent) inset,
+    0 3px 8px color-mix(in srgb, var(--ink) 12%, transparent);
+  line-height: 1;
+  color: inherit;
+  font-size: inherit;
+}
+
+.cert-icon img {
+  display: block;
+  width: 1.85rem;
+  height: 1.85rem;
+  object-fit: contain;
+}
+
+.cert-card__body,
+.cert-card h4,
+.cert-card p {
+  min-width: 0;
+}
+
+.cert-card h4 {
+  margin: 0 0 0.25rem !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  color: var(--ink) !important;
+  text-transform: none !important;
+}
+
+.cert-card p {
+  margin: 0 !important;
+  color: var(--ink-soft, #6b7c86) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.35 !important;
+}
+
+html[data-theme='dark'] .cert-card {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 6%, transparent), transparent),
+    color-mix(in srgb, #fff 4%, transparent);
+}
+
+html[data-theme='dark'] .cert-icon {
+  background: #f4faf7;
+  border-color: rgba(244, 250, 247, 0.2);
+}
+
+html[data-theme='dark'] .cert-card h4 {
+  color: #f4faf7 !important;
+}
+
+html[data-theme='dark'] .cert-card p {
+  color: #b7c4be !important;
+}
+
+@media screen and (max-width: 640px) {
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+}
