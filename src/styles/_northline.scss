@@ -1128,9 +1128,21 @@ body:not(.homepage) .post > header {
   background: transparent !important;
 }
 
+body:not(.homepage) .post > header .title {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
 body:not(.homepage) .post > header .title h2 {
   font-size: clamp(2rem, 5vw, 3rem) !important;
   margin: 0 0 0.5rem !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+  line-height: 1.2 !important;
 }
 
 body:not(.homepage) .post > header .title p {
@@ -1156,6 +1168,9 @@ body:not(.homepage) article.resume h3 {
   padding-top: 1.15rem;
   border-top: 1px solid var(--line);
   font-size: 1.25rem !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 body:not(.homepage) .project p,
@@ -1188,10 +1203,12 @@ body.challenge .project a {
 body.challenge .project h3,
 body.challenge #main h3 {
   font-size: 1.4rem !important;
+  white-space: normal !important;
 }
 
 body.challenge .post > header .title h2 {
-  font-size: clamp(2.15rem, 5vw, 3.15rem) !important;
+  font-size: clamp(1.75rem, 4.5vw, 3.15rem) !important;
+  white-space: normal !important;
 }
 
 body.challenge .post > header .title p {
