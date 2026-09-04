@@ -101,14 +101,22 @@ npm run build    # production files → dist/
 npm run preview  # serve dist/
 ```
 
-**Deploy `dist/` to S3** (not the repo root). Update CodePipeline / sync steps to:
+**Deploy** via GitHub Actions on push to `main` (OIDC → S3 → CloudFront), or locally:
+
+```powershell
+$env:S3_BUCKET = "resume-website-saiful"
+$env:CLOUDFRONT_DISTRIBUTION_ID = "E2ZAVM7W2WEI3R"
+npm run deploy
+```
+
+Pipeline steps:
 
 1. `npm ci`
 2. `npm run build`
 3. `aws s3 sync dist/ s3://YOUR_BUCKET --delete`
 4. CloudFront invalidation
 
-Shared header, nav, and footer live in `src/partials/`. Page content lives in `src/pages/`. Styles: prefer `src/styles/_custom.scss` / `_nav.scss`; base template CSS is `src/styles/site.css`.
+Shared header, nav, and footer live in `src/partials/`. Page content lives in `src/pages/`. Styles: prefer `src/styles/_custom.scss` / `_nav.scss` / `_northline.scss`; base template CSS is `src/styles/site.css`.
 
 ---
 

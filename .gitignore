@@ -16,11 +16,13 @@ dist/
 credentials
 aws-exports.js
 
-# Logs
+# Logs / local API dumps
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+out.json
+out*.json
 
 # OS files
 .DS_Store

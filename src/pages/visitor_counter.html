@@ -39,12 +39,13 @@
 
 						<h3>Architecture Overview</h3>
 						The visitor counter uses a simple serverless workflow:
-						<p><code>User Browser -> Lambda Function URL -> AWS Lambda -> DynamoDB -> Updated count returned to browser</code></p>
-						Each page load triggers a request that increments the visitor count stored in DynamoDB.
+						<p><code>User Browser → API Gateway → AWS Lambda → DynamoDB → Updated count returned to browser</code></p>
+						Each new browser session triggers a request that increments the visitor count stored in DynamoDB (page navigations within the same session do not).
 
 						<!-- IMAGE 1 - Visitor Counter Architecture -->
-						<img src="/images/P7_Img1_VisitorArchitecture.png" style="width: 150px;" width="150" height="341" alt="Serverless architecture used to implement the visitor counter." />
-						<em>Serverless architecture used to implement the visitor counter.</em>
+						<!-- Missing screenshot (add later): /images/P7_Img1_VisitorArchitecture.png
+						<img src="/images/P7_Img1_VisitorArchitecture.png" style="width: 150px;" width="150" height="341" alt="Serverless architecture used to implement the visitor counter."  />
+						<em>Serverless architecture used to implement the visitor counter.</em> -->
 
 						<h3>Step 1 - Setting Up the Database (DynamoDB)</h3>
 						<p>The first step was creating a place to store the visitor count. For this I used Amazon DynamoDB, AWS's fully managed NoSQL database service.</p>
@@ -63,8 +64,9 @@
 						This item provides the starting value that the Lambda function increments each time the counter is triggered.
 
 						<!-- IMAGE 2 - DynamoDB Table Items View -->
-						<img src="/images/P7_Img2_DynamoDBItems.png" width="640" height="341" alt="Initial visitor counter record stored in DynamoDB." />
-						<em>Initial visitor counter record stored in DynamoDB.</em>
+						<!-- Missing screenshot (add later): /images/P7_Img2_DynamoDBItems.png
+						<img src="/images/P7_Img2_DynamoDBItems.png" width="640" height="341" alt="Initial visitor counter record stored in DynamoDB."  />
+						<em>Initial visitor counter record stored in DynamoDB.</em> -->
 
 						<h3>Step 2 - Writing the Backend Logic (AWS Lambda)</h3>
 						<p>Next I created an AWS Lambda function responsible for updating the visitor count.</p>
@@ -81,8 +83,9 @@
 						<p><strong>Why this matters:</strong> if multiple users load the website at the same time, DynamoDB ensures the counter increments correctly without race conditions or lost updates.</p>
 
 						<!-- IMAGE 3 - Lambda Function Code -->
-						<img src="/images/P7_Img3_LambdaCode.png" width="640" height="341" alt="Lambda function written in Python that increments the visitor counter stored in DynamoDB." />
-						<em>Lambda function written in Python that increments the visitor counter stored in DynamoDB.</em>
+						<!-- Missing screenshot (add later): /images/P7_Img3_LambdaCode.png
+						<img src="/images/P7_Img3_LambdaCode.png" width="640" height="341" alt="Lambda function written in Python that increments the visitor counter stored in DynamoDB."  />
+						<em>Lambda function written in Python that increments the visitor counter stored in DynamoDB.</em> -->
 
 						<h3>Step 3 - Securing the Connection with IAM</h3>
 						<p>By default, a Lambda function cannot access other AWS services. Permissions must be explicitly granted through an IAM role.</p>
@@ -97,8 +100,9 @@
 						After attaching the policy to the Lambda execution role, I tested the function using the Lambda test feature to confirm it could successfully update the database.
 
 						<!-- IMAGE 4 - IAM Policy for DynamoDB Access -->
-						<img src="/images/P7_Img4_IAMPolicy.png" width="640" height="341" alt="IAM policy granting the Lambda function permission to update the DynamoDB table." />
-						<em>IAM policy granting the Lambda function permission to update the DynamoDB table.</em>
+						<!-- Missing screenshot (add later): /images/P7_Img4_IAMPolicy.png
+						<img src="/images/P7_Img4_IAMPolicy.png" width="640" height="341" alt="IAM policy granting the Lambda function permission to update the DynamoDB table."  />
+						<em>IAM policy granting the Lambda function permission to update the DynamoDB table.</em> -->
 
 						<h3>Step 4 - Creating an Endpoint for the Frontend</h3>
 						<p>In order for the website to trigger the Lambda function, the browser needs a public HTTP endpoint.
@@ -122,8 +126,9 @@
 						These restrictions ensure that only my website can send requests to the API endpoint that triggers the visitor counter.
 
 					<!-- IMAGE 5 - API Gateway Endpoint -->
-						<img src="/images/P7_Img5_APIGatewayEndpoint.png" width="640" height="341" alt="API Gateway HTTP endpoint used by the website to trigger the Lambda visitor counter." />
-						<em>API Gateway HTTP endpoint used by the website to trigger the Lambda visitor counter.</em>
+						<!-- Missing screenshot (add later): /images/P7_Img5_APIGatewayEndpoint.png
+						<img src="/images/P7_Img5_APIGatewayEndpoint.png" width="640" height="341" alt="API Gateway HTTP endpoint used by the website to trigger the Lambda visitor counter."  />
+						<em>API Gateway HTTP endpoint used by the website to trigger the Lambda visitor counter.</em> -->
 						<h3>Step 5 - Integrating the Counter with the Frontend</h3>
 						<p>With the backend complete, the final step was connecting the visitor counter to the website.
 						I added a small JavaScript script that runs when the page loads.<br>
@@ -143,8 +148,9 @@
 						This completes the full data flow from frontend to backend and back again.
 
 						<!-- IMAGE 6 - Frontend JavaScript Counter Code -->
-						<img src="/images/P7_Img6_FrontendJS.png" width="640" height="341" alt="Frontend JavaScript calling the Lambda endpoint and displaying the visitor count." />
-						<em>Frontend JavaScript calling the Lambda endpoint and displaying the visitor count.</em>
+						<!-- Missing screenshot (add later): /images/P7_Img6_FrontendJS.png
+						<img src="/images/P7_Img6_FrontendJS.png" width="640" height="341" alt="Frontend JavaScript calling the Lambda endpoint and displaying the visitor count."  />
+						<em>Frontend JavaScript calling the Lambda endpoint and displaying the visitor count.</em> -->
 
 						<h3>Result</h3>
 						The website now includes a fully functional serverless visitor counter.<br>

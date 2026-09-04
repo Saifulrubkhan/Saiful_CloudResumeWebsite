@@ -46,8 +46,9 @@
 						Because the site was already live, deleting and recreating these resources would have caused unnecessary downtime. Instead, I used Terraform Import to bring these existing resources under Terraform management.
 
 						<!-- IMAGE 1 - Project Structure -->
-						<img src="/images/P8_Img1_ProjectStructure.png" style="width: 300px;" width="300" height="341" alt="Terraform project structure used to manage the backend infrastructure." />
-						<em>Terraform project structure used to manage the backend infrastructure.</em>
+						<!-- Missing screenshot (add later): /images/P8_Img1_ProjectStructure.png
+						<img src="/images/P8_Img1_ProjectStructure.png" style="width: 300px;" width="300" height="341" alt="Terraform project structure used to manage the backend infrastructure."  />
+						<em>Terraform project structure used to manage the backend infrastructure.</em> -->
 
 						<h3>Preparing the Terraform Environment</h3>
 						<p>Before beginning the migration, I configured my local development environment with the tools required to manage infrastructure through Terraform.</p>
@@ -83,8 +84,9 @@ region = "us-east-1"
 						This downloads the necessary Terraform providers and prepares the project for use.
 
 						<!-- IMAGE 2 - Terraform Initialization -->
-						<img src="/images/P8_Img2_TerraformInit.png" width="640" height="341" alt="Initializing the Terraform working directory and downloading required providers." />
-						<em>Initializing the Terraform working directory and downloading required providers.</em>
+						<!-- Missing screenshot (add later): /images/P8_Img2_TerraformInit.png
+						<img src="/images/P8_Img2_TerraformInit.png" width="640" height="341" alt="Initializing the Terraform working directory and downloading required providers."  />
+						<em>Initializing the Terraform working directory and downloading required providers.</em> -->
 
 						<h4>Step 1.2 - Creating Resource Skeletons</h4>
 						<p>Terraform requires a resource block to exist before infrastructure can be imported. To prepare for importing the resources, I created minimal placeholder definitions for the existing infrastructure.</p>
@@ -102,8 +104,9 @@ type = "S"
 						These resource definitions act as placeholders so Terraform can map them to the real AWS resources.
 
 						<!-- IMAGE 3 - Terraform Resource Definitions -->
-						<img src="/images/P8_Img3_ResourceDef.png" width="640" height="341" alt="Defining Terraform resource blocks before importing existing AWS infrastructure." />
-						<em>Defining Terraform resource blocks before importing existing AWS infrastructure.</em>
+						<!-- Missing screenshot (add later): /images/P8_Img3_ResourceDef.png
+						<img src="/images/P8_Img3_ResourceDef.png" width="640" height="341" alt="Defining Terraform resource blocks before importing existing AWS infrastructure."  />
+						<em>Defining Terraform resource blocks before importing existing AWS infrastructure.</em> -->
 
 						<h4>Step 1.3 - Importing Existing Resources</h4>
 						<p>With the Terraform resource blocks defined, I used the Terraform CLI to import the existing AWS resources.</p>
@@ -127,8 +130,9 @@ aws_lambda_function.visitor_counter</code></pre>
 						This confirmed that Terraform was now aware of the existing infrastructure.
 
 						<!-- IMAGE 5 - Terraform State List -->
-						<img src="/images/P8_Img5_StateList.png" width="640" height="341" alt="Terraform state showing the imported AWS infrastructure." />
-						<em>Terraform state showing the imported AWS infrastructure.</em>
+						<!-- Missing screenshot (add later): /images/P8_Img5_StateList.png
+						<img src="/images/P8_Img5_StateList.png" width="640" height="341" alt="Terraform state showing the imported AWS infrastructure."  />
+						<em>Terraform state showing the imported AWS infrastructure.</em> -->
 
 						<h4>Step 1.5 - Reconciling Terraform Configuration</h4>
 						<p>Once resources are imported, Terraform may detect differences between the configuration files and the real infrastructure. To reconcile these differences, I repeatedly ran:</p>
@@ -138,8 +142,9 @@ aws_lambda_function.visitor_counter</code></pre>
 						At that point, Terraform was fully aligned with the real AWS environment.
 
 						<!-- IMAGE 6 - Terraform Plan (No Changes) -->
-						<img src="/images/P8_Img6_TerraformPlan.png" width="640" height="341" alt="Terraform successfully aligned with the existing AWS infrastructure." />
-						<em>Terraform successfully aligned with the existing AWS infrastructure.</em>
+						<!-- Missing screenshot (add later): /images/P8_Img6_TerraformPlan.png
+						<img src="/images/P8_Img6_TerraformPlan.png" width="640" height="341" alt="Terraform successfully aligned with the existing AWS infrastructure."  />
+						<em>Terraform successfully aligned with the existing AWS infrastructure.</em> -->
 
 						<h3>Phase 2 - Automating Lambda Packaging</h3>
 						<p>Once Terraform was managing the infrastructure, I improved the Lambda deployment process. Previously, the Lambda function had been uploaded manually as a ZIP file. Using Terraform, I automated this process using the archive provider.</p>
@@ -152,8 +157,9 @@ aws_lambda_function.visitor_counter</code></pre>
 						Terraform now automatically packages the Lambda code during deployment.
 
 						<!-- IMAGE 7 - Lambda Packaging with Terraform -->
-						<img src="/images/P8_Img7_LambdaPackaging.png" width="640" height="341" alt="Terraform automatically packaging the Lambda function before deployment." />
-						<em>Terraform automatically packaging the Lambda function before deployment.</em>
+						<!-- Missing screenshot (add later): /images/P8_Img7_LambdaPackaging.png
+						<img src="/images/P8_Img7_LambdaPackaging.png" width="640" height="341" alt="Terraform automatically packaging the Lambda function before deployment."  />
+						<em>Terraform automatically packaging the Lambda function before deployment.</em> -->
 
 						<h3>Protecting the Live Infrastructure</h3>
 						<p>Because the visitor counter Lambda function was already running in production, I added safeguards to prevent Terraform from redeploying the function during the migration.</p>
@@ -167,8 +173,9 @@ aws_lambda_function.visitor_counter</code></pre>
 						This allowed Terraform to manage the infrastructure safely without disrupting the live website.
 
 						<!-- IMAGE 8 - Terraform Lifecycle Protection -->
-						<img src="/images/P8_Img8_Lifecycle.png" width="640" height="341" alt="Using lifecycle rules to prevent Terraform from redeploying production code during migration." />
-						<em>Using lifecycle rules to prevent Terraform from redeploying production code during migration.</em>
+						<!-- Missing screenshot (add later): /images/P8_Img8_Lifecycle.png
+						<img src="/images/P8_Img8_Lifecycle.png" width="640" height="341" alt="Using lifecycle rules to prevent Terraform from redeploying production code during migration."  />
+						<em>Using lifecycle rules to prevent Terraform from redeploying production code during migration.</em> -->
 
 						<h3>Terraform Best Practices Implemented</h3>
 						<p>While migrating the infrastructure, I implemented several Terraform best practices.</p>
@@ -182,8 +189,9 @@ terraform.tfstate.*
 build/</code></pre>
 
 						<!-- IMAGE 9 - Git Ignore Configuration -->
-						<img src="/images/P8_Img9_GitIgnore.png" width="640" height="341" alt="Preventing Terraform state files and sensitive data from being committed to version control." />
-						<em>Preventing Terraform state files and sensitive data from being committed to version control.</em>
+						<!-- Missing screenshot (add later): /images/P8_Img9_GitIgnore.png
+						<img src="/images/P8_Img9_GitIgnore.png" width="640" height="341" alt="Preventing Terraform state files and sensitive data from being committed to version control."  />
+						<em>Preventing Terraform state files and sensitive data from being committed to version control.</em> -->
 
 						<h3>Final Architecture</h3>
 						<p>After completing the migration, the entire backend infrastructure is now managed through Terraform.</p>
@@ -199,8 +207,9 @@ build/</code></pre>
 						All of these resources can now be deployed or recreated using Terraform configuration files stored in GitHub.
 
 						<!-- IMAGE 10 - Terraform Repository -->
-						<img src="/images/P8_Img10_TerraformRepo.png" width="640" height="341" alt="Terraform infrastructure configuration stored in GitHub." />
-						<em>Terraform infrastructure configuration stored in GitHub.</em>
+						<!-- Missing screenshot (add later): /images/P8_Img10_TerraformRepo.png
+						<img src="/images/P8_Img10_TerraformRepo.png" width="640" height="341" alt="Terraform infrastructure configuration stored in GitHub."  />
+						<em>Terraform infrastructure configuration stored in GitHub.</em> -->
 
 						<h3>Lessons Learned</h3>
 						Migrating this project to Terraform reinforced several important lessons about managing cloud infrastructure.
