@@ -79,14 +79,18 @@ function buildNavListHtml(nav) {
       const nestedDepth = li?.parentElement?.classList.contains('dropdown') ? 1 : 0;
       const href = anchor.getAttribute('href') || '';
       const target = anchor.getAttribute('target');
-      const text = anchor.textContent.trim();
+      const label =
+        anchor.querySelector('span:not(.sr-only)')?.textContent?.trim() ||
+        anchor.textContent.trim().replace(/\s+/g, ' ');
+      if (!label) return '';
       return (
         `<a class="link depth-${nestedDepth}"` +
         (target ? ` target="${target}"` : '') +
         (href ? ` href="${href}"` : '') +
-        `><span class="indent-${nestedDepth}"></span>${text}</a>`
+        `><span class="indent-${nestedDepth}"></span>${label}</a>`
       );
     })
+    .filter(Boolean)
     .join('');
 }
 

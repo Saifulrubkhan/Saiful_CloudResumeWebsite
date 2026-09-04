@@ -426,6 +426,8 @@ a {
     --bar-h: 4.35rem;
   }
 
+  /* Must beat #header.site-bar #nav { display: flex !important } */
+  #header.site-bar #nav,
   .site-bar #nav {
     display: none !important;
   }
@@ -528,12 +530,28 @@ a {
 /* Mobile panel restyle (desktop: titleBar stays hidden via site.css) */
 #navPanel {
   background: var(--paper-2) !important;
+  padding: calc(4.5rem + env(safe-area-inset-top, 0px)) 0 1.5rem !important;
 }
 
 #navPanel .link {
   color: var(--ink) !important;
   border-top-color: var(--line) !important;
   font-family: var(--font-body) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+#navPanel .link.depth-0 {
+  color: var(--ink) !important;
+  font-weight: 700 !important;
+}
+
+#navPanel .link.depth-1 {
+  color: var(--ink-soft) !important;
+  font-size: 0.92rem !important;
+  font-weight: 500 !important;
 }
 
 /* -------------------------------------------------------------------------- */
