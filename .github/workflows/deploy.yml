@@ -12,8 +12,8 @@ permissions:
 
 env:
   AWS_REGION: us-east-1
-  S3_BUCKET: resume-website-saiful
-  CLOUDFRONT_DISTRIBUTION_ID: E2ZAVM7W2WEI3R
+  S3_BUCKET: ${{ secrets.S3_BUCKET }}
+  CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
 
 jobs:
   deploy:
@@ -37,7 +37,7 @@ jobs:
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::798644228373:role/github-actions-saiful-cloud-resume
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Sync dist to S3
