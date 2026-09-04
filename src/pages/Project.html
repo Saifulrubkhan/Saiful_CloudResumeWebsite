@@ -86,9 +86,9 @@
 									<strong>Phase 6 - Extending the Project Beyond the Challenge</strong>
 									<p>After completing the official challenge requirements, I began expanding the project with additional features to further develop my cloud engineering skills. Rather than simply stopping once the challenge was finished, this phase focuses on building new capabilities using the infrastructure already in place.</p>
 
-									<p>The first extension is a serverless email messaging feature integrated into the footer of the website. This will allow visitors to submit their name, email address, and a message directly through the site. When the form is submitted, the request will trigger a backend API endpoint, invoke an AWS Lambda function, and deliver the message to my email using AWS services.</p>
+									<p>The first extension is a serverless contact form in the site footer. Visitors submit name, email, and a message; the frontend posts to the <a href="https://github.com/Saifulrubkhan/cloud-resume-api" target="_blank" rel="noopener noreferrer">cloud-resume-api</a> HTTP API, which invokes Lambda, stores the message in DynamoDB, and can email via SES once identities are verified.</p>
 
-									<p>Unlike earlier parts of the project that were initially created through the AWS console, this feature will be built entirely using Terraform from the start. This approach reinforces Infrastructure as Code practices and demonstrates how new services can be added to an existing cloud architecture in a repeatable and automated way.</p>
+									<p>API code lives in its own repository so the website repo stays focused on the Vite frontend while the contact backend can be deployed independently. Full write-up: <a href="contact_form.html">Serverless Contact Form</a>.</p>
 								</li>
 							</ul>
 
@@ -259,9 +259,9 @@
 									<li>
 										<article>
 											<header>
-												<h3><a href="#footer">Serverless Contact Form</a></h3>
+												<h3><a href="contact_form.html">Serverless Contact Form</a></h3>
 											</header>
-											<a href="#footer" class="image"><img src="/images/ServerlessContactForm.png" alt="Serverless Contact Form Logo" /></a>
+											<a href="contact_form.html" class="image"><img src="/images/ServerlessContactForm.png" alt="Serverless Contact Form Logo" /></a>
 										</article>
 									</li>
 								</ul>

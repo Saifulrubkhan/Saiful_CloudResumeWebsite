@@ -1,3 +1,5 @@
+const API_URL = 'https://scnea4v1hj.execute-api.us-east-1.amazonaws.com/contact';
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
   const status = document.getElementById('contact-status');
@@ -18,14 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
     status.textContent = 'Sending...';
 
     try {
-      const response = await fetch(
-        'https://xkoz7es6t0.execute-api.us-east-1.amazonaws.com/contact',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        }
-      );
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
       const rawText = await response.text();
       let data = {};

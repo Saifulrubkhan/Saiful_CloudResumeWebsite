@@ -85,6 +85,11 @@ This project is documented through a phased implementation, with each step refle
 - Migrating infrastructure to Terraform
 - Aim: manage AWS resources consistently with IaC best practices
 
+### Phase 9 — Serverless Contact Form
+- Dedicated API repo: [cloud-resume-api](https://github.com/Saifulrubkhan/cloud-resume-api)
+- API Gateway HTTP API + Lambda + DynamoDB (optional SES)
+- Footer form wired through `src/js/contact-form.js`
+
 ---
 
 ## Local development
@@ -140,7 +145,8 @@ This approach keeps the workflow simple, scalable, and aligned with common team 
 ## Project repositories
 
 - Frontend Website: [Saiful_CloudResumeWebsite](https://github.com/Saifulrubkhan/Saiful_CloudResumeWebsite)
-- Serverless Backend: [Cloud-Resume-Backend](https://github.com/Saifulrubkhan/Cloud-Resume-Backend)
+- Visitor Counter Backend: [cloud-resume-backend](https://github.com/Saifulrubkhan/cloud-resume-backend)
+- Contact Form API: [cloud-resume-api](https://github.com/Saifulrubkhan/cloud-resume-api)
 
 ---
 
