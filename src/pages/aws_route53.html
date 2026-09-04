@@ -23,14 +23,14 @@
 						<p>To accomplish this, I used Amazon Route 53, AWS's managed Domain Name System (DNS) service. DNS functions like the phonebook of the internet. When a user types a domain name into their browser, DNS translates that human-readable name into the network location of the server hosting the website. In this stage of the Cloud Resume Challenge, I used Route 53 to connect my domain to the S3 static website endpoint that serves the content stored in my bucket.</p>
 						<h3>Step 1: Registering the Domain</h3>
 						Before I could direct any traffic to my website, I first needed to own the domain. I chose to register <code>khansaiful.com</code> directly through Amazon Route 53. Keeping the domain registration inside AWS simplifies the integration with other services later in the project. In the Route 53 dashboard, I navigated to Registered Domains and purchased the domain. During the registration process, Route 53 can automatically create a Hosted Zone for the domain. The hosted zone stores the DNS records that control how traffic is routed to the domain. This is where the records live that tell the internet where requests for <code>khansaiful.com</code> should be sent. The most important records inside a hosted zone are A records, AAAA records, and CNAME records, which determine how traffic is directed to infrastructure such as servers, load balancers, or AWS services.
-						<img src="/images/register_domain.png" width="640" height="341" alt="Registered domain khansaiful.com in Route 53" />
+						<img src="/images/register_domain.png?v=3" width="960" height="168" alt="Registered domain khansaiful.com in Route 53" />
 						<h3>Step 2: The S3 Naming Rule</h3>
 						There is one specific rule that trips up a lot of people: For the S3 static website endpoint to work directly with a root domain, the bucket name must exactly match the domain name. This is because the S3 website endpoint uses the bucket name to determine which site content to serve.
 						<ul>
 							<li><strong>Verification:</strong> I made sure my bucket was named <code>khansaiful.com</code>.</li>
 							<li><strong>Static Hosting:</strong> Inside the S3 console under the Properties tab, I confirmed that Static Website Hosting was enabled and noted the provided endpoint URL.</li>
 						</ul>
-						<img src="/images/s3_static.png" width="640" height="341" alt="S3 bucket named khansaiful.com for static website hosting" />
+						<img src="/images/s3_static.png?v=3" width="960" height="263" alt="S3 bucket named khansaiful.com for static website hosting" />
 						
 						<h3>Step 3: Creating the Alias Record</h3>
 						With the domain registered and the S3 bucket configured for static hosting, the next step was creating a DNS record that tells the internet where my website lives. Inside the hosted zone for <code>khansaiful.com</code>, I created a new record with the following settings:
@@ -43,7 +43,7 @@
 						<p>Instead of using a traditional CNAME record, AWS provides an Alias record, which allows a root domain (such as <code>khansaiful.com</code>) to point directly to AWS resources like S3 or CloudFront. This is important because standard DNS rules normally prevent CNAME records from being used at the root domain.</p>
 						<p>At this point I also created a matching AAAA (IPv6) Alias record. While the S3 website endpoint itself does not natively support IPv6, this will become useful later when the domain is routed through CloudFront, which supports IPv6 natively.</p>
 
-						<img src="/images/static_route53.png" width="640" height="341" alt="Route 53 alias A record pointing to the S3 website endpoint" />
+						<img src="/images/static_route53.png?v=3" width="960" height="350" alt="Route 53 alias A record pointing to the S3 website endpoint" />
 
 						<h3>Step 4: Verification and Propagation</h3>
 						Once the record is saved, you have to wait for the DNS changes to "propagate" across the internet. DNS propagation can technically take up to 48 hours, though in practice Route 53 updates usually become visible within a few minutes.
