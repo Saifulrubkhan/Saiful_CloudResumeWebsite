@@ -145,7 +145,7 @@ This approach keeps the workflow simple, scalable, and aligned with common team 
 ## Project repositories
 
 - Frontend Website: [Saiful_CloudResumeWebsite](https://github.com/Saifulrubkhan/Saiful_CloudResumeWebsite)
-- Visitor Counter Backend: [cloud-resume-backend](https://github.com/Saifulrubkhan/cloud-resume-backend)
+- Visitor Counter Backend: [Cloud-Resume-Backend](https://github.com/Saifulrubkhan/Cloud-Resume-Backend)
 - Contact Form API: [cloud-resume-api](https://github.com/Saifulrubkhan/cloud-resume-api)
 
 ---

@@ -23,6 +23,9 @@
 						<strong>Backend Serverless Code (Lambda + DynamoDB): </strong><a href="https://github.com/Saifulrubkhan/cloud-resume-backend" target="_blank">  https://github.com/Saifulrubkhan/cloud-resume-backend</a>
 						</br></br>
 						<p>With the frontend of the website fully secured and cost monitoring configured, the next step was adding the first dynamic feature to the project: a visitor counter.</p>
+						<p>Backend source for this feature lives in <a href="https://github.com/Saifulrubkhan/Cloud-Resume-Backend" target="_blank" rel="noopener noreferrer">Cloud-Resume-Backend</a>. The live HTTP endpoint is:</p>
+						<pre><code>GET https://lqwo3tc3q5.execute-api.us-east-1.amazonaws.com/prod/api/visitor</code></pre>
+						<p>The site calls that API from <code>src/js/visitor-counter.js</code> and renders the returned <code>views</code> value.</p>
 
 						<p>This feature is a core component of the AWS Cloud Resume Challenge because it demonstrates how data flows through a modern cloud architecture. A request begins in the user's browser, triggers backend logic, updates a database, and returns a result to the frontend.</p>
 
@@ -126,13 +129,13 @@
 						I added a small JavaScript script that runs when the page loads.<br>
 						The script performs three actions:</p>
 						<ul>
-							<li>Sends a request to the Lambda Function URL</li>
+							<li>Sends a GET request to the API Gateway <code>/prod/api/visitor</code> endpoint</li>
 							<li>Waits for the JSON response containing the updated visitor count</li>
 							<li>Updates the visitor counter displayed on the page</li>
 						</ul>
 						When a user visits the site, the following process occurs:
 						<ol>
-							<li>The browser sends a request to the Lambda endpoint</li>
+							<li>The browser sends a request to API Gateway</li>
 							<li>Lambda increments the value stored in DynamoDB</li>
 							<li>The updated visitor count is returned to the browser</li>
 							<li>The page displays the updated value</li>
@@ -146,7 +149,7 @@
 						<h3>Result</h3>
 						The website now includes a fully functional serverless visitor counter.<br>
 						The final architecture looks like this:<br>
-						<code>User Browser -> Lambda Function URL -> AWS Lambda -> DynamoDB -> Updated visitor count returned to the browser</code><br>
+						<code>User Browser → API Gateway → AWS Lambda → DynamoDB → Updated visitor count returned to the browser</code><br>
 						Each time the page loads, the counter increments automatically.
 
 						<h3>What Is Next</h3>
