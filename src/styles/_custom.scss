@@ -191,6 +191,24 @@ html[data-theme='dark'] .back-to-top:hover {
   color: #0c1411;
 }
 
+/* Mermaid architecture flowcharts */
+pre.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 1.25rem 0 1.75rem;
+  padding: 1rem 0.75rem;
+  overflow-x: auto;
+  background: color-mix(in srgb, var(--paper-2) 88%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+pre.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
 @media screen and (max-width: 640px) {
   .cert-grid {
     grid-template-columns: 1fr;

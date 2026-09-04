@@ -1,0 +1,28 @@
+---
+description: Prefer Mermaid flowcharts when explaining architecture and request paths
+alwaysApply: true
+---
+
+# Flowchart explanations
+
+When explaining how the site, APIs, build, or deploy work, always use a **Mermaid flowchart** (not ASCII `↓` / `→` text trees).
+
+Prefer this style:
+
+```mermaid
+flowchart TD
+  srcHtml["src/pages/*.html"] --> vite[Vite build]
+  srcJs["src/js/site.js + modules"] --> vite
+  srcScss["src/styles/*.scss"] --> vite
+  srcPartials["src/partials/*.hbs"] --> vite
+  vite --> dist["dist/ HTML + hashed CSS/JS"]
+  dist --> s3cf[S3 + CloudFront]
+  s3cf --> live["https://khansaiful.com"]
+```
+
+Guidelines:
+- Use `flowchart TD` (top-down) or `flowchart LR` (left-right)
+- Name real files, services, and endpoints from this project
+- Keep a short prose summary, then the flowchart as the main explanation
+- In Markdown files use fenced `mermaid` blocks
+- In HTML pages use `<pre class="mermaid">...</pre>` (rendered by site.js)

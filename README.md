@@ -27,6 +27,19 @@ The goal of this project is to design, secure, and deploy a personal website on 
 
 ![Cloud Resume architecture](public/images/Cloud_Resume.png)
 
+### Build and publish path
+
+```mermaid
+flowchart TD
+  srcHtml["src/pages/*.html"] --> vite[Vite build]
+  srcJs["src/js/site.js + modules"] --> vite
+  srcScss["src/styles/*.scss"] --> vite
+  srcPartials["src/partials/*.hbs"] --> vite
+  vite --> dist["dist/ HTML + hashed CSS/JS"]
+  dist --> s3cf[S3 + CloudFront]
+  s3cf --> live["https://khansaiful.com"]
+```
+
 ### Core AWS services used
 
 - Amazon S3 — Static website hosting
@@ -122,28 +135,23 @@ Shared header, nav, and footer live in `src/partials/`. Page content lives in `s
 
 ## Deployment workflow
 
-```text
-Developer updates website code
-    ↓
-Push to GitHub repository
-    ↓
-CI/CD: npm ci && npm run build
-    ↓
-Sync dist/ to Amazon S3
-    ↓
-CloudFront cache refreshes
-    ↓
-Updated website is served globally
+```mermaid
+flowchart TD
+  dev[Developer updates website code] --> push[Push to GitHub]
+  push --> gha["GitHub Actions: npm ci && npm run build"]
+  gha --> s3[Sync dist/ to Amazon S3]
+  s3 --> cf[CloudFront invalidation]
+  cf --> live[Site served globally at khansaiful.com]
 ```
 
 ---
 
 ## Branching strategy
 
-```text
-main          → production-ready website code
-Project/blog  → blog content and project notes
-feature/*     → active feature development
+```mermaid
+flowchart LR
+  main[main — production site] --- project[Project/blog — notes]
+  main --- feature[feature/* — active work]
 ```
 
 This approach keeps the workflow simple, scalable, and aligned with common team practices.

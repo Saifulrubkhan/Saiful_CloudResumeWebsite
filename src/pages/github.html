@@ -95,7 +95,14 @@
 						<h3>The Result</h3>
 						<p>The website now has a fully automated deployment workflow.</p>
 						<p>Whenever I push updates to GitHub:</p>
-						<p><code>GitHub push → GitHub Actions builds dist/ → OIDC assumes IAM role → S3 sync → CloudFront invalidation → site updated globally</code></p>
+						<pre class="mermaid">
+flowchart TD
+  push[GitHub push] --> gha[GitHub Actions builds dist]
+  gha --> oidc[OIDC assumes IAM role]
+  oidc --> s3[S3 sync]
+  s3 --> cf[CloudFront invalidation]
+  cf --> live[Site updated globally]
+						</pre>
 						<p>I can update the site quickly without manually uploading objects in the AWS console.</p>
 
 						<h3>What's Next</h3>

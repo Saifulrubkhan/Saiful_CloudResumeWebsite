@@ -3,5 +3,6 @@ import './theme-toggle.js';
 import './visitor-counter.js';
 import './contact-form.js';
 import './quote-rotator.js';
+import './mermaid-flow.js';
 
 initChrome();

@@ -38,9 +38,17 @@
 						This approach removes the need to manage servers while still allowing the application to scale automatically.
 
 						<h3>Architecture Overview</h3>
-						The visitor counter uses a simple serverless workflow:
-						<p><code>User Browser → API Gateway → AWS Lambda → DynamoDB → Updated count returned to browser</code></p>
-						Each new browser session triggers a request that increments the visitor count stored in DynamoDB (page navigations within the same session do not).
+						<p>The visitor counter uses a simple serverless workflow:</p>
+						<pre class="mermaid">
+flowchart TD
+  browser[User Browser] --> apigw[API Gateway]
+  apigw --> lambda[AWS Lambda]
+  lambda --> ddb[(DynamoDB)]
+  ddb --> lambda
+  lambda --> apigw
+  apigw --> browser
+						</pre>
+						<p>Each new browser session triggers a request that increments the visitor count stored in DynamoDB (page navigations within the same session do not).</p>
 
 						<!-- IMAGE 1 - Visitor Counter Architecture -->
 						<!-- Missing screenshot (add later): /images/P7_Img1_VisitorArchitecture.png
@@ -153,10 +161,18 @@
 						<em>Frontend JavaScript calling the Lambda endpoint and displaying the visitor count.</em> -->
 
 						<h3>Result</h3>
-						The website now includes a fully functional serverless visitor counter.<br>
-						The final architecture looks like this:<br>
-						<code>User Browser → API Gateway → AWS Lambda → DynamoDB → Updated visitor count returned to the browser</code><br>
-						Each time the page loads, the counter increments automatically.
+						<p>The website now includes a fully functional serverless visitor counter.</p>
+						<p>The final architecture looks like this:</p>
+						<pre class="mermaid">
+flowchart TD
+  browser[User Browser] --> apigw[API Gateway]
+  apigw --> lambda[AWS Lambda]
+  lambda --> ddb[(DynamoDB)]
+  ddb --> lambda
+  lambda --> apigw
+  apigw --> ui[Updated visitor count on page]
+						</pre>
+						<p>Each time a new browser session loads the site, the counter increments automatically.</p>
 
 						<h3>What Is Next</h3>
 						<p>Up to this point most of the infrastructure for this project was created manually through the AWS console. This approach is often referred to as ClickOps.</p>

@@ -20,11 +20,13 @@
 						<p>I rebuilt the contact backend in a dedicated repository, <a href="https://github.com/Saifulrubkhan/cloud-resume-api" target="_blank" rel="noopener noreferrer">cloud-resume-api</a>, and wired the website to the new endpoint.</p>
 
 						<h3>Architecture</h3>
-						<pre><code>Browser (khansaiful.com)
-  → POST /contact  (API Gateway HTTP API)
-  → Lambda  cloud-resume-contact  (Python 3.13)
-  → DynamoDB  contact_messages
-  → Amazon SES (optional, after identities are verified)</code></pre>
+						<pre class="mermaid">
+flowchart TD
+  browser[Browser khansaiful.com] --> api["API Gateway POST /contact"]
+  api --> lambda["Lambda cloud-resume-contact Python 3.13"]
+  lambda --> ddb[(DynamoDB contact_messages)]
+  lambda --> ses[Amazon SES optional]
+						</pre>
 
 						<h3>What the frontend sends</h3>
 						<p><code>src/js/contact-form.js</code> posts JSON from the footer form:</p>
