@@ -146,11 +146,53 @@ function initMobileNav() {
   );
 }
 
+function initScrollTopOnLoad() {
+  // Keep refresh / soft-open at the top of the page (avoid restoring mid-scroll).
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  const jumpTop = () => window.scrollTo(0, 0);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', jumpTop, { once: true });
+  } else {
+    jumpTop();
+  }
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) jumpTop();
+  });
+}
+
+function initBackToTop() {
+  if (document.getElementById('backToTop')) return;
+
+  const button = document.createElement('button');
+  button.id = 'backToTop';
+  button.type = 'button';
+  button.className = 'back-to-top';
+  button.setAttribute('aria-label', 'Back to top');
+  button.innerHTML = '<span aria-hidden="true">↑</span>';
+  document.body.appendChild(button);
+
+  const toggle = () => {
+    const show = window.scrollY > 480;
+    button.classList.toggle('is-visible', show);
+  };
+
+  button.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+}
+
 export function initChrome() {
+  initScrollTopOnLoad();
   removePreload();
   initDesktopDropdown();
   initMobileNav();
   initReveal();
+  initBackToTop();
 }
 
 function initReveal() {

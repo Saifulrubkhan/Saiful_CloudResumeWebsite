@@ -50,7 +50,7 @@
 							<li><strong>Action:</strong> I went back to my Hosted Zone in Route 53 and edited the "A Record" I created in the previous post.</li>
 							<li><strong>New Target:</strong> I changed "Route traffic to" from the S3 bucket to Alias to CloudFront distribution and selected my new distribution from the list.</li>
 						</ul>
-						<img src="/images/P4_Step3_RecordName.png" style="width: 300px;" width="300" height="341" alt="Screenshot of the Route 53 Edit Record pane showing the transition from an S3 target to a CloudFront target" />
+						<img src="/images/static_route53.png?v=3" width="960" height="350" alt="Route 53 alias record configuration for the site domain" />
 
 						<h3>Step 4: Restricting S3 Access (Optional but Recommended)</h3>
 						To prevent users from bypassing CloudFront and accessing the S3 bucket directly, I configured Origin Access Control (OAC). OAC allows CloudFront to securely request objects from the bucket while keeping the bucket itself private.

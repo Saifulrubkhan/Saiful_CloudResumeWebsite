@@ -22,7 +22,7 @@
 
 						<p>While this works for small experiments, it quickly becomes inefficient and introduces unnecessary risk. Manual uploads can easily overwrite the wrong files, forget updates, or create inconsistencies between local code and the deployed version.</p>
 
-						<p>To solve this problem, I implemented an automated CI/CD deployment pipeline using GitHub and AWS CodePipeline. This allows any changes pushed to my GitHub repository to automatically deploy to my S3 website hosting bucket.</p>
+						<p>To solve this problem, I implemented an automated CI/CD pipeline with <strong>GitHub Actions</strong> that builds the Vite site and deploys it to Amazon S3, then invalidates CloudFront. Authentication uses <strong>OIDC federation</strong> into AWS—no long-lived access keys stored in GitHub secrets.</p>
 
 						<p>This approach reflects how modern cloud environments operate. Instead of manually updating infrastructure or applications, deployments are automated through version-controlled pipelines.</p>
 
@@ -38,62 +38,65 @@
 						<p>Version control is also an essential component of CI/CD pipelines because deployment systems need a centralized location from which to pull source code.</p>
 
 						<!-- IMAGE 1 -->
-						<img src="/images/P5_Img1_RepoStructure.png" width="640" height="341" alt="GitHub repository showing the website source code and project file structure." />
+						<img src="/images/github_page.png?v=1" width="960" height="540" alt="GitHub repository showing the website source code and project file structure." />
 						<em>GitHub repository showing the website source code and project file structure.</em>
 
-						<h3>Step 2 - Creating the Deployment Pipeline</h3>
-						<p>Once the repository was established, the next step was creating an automated deployment pipeline using AWS CodePipeline.</p>
-						<p>CodePipeline is a fully managed AWS service that automates the process of building, testing, and deploying applications. For this project, I configured a simple pipeline with two stages:</p>
+						<h3>Step 2 - Creating the GitHub Actions Workflow</h3>
+						<p>Once the repository was established, I added a workflow under <code>.github/workflows/deploy.yml</code>. On every push to <code>main</code> (and on manual <code>workflow_dispatch</code>), the job:</p>
 						<ul>
-							<li>Source Stage</li>
-							<li>Deploy Stage</li>
+							<li>Checks out the repository</li>
+							<li>Installs Node.js 20 and runs <code>npm ci</code></li>
+							<li>Builds the production site with <code>npm run build</code> (Vite → <code>dist/</code>)</li>
+							<li>Assumes an AWS IAM role through GitHub OIDC</li>
+							<li>Syncs <code>dist/</code> to the S3 bucket and invalidates CloudFront</li>
 						</ul>
-						<p>The Source stage connects directly to the GitHub repository. Whenever new code is pushed to the main branch, CodePipeline automatically detects the change and starts a new pipeline execution.</p>
-						<p>The Deploy stage takes the updated files from the repository and synchronizes them with the S3 bucket hosting the website.</p>
-						<p>This allows the entire deployment process to run automatically without requiring any manual uploads.</p>
+						<p>The workflow requests <code>id-token: write</code> so GitHub can mint a short-lived OIDC token that AWS trusts. That replaces storing <code>AWS_ACCESS_KEY_ID</code> / secret keys as repository secrets.</p>
+						<pre><code>permissions:
+  id-token: write
+  contents: read
 
-						<!-- IMAGE 2 -->
-						<img src="/images/P5_Img2_CodePipeline.png" width="640" height="341" alt="AWS CodePipeline pipeline view showing the Source and Deploy stages connected to the GitHub repository." />
-						<em>AWS CodePipeline pipeline view showing the Source and Deploy stages connected to the GitHub repository.</em>
+# then: role-to-assume → npm run build → aws s3 sync dist/ → CloudFront invalidation</code></pre>
+						<em>Core of the deploy workflow: OIDC permissions, build, then publish <code>dist/</code> to S3.</em>
 
-						<h3>Step 3 - Deploying Updates to the S3 Website Bucket</h3>
-						<p>During the deploy stage, CodePipeline updates the S3 bucket containing the static website files.</p>
-						<p>When new code is pushed to GitHub:</p>
+						<h3>Step 3 - Federating GitHub to AWS with OIDC</h3>
+						<p>On the AWS side I configured:</p>
 						<ul>
-							<li>CodePipeline detects the repository change</li>
-							<li>The pipeline downloads the latest version of the repository</li>
-							<li>Updated files are uploaded to the S3 bucket hosting the website</li>
+							<li>An IAM OIDC identity provider for <code>token.actions.githubusercontent.com</code></li>
+							<li>An IAM role (for example <code>github-actions-saiful-cloud-resume</code>) that GitHub Actions can assume</li>
+							<li>A trust policy scoped to this repository (<code>repo:Saifulrubkhan/Saiful_CloudResumeWebsite:*</code>)</li>
+							<li>Permissions limited to syncing the website bucket and creating CloudFront invalidations</li>
 						</ul>
-						<p>This ensures the contents of the S3 bucket always match the latest version of the GitHub repository.</p>
-						<p>Because the website is delivered through CloudFront, the updated files become available globally once the distribution refreshes its cache.</p>
-						<p>The entire deployment process now happens automatically whenever changes are pushed to GitHub.</p>
+						<p>When the workflow runs, GitHub presents an OIDC token, AWS issues temporary credentials via <code>AssumeRoleWithWebIdentity</code>, and the job uploads only what it needs—then the credentials expire.</p>
 
-						<h3>Step 4 - Testing the Deployment Pipeline</h3>
-						<p>To confirm that the pipeline was working correctly, I made a small change to the website and pushed the update to the GitHub repository.</p>
-						<p>Immediately after the commit was pushed, CodePipeline automatically triggered a new pipeline execution. The AWS console allowed me to watch the deployment process in real time.</p>
-						<p>Once the pipeline completed successfully, the updated files were already deployed to the S3 bucket and served through CloudFront.</p>
-						<p>Refreshing the website confirmed that the changes were live.</p>
+						<h3>Step 4 - Deploying to S3 and Invalidating CloudFront</h3>
+						<p>After the build finishes, the workflow publishes the static site:</p>
+						<ul>
+							<li><code>aws s3 sync dist/ s3://resume-website-saiful --delete</code> keeps the bucket aligned with the latest build</li>
+							<li><code>aws cloudfront create-invalidation --paths "/*"</code> clears edge cache so visitors see the new HTML and assets</li>
+						</ul>
+						<p>Only the built <code>dist/</code> output is deployed—not the raw source tree—so visitors always get production assets (hashed CSS/JS, compiled pages).</p>
 
-						<!-- IMAGE 3 - CodePipeline Executions -->
-						<img src="/images/P5_Img3_PipelineExecutions.png" width="640" alt="AWS CodePipeline executions showing successful automated deployments triggered by GitHub commits." />
-						<em>CodePipeline execution history showing successful automated deployments triggered by GitHub commits.</em>
+						<h3>Step 5 - Testing the Pipeline</h3>
+						<p>To confirm everything worked, I pushed a change to <code>main</code> and opened the repository <strong>Actions</strong> tab. The <em>Deploy to S3</em> workflow ran through install, build, OIDC assume-role, sync, and invalidation.</p>
+						<p>After the job succeeded, refreshing the live site showed the update—no AWS Console upload required.</p>
 
 						<h3>Lessons Learned</h3>
-						<p>This stage of the project highlighted an important principle in modern cloud development: automation reduces risk and improves consistency.</p>
-						<p>Before implementing CI/CD, every deployment required manually uploading files through the AWS Console. While this method works for small changes, it introduces opportunities for mistakes and slows down the development process.</p>
-						<p>Automating deployments through CodePipeline ensures that:</p>
+						<p>This stage reinforced that automation reduces risk and improves consistency.</p>
+						<p>Before CI/CD, every deployment meant manually uploading files in the AWS Console. That works for tiny edits, but it is easy to miss files or ship the wrong tree.</p>
+						<p>With GitHub Actions and OIDC:</p>
 						<ul>
-							<li>The GitHub repository remains the authoritative version of the website</li>
-							<li>Deployments happen consistently every time code is updated</li>
-							<li>The risk of human error during manual uploads is eliminated</li>
+							<li>The GitHub repository remains the source of truth</li>
+							<li>Every push to <code>main</code> produces the same build-and-deploy path</li>
+							<li>AWS access uses short-lived federated credentials instead of standing access keys</li>
+							<li>CloudFront invalidation is part of the pipeline, so cache does not hide new releases</li>
 						</ul>
-						<p>Another important lesson was understanding how AWS services integrate together. By connecting GitHub, CodePipeline, S3, and CloudFront, the website now has a fully automated deployment pipeline similar to what many production environments use.</p>
+						<p>I also learned that federation trust policies must match the repository exactly—misconfigured OIDC conditions fail at <code>AssumeRoleWithWebIdentity</code> even when the workflow YAML looks correct.</p>
 
 						<h3>The Result</h3>
 						<p>The website now has a fully automated deployment workflow.</p>
 						<p>Whenever I push updates to GitHub:</p>
-						<p><code>GitHub Repository → AWS CodePipeline detects the change → CodePipeline deploys the update to S3 → CloudFront serves the updated website globally</code></p>
-						<p>This process allows me to update the site quickly and confidently without manually interacting with the AWS console.</p>
+						<p><code>GitHub push → GitHub Actions builds dist/ → OIDC assumes IAM role → S3 sync → CloudFront invalidation → site updated globally</code></p>
+						<p>I can update the site quickly without manually uploading objects in the AWS console.</p>
 
 						<h3>What's Next</h3>
 						<p>With the deployment process automated, the next step is focusing on cost visibility and monitoring.</p>
