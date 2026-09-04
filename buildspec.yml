@@ -23,3 +23,5 @@ artifacts:
   files:
     - "**/*"
   base-directory: dist
+
+# pipeline trigger check 2026-09-04T00:30:04.1163380-06:00
