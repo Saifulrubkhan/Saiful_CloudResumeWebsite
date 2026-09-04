@@ -50,28 +50,26 @@
 							<li>Assumes an AWS IAM role through GitHub OIDC</li>
 							<li>Syncs <code>dist/</code> to the S3 bucket and invalidates CloudFront</li>
 						</ul>
-						<p>The workflow requests <code>id-token: write</code> so GitHub can mint a short-lived OIDC token that AWS trusts. That replaces storing <code>AWS_ACCESS_KEY_ID</code> / secret keys as repository secrets.</p>
-						<pre><code>permissions:
-  id-token: write
-  contents: read
-
-# then: role-to-assume → npm run build → aws s3 sync dist/ → CloudFront invalidation</code></pre>
-						<em>Core of the deploy workflow: OIDC permissions, build, then publish <code>dist/</code> to S3.</em>
+						<p>The workflow requests <code>id-token: write</code> so GitHub can mint a short-lived OIDC token that AWS trusts. That replaces storing <code>AWS_ACCESS_KEY_ID</code> / secret keys as repository secrets. Bucket name, CloudFront distribution ID, and role ARN are supplied through GitHub Actions secrets.</p>
+						<img src="/images/gha_workflow.png?v=1" width="960" height="540" alt="GitHub Actions deploy.yml workflow for building and publishing the site" />
+						<em>Deploy workflow in <code>.github/workflows/deploy.yml</code>.</em>
 
 						<h3>Step 3 - Federating GitHub to AWS with OIDC</h3>
 						<p>On the AWS side I configured:</p>
 						<ul>
 							<li>An IAM OIDC identity provider for <code>token.actions.githubusercontent.com</code></li>
 							<li>An IAM role (for example <code>github-actions-saiful-cloud-resume</code>) that GitHub Actions can assume</li>
-							<li>A trust policy scoped to this repository (<code>repo:Saifulrubkhan/Saiful_CloudResumeWebsite:*</code>)</li>
+							<li>A trust policy scoped to this repository (including GitHub’s immutable subject claim format)</li>
 							<li>Permissions limited to syncing the website bucket and creating CloudFront invalidations</li>
 						</ul>
 						<p>When the workflow runs, GitHub presents an OIDC token, AWS issues temporary credentials via <code>AssumeRoleWithWebIdentity</code>, and the job uploads only what it needs—then the credentials expire.</p>
+						<img src="/images/gha_oidc_role.png?v=1" width="960" height="540" alt="IAM role trust policy allowing GitHub Actions OIDC to assume the deploy role" />
+						<em>IAM role trust policy for GitHub Actions OIDC.</em>
 
 						<h3>Step 4 - Deploying to S3 and Invalidating CloudFront</h3>
 						<p>After the build finishes, the workflow publishes the static site:</p>
 						<ul>
-							<li><code>aws s3 sync dist/ s3://resume-website-saiful --delete</code> keeps the bucket aligned with the latest build</li>
+							<li><code>aws s3 sync dist/ s3://$S3_BUCKET --delete</code> keeps the bucket aligned with the latest build</li>
 							<li><code>aws cloudfront create-invalidation --paths "/*"</code> clears edge cache so visitors see the new HTML and assets</li>
 						</ul>
 						<p>Only the built <code>dist/</code> output is deployed—not the raw source tree—so visitors always get production assets (hashed CSS/JS, compiled pages).</p>
@@ -79,6 +77,8 @@
 						<h3>Step 5 - Testing the Pipeline</h3>
 						<p>To confirm everything worked, I pushed a change to <code>main</code> and opened the repository <strong>Actions</strong> tab. The <em>Deploy to S3</em> workflow ran through install, build, OIDC assume-role, sync, and invalidation.</p>
 						<p>After the job succeeded, refreshing the live site showed the update—no AWS Console upload required.</p>
+						<img src="/images/gha_actions_success.png?v=1" width="960" height="540" alt="Successful GitHub Actions Deploy to S3 run showing completed build and deploy steps" />
+						<em>Successful Deploy to S3 workflow run in GitHub Actions.</em>
 
 						<h3>Lessons Learned</h3>
 						<p>This stage reinforced that automation reduces risk and improves consistency.</p>
