@@ -183,7 +183,7 @@ function initBackToTop() {
   };
 
   button.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0 });
   });
 
   window.addEventListener('scroll', toggle, { passive: true });

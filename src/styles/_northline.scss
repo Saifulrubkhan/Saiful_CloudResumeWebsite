@@ -35,7 +35,20 @@ html[data-theme='dark'] {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body,
@@ -133,7 +146,6 @@ a {
   padding: 1rem clamp(1.1rem, 3vw, 2.25rem) !important;
   margin: 0 !important;
   background: color-mix(in srgb, var(--paper) 96%, #000) !important;
-  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line) !important;
   box-shadow: none !important;
   text-align: left !important;
