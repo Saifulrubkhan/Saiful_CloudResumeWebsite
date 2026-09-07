@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		{{> head title="AWS Serverless CRUD with Terraform - Saiful Khan" }}
+	</head>
+	<body class="challenge no-sidebar is-preload">
+		<div id="page-wrapper">
+			{{> header }}
+			<div id="wrapper">
+			<!-- Main -->
+			<div id="main">
+			<!-- Post -->
+				<article class="post">
+					<header>
+						<div class="title">
+							<h2>AWS Serverless CRUD with Terraform</h2>
+							<p>Infrastructure as Code + serverless application design</p>
+						</div>
+					</header>
+					<section class="project">
+						<strong>GitHub Repository: </strong>
+						<a href="https://github.com/Saifulrubkhan/aws-serverless-crud-terraform-tuned" target="_blank" rel="noopener noreferrer">
+							https://github.com/Saifulrubkhan/aws-serverless-crud-terraform-tuned
+						</a>
+						</br></br>
+
+						<p>This project is a serverless CRUD application built on AWS, with Terraform used to provision and manage the infrastructure in a repeatable and production-friendly way.</p>
+						<p>The goal was to move beyond manually creating AWS resources in the console and instead define the architecture as code so it could be deployed consistently and scaled cleanly.</p>
+
+						<h3>Architecture</h3>
+						<p><code>Client → API Gateway → Lambda → DynamoDB</code></p>
+						<p>The application follows a clean serverless pattern where:</p>
+						<ul>
+							<li><strong>API Gateway</strong> exposes HTTP endpoints for client requests</li>
+							<li><strong>AWS Lambda</strong> handles the business logic for create, read, update, and delete operations</li>
+							<li><strong>DynamoDB</strong> stores the application data</li>
+							<li><strong>Terraform</strong> manages the infrastructure as code</li>
+						</ul>
+
+						<h3>Core Technologies</h3>
+						<ul>
+							<li>Terraform</li>
+							<li>AWS Lambda</li>
+							<li>Amazon API Gateway</li>
+							<li>Amazon DynamoDB</li>
+							<li>AWS Identity and Access Management (IAM)</li>
+							<li>Python</li>
+						</ul>
+
+						<h3>What I built</h3>
+						<ul>
+							<li>REST-style API endpoints for CRUD operations</li>
+							<li>Lambda functions to process and validate requests</li>
+							<li>DynamoDB table for persistent storage</li>
+							<li>Permission policies using least-privilege access</li>
+							<li>Terraform configuration for resource provisioning and updates</li>
+						</ul>
+
+						<h3>Why this project matters</h3>
+						<p>This was a strong practical exercise in applying real cloud engineering patterns: infrastructure automation, serverless design, secure IAM setup, and API-driven application flows.</p>
+						<p>It also demonstrates an important transition from manual cloud configuration to infrastructure as code, which is a core skill in modern DevOps and platform engineering work.</p>
+
+						<h3>Key takeaway</h3>
+						<p>The project shows how to build a lightweight but scalable backend without managing servers, while keeping deployment repeatable and easier to maintain through Terraform.</p>
+
+						</br>
+						<strong>Related project:</strong> <a href="Project.html">AWS Cloud Resume Challenge</a>
+					</section>
+				</article>
+			</div>
+			</div>
+			{{> footer }}
+		</div>
+	</body>
+</html>

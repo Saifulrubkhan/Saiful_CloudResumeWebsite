@@ -119,6 +119,98 @@
   line-height: 1.35 !important;
 }
 
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 100%;
+  padding: 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 55%, transparent), transparent),
+    color-mix(in srgb, var(--ink) 3%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 40%, transparent) inset,
+    0 12px 28px color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+.project-card h3 {
+  margin: 0 !important;
+  font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
+  line-height: 1.25 !important;
+  color: var(--ink) !important;
+}
+
+.project-card p {
+  margin: 0 !important;
+  color: var(--ink-soft) !important;
+  line-height: 1.6 !important;
+}
+
+.project-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-card__meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.38rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--paper-2) 70%, transparent);
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.project-links a.secondary {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink) !important;
+}
+
+html[data-theme='dark'] .project-card {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 6%, transparent), transparent),
+    color-mix(in srgb, #fff 4%, transparent);
+}
+
+html[data-theme='dark'] .project-links a.secondary {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
 html[data-theme='dark'] .cert-card {
   background:
     linear-gradient(180deg, color-mix(in srgb, #fff 6%, transparent), transparent),
