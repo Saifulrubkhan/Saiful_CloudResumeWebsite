@@ -1,13 +1,13 @@
 # Deploy Vite dist/ to the S3 website bucket, then invalidate CloudFront.
 # Usage (required env vars — no hardcoded prod IDs):
-#   $env:S3_BUCKET = "resume-website-saiful"
-#   $env:CLOUDFRONT_DISTRIBUTION_ID = "E2ZAVM7W2WEI3R"
+#   $env:S3_BUCKET = "your-static-site-bucket"
+#   $env:CLOUDFRONT_DISTRIBUTION_ID = "E1234567890EXAMPLE"
 #   npm run deploy
 
 $ErrorActionPreference = "Stop"
 
 if (-not $env:S3_BUCKET) {
-  Write-Error "Set S3_BUCKET before deploying (example: resume-website-saiful)."
+  Write-Error "Set S3_BUCKET before deploying (example: your-static-site-bucket)."
 }
 if (-not $env:CLOUDFRONT_DISTRIBUTION_ID) {
   Write-Error "Set CLOUDFRONT_DISTRIBUTION_ID before deploying."

@@ -108,20 +108,40 @@ This project is documented through a phased implementation, with each step refle
 
 ## Local development
 
+### Prerequisites
+
+- Node.js 20 or newer
+- npm
+- AWS CLI v2 for local deployment
+- An authenticated AWS CLI profile with access to the target S3 bucket and CloudFront distribution
+
 ```bash
 npm install
-npm run dev      # http://localhost:5173/src/pages/index.html
+npm run dev      # http://localhost:5173/
 npm run build    # production files → dist/
 npm run preview  # serve dist/
 ```
 
-**Deploy** via GitHub Actions on push to `main` (OIDC → S3 → CloudFront), or locally:
+The development server also supports the generated page paths, for example `/Project.html` and `/aws_serverless_crud.html`.
+
+**Deploy** via GitHub Actions on push to `main` (OIDC → S3 → CloudFront), or locally after configuring the AWS CLI:
 
 ```powershell
-$env:S3_BUCKET = "resume-website-saiful"
-$env:CLOUDFRONT_DISTRIBUTION_ID = "E2ZAVM7W2WEI3R"
+$env:S3_BUCKET = "your-static-site-bucket"
+$env:CLOUDFRONT_DISTRIBUTION_ID = "E1234567890EXAMPLE"
 npm run deploy
 ```
+
+These are dummy values. Replace them with your own bucket name and CloudFront distribution ID. They are resource identifiers, not credentials, but keep AWS credentials in your local AWS profile or GitHub Actions OIDC secrets rather than in this repository.
+
+Before a local deployment, verify the active AWS identity and build the site:
+
+```powershell
+aws sts get-caller-identity
+npm run build
+```
+
+The deploy script runs the build again, syncs `dist/` with `--delete`, and creates a CloudFront invalidation. Review the bucket and distribution variables carefully before running it against production.
 
 Pipeline steps:
 
@@ -131,6 +151,15 @@ Pipeline steps:
 4. CloudFront invalidation
 
 Shared header, nav, and footer live in `src/partials/`. Page content lives in `src/pages/`. Styles: prefer `src/styles/_custom.scss` / `_nav.scss` / `_northline.scss`; base template CSS is `src/styles/site.css`.
+
+### Useful checks
+
+```bash
+npm run build
+git diff --check
+```
+
+`npm run build` validates the multi-page Vite output. `git diff --check` catches trailing whitespace and malformed patch formatting before a commit.
 
 ---
 

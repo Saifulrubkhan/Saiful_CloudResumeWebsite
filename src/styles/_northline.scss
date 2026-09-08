@@ -57,6 +57,8 @@ body textarea,
 body select,
 body button:not(.btn) {
   font-family: var(--font-body) !important;
+  position: relative;
+  isolation: isolate;
   font-weight: 400 !important;
   font-size: 17px !important;
   line-height: 1.65 !important;
@@ -67,6 +69,71 @@ body button:not(.btn) {
   -webkit-font-smoothing: antialiased;
 }
 
+.study-icon-field {
+  position: absolute;
+  top: 7rem;
+  right: 2rem;
+  left: 2rem;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 3rem);
+  justify-content: space-between;
+  max-width: 68rem;
+  margin: 0 auto;
+  pointer-events: none;
+  opacity: 0.08;
+}
+
+.homepage #main,
+.homepage .site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.study-icon-field img {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+}
+
+.study-icon-field img:nth-child(2),
+.study-icon-field img:nth-child(5),
+.study-icon-field img:nth-child(8) {
+  transform: translateY(9rem);
+}
+
+html[data-theme='dark'] .study-icon-field {
+  opacity: 0.14;
+  filter: brightness(1.25) saturate(0.8);
+}
+
+@media (max-width: 720px) {
+  .study-icon-field {
+    top: 6.5rem;
+    right: 1rem;
+    left: 1rem;
+    grid-template-columns: repeat(4, 2.25rem);
+  }
+
+  .study-icon-field img {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .study-icon-field img:nth-child(2),
+  .study-icon-field img:nth-child(5),
+  .study-icon-field img:nth-child(8) {
+    transform: translateY(5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-icon-field img {
+    transform: none !important;
+  }
+}
+
 body {
   background-color: var(--paper) !important;
   background-image: none !important;
@@ -74,6 +141,8 @@ body {
 }
 
 #page-wrapper {
+  position: relative;
+  isolation: isolate;
   background: transparent !important;
   padding: 0 !important;
 }
