@@ -1236,6 +1236,7 @@ html[data-theme='dark'] .section__more .btn--ink {
 .phase-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
   gap: 0.85rem;
   margin-top: 1.5rem;
 }
@@ -1243,6 +1244,7 @@ html[data-theme='dark'] .section__more .btn--ink {
 .phase-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   min-width: 0;
   min-height: 14rem;
   padding: 1.1rem;
