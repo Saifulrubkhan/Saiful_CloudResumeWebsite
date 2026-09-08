@@ -1,5 +1,4 @@
-const API_URL =
-  'https://lqwo3tc3q5.execute-api.us-east-1.amazonaws.com/prod/api/visitor';
+import { API_URLS } from '../config.js';
 
 const CACHE_KEY = 'crc_visitor_views';
 
@@ -12,7 +11,7 @@ async function initVisitorCounter() {
 
   try {
     // Count once per browser tab session; later page navigations reuse the cache.
-    const response = await fetch(`${API_URL}?increment=1`, { method: 'GET' });
+    const response = await fetch(`${API_URLS.visitor}?increment=1`, { method: 'GET' });
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);
     }

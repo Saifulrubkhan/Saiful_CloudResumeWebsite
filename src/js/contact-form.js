@@ -1,4 +1,4 @@
-const API_URL = 'https://scnea4v1hj.execute-api.us-east-1.amazonaws.com/contact';
+import { API_URLS } from '../config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
@@ -17,10 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
       message: document.getElementById('message').value.trim(),
     };
 
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton?.disabled) return;
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.setAttribute('aria-busy', 'true');
+    }
     status.textContent = 'Sending...';
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(API_URLS.contact, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -42,7 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
     } catch (err) {
       console.error('Contact form error:', err);
-      status.textContent = `Error sending message: ${err.message}`;
+      status.textContent = 'Unable to send your message right now. Please try again or use LinkedIn.';
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.setAttribute('aria-busy', 'false');
+      }
     }
   });
 });

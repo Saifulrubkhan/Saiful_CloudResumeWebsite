@@ -7,6 +7,7 @@
 		<div id="page-wrapper">
 			{{> header }}
 
+			<main id="main">
 			<section class="hero hero--portfolio" aria-label="Introduction">
 				<div class="hero__inner hero__inner--split">
 					<div class="hero__copy">
@@ -46,19 +47,19 @@
 						</ul>
 						<div class="hero__tech-marquee" aria-label="Core technologies">
 							<ul class="hero__tech">
-								<li><img src="/images/skills/aws-orange.svg" alt="" width="28" height="28" /><span>AWS</span></li>
-								<li><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="" width="28" height="28" /><span>Terraform</span></li>
-								<li><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="" width="28" height="28" /><span>Kubernetes</span></li>
-								<li><img src="https://cdn.simpleicons.org/docker/2496ED" alt="" width="28" height="28" /><span>Docker</span></li>
-								<li><img src="https://cdn.simpleicons.org/python/3776AB" alt="" width="28" height="28" /><span>Python</span></li>
-								<li><img src="/images/skills/azure.svg" alt="" width="28" height="28" /><span>Azure</span></li>
-								<li><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="" width="28" height="28" /><span>GCP</span></li>
-								<li><img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="" width="28" height="28" /><span>Actions</span></li>
-								<li><img src="https://cdn.simpleicons.org/ansible/EE0000" alt="" width="28" height="28" /><span>Ansible</span></li>
-								<li><img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="" width="28" height="28" /><span>Prometheus</span></li>
+								<li><img src="/images/skills/aws-orange.svg" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>AWS</span></li>
+								<li><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>Terraform</span></li>
+								<li><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>Kubernetes</span></li>
+								<li><img src="https://cdn.simpleicons.org/docker/2496ED" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>Docker</span></li>
+								<li><img src="https://cdn.simpleicons.org/python/3776AB" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>Python</span></li>
+								<li><img src="/images/skills/azure.svg" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>Azure</span></li>
+								<li><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>GCP</span></li>
+								<li><img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>Actions</span></li>
+								<li><img src="https://cdn.simpleicons.org/ansible/EE0000" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>Ansible</span></li>
+								<li><img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>Prometheus</span></li>
 							</ul>
 							<ul class="hero__tech" aria-hidden="true">
-								<li><img src="/images/skills/aws-orange.svg" alt="" width="28" height="28" /><span>AWS</span></li>
+								<li><img src="/images/skills/aws-orange.svg" alt="" width="28" height="28" loading="lazy" decoding="async" /><span>AWS</span></li>
 								<li><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="" width="28" height="28" /><span>Terraform</span></li>
 								<li><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="" width="28" height="28" /><span>Kubernetes</span></li>
 								<li><img src="https://cdn.simpleicons.org/docker/2496ED" alt="" width="28" height="28" /><span>Docker</span></li>
@@ -72,7 +73,7 @@
 						</div>
 					</div>
 					<figure class="hero__portrait">
-						<img src="/images/profile_image.jpg?v=4" alt="Saiful Khan" width="640" height="800" />
+							<img src="/images/profile_image.jpg?v=4" alt="Saiful Khan" width="640" height="800" fetchpriority="high" decoding="async" />
 					</figure>
 				</div>
 			</section>
@@ -83,8 +84,8 @@
 				<p class="section__lead">This site is the AWS Cloud Resume Challenge turned into production-style infrastructure: S3, CloudFront, Route&nbsp;53, Lambda, DynamoDB, and CI/CD — with Terraform IaC in progress and the decisions written down.</p>
 				<div class="spotlight">
 					<figure class="spotlight__visual">
-						<img src="/images/feature_project.jpg?v=2" alt="Realistic AWS architecture: Route 53, CloudFront, S3, API Gateway, Lambda, and DynamoDB" width="960" height="720" />
-						<figcaption class="spotlight__caption">Production path — DNS → CDN → S3 · APIs → Lambda → DynamoDB</figcaption>
+						<img src="/images/Cloud_Resume.png" alt="Cloud Resume architecture showing GitHub Actions, Terraform, Route 53, CloudFront, S3, API Gateway, Lambda, and DynamoDB" width="3750" height="1875" loading="lazy" decoding="async" />
+						<figcaption class="spotlight__caption">Actual project architecture — GitHub Actions → Terraform → AWS services</figcaption>
 					</figure>
 					<div>
 						<ul class="repo-list">
@@ -115,13 +116,16 @@
 				<p class="section__lead">A few practical projects I’ve built and deployed, each focused on cloud architecture, automation, or production-ready platform engineering.</p>
 				<div class="project-grid">
 					<article class="project-card">
+						<figure class="project-card__visual">
+							<img src="/images/aws-serverless-crud-architecture.png" alt="AWS Serverless CRUD architecture with API Gateway, Lambda, and DynamoDB" width="3750" height="1875" loading="lazy" decoding="async" />
+						</figure>
 						<h3>AWS Serverless CRUD with Terraform</h3>
 						<p>This project implements a serverless CRUD application on AWS using Lambda, API Gateway, and DynamoDB, with Terraform used to provision and manage the infrastructure in a repeatable way.</p>
 						<div class="project-card__meta">
-							<span>Terraform</span>
-							<span>AWS Lambda</span>
-							<span>API Gateway</span>
-							<span>DynamoDB</span>
+							<span title="Terraform" aria-label="Terraform"><img src="/images/skills/terraform.svg" alt="Terraform" width="24" height="24" loading="lazy" decoding="async" /></span>
+							<span title="AWS Lambda" aria-label="AWS Lambda"><img src="/images/skills/aws-lambda.svg" alt="AWS Lambda" width="24" height="24" loading="lazy" decoding="async" /></span>
+							<span title="API Gateway" aria-label="API Gateway"><img src="/images/skills/api-gateway.svg" alt="API Gateway" width="24" height="24" loading="lazy" decoding="async" /></span>
+							<span title="DynamoDB" aria-label="DynamoDB"><img src="/images/skills/dynamodb.svg" alt="DynamoDB" width="24" height="24" loading="lazy" decoding="async" /></span>
 						</div>
 						<div class="project-links">
 							<a href="https://github.com/Saifulrubkhan/aws-serverless-crud-terraform-tuned" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
@@ -130,13 +134,16 @@
 					</article>
 
 					<article class="project-card">
+						<figure class="project-card__visual">
+							<img src="/images/Cloud_Resume.png" alt="Cloud Resume architecture with GitHub Actions, Terraform, CloudFront, S3, and serverless APIs" width="3750" height="1875" loading="lazy" decoding="async" />
+						</figure>
 						<h3>Cloud Resume Challenge</h3>
 						<p>A full AWS-hosted personal website and cloud architecture portfolio, covering static web hosting, HTTPS, DNS, CI/CD, serverless APIs, and Infrastructure as Code.</p>
 						<div class="project-card__meta">
-							<span>S3</span>
-							<span>CloudFront</span>
-							<span>Lambda</span>
-							<span>Terraform</span>
+							<span title="Amazon S3" aria-label="Amazon S3"><img src="/images/skills/s3.svg" alt="Amazon S3" width="24" height="24" loading="lazy" decoding="async" /></span>
+							<span title="Amazon CloudFront" aria-label="Amazon CloudFront"><img src="/images/skills/aws.svg" alt="Amazon CloudFront" width="24" height="24" loading="lazy" decoding="async" /></span>
+							<span title="AWS Lambda" aria-label="AWS Lambda"><img src="/images/skills/aws-lambda.svg" alt="AWS Lambda" width="24" height="24" loading="lazy" decoding="async" /></span>
+							<span title="Terraform" aria-label="Terraform"><img src="/images/skills/terraform.svg" alt="Terraform" width="24" height="24" loading="lazy" decoding="async" /></span>
 						</div>
 						<div class="project-links">
 							<a href="https://github.com/Saifulrubkhan/Saiful_CloudResumeWebsite" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
@@ -148,21 +155,66 @@
 
 			<section class="section section--phases reveal">
 				<p class="section__eyebrow">Build log</p>
-				<h2 class="section__title">Challenge phases</h2>
-				<p class="section__lead">Each step is a working piece of the architecture — from local workflow to serverless APIs, with Terraform IaC as the next evolution.</p>
-				<ol class="phase-list">
-					<li><a href="vscode.html"><span class="idx">01</span><span class="label">VS Code Workflow</span></a></li>
-					<li><a href="awss3Hosting.html"><span class="idx">02</span><span class="label">AWS S3 Hosting</span></a></li>
-					<li><a href="aws_route53.html"><span class="idx">03</span><span class="label">Route 53 Domain</span></a></li>
-					<li><a href="aws-cloudfront.html"><span class="idx">04</span><span class="label">CloudFront HTTPS</span></a></li>
-					<li><a href="github.html"><span class="idx">05</span><span class="label">GitHub CI/CD</span></a></li>
-					<li><a href="cost_optimization.html"><span class="idx">06</span><span class="label">Cost Optimization</span></a></li>
-					<li><a href="visitor_counter.html"><span class="idx">07</span><span class="label">Visitor Counter</span></a></li>
-					<li><a href="terraform.html"><span class="idx">08</span><span class="label">IaC with Terraform <em class="phase-note">in progress</em></span></a></li>
-					<li><a href="contact_form.html"><span class="idx">09</span><span class="label">Serverless Contact Form</span></a></li>
-				</ol>
+				<h2 class="section__title">Challenge phases of Cloud Resume</h2>
+				<p class="section__lead">The build evolved through four milestones: establish the foundation, ship it securely, automate delivery, then add serverless capabilities.</p>
+				<div class="phase-grid">
+					<article class="phase-card">
+						<figure class="phase-card__visual">
+							<img src="/images/phase-foundation.jpg" alt="Developer working at a laptop in a software engineering workspace" width="1200" height="799" loading="lazy" decoding="async" />
+						</figure>
+						<span class="phase-card__number">01</span>
+						<span class="phase-card__status">Built</span>
+						<h3>Foundation</h3>
+						<p>Turn the resume concept into a working site with a repeatable local workflow.</p>
+						<div class="phase-card__links">
+							<a href="vscode.html">VS Code workflow <span aria-hidden="true">→</span></a>
+						</div>
+					</article>
+					<article class="phase-card">
+						<figure class="phase-card__visual">
+							<img src="/images/phase-delivery.jpg" alt="Rows of cloud infrastructure servers representing production website delivery" width="1200" height="673" loading="lazy" decoding="async" />
+						</figure>
+						<span class="phase-card__number">02</span>
+						<span class="phase-card__status">Live</span>
+						<h3>Production delivery</h3>
+						<p>Publish the site on S3, connect the domain, and serve it globally over HTTPS.</p>
+						<div class="phase-card__links">
+							<a href="awss3Hosting.html">S3 hosting <span aria-hidden="true">→</span></a>
+							<a href="aws_route53.html">Route 53 <span aria-hidden="true">→</span></a>
+							<a href="aws-cloudfront.html">CloudFront HTTPS <span aria-hidden="true">→</span></a>
+						</div>
+					</article>
+					<article class="phase-card">
+						<figure class="phase-card__visual">
+							<img src="/images/phase-automation.jpg" alt="Analytics dashboard representing CI/CD monitoring and cloud cost operations" width="1200" height="800" loading="lazy" decoding="async" />
+						</figure>
+						<span class="phase-card__number">03</span>
+						<span class="phase-card__status">Automated</span>
+						<h3>Automation &amp; cost</h3>
+						<p>Replace manual releases with CI/CD and keep the AWS footprint cost-aware.</p>
+						<div class="phase-card__links">
+							<a href="github.html">GitHub CI/CD <span aria-hidden="true">→</span></a>
+							<a href="cost_optimization.html">Cost optimization <span aria-hidden="true">→</span></a>
+						</div>
+					</article>
+					<article class="phase-card phase-card--active">
+						<figure class="phase-card__visual">
+							<img src="/images/phase-serverless.jpg" alt="Abstract cloud network representing serverless APIs and connected AWS services" width="1200" height="798" loading="lazy" decoding="async" />
+						</figure>
+						<span class="phase-card__number">04</span>
+						<span class="phase-card__status">Expanding</span>
+						<h3>Serverless extensions</h3>
+						<p>Add APIs, DynamoDB-backed features, and Terraform-managed infrastructure.</p>
+						<div class="phase-card__links">
+							<a href="visitor_counter.html">Visitor counter <span aria-hidden="true">→</span></a>
+							<a href="contact_form.html">Contact form <span aria-hidden="true">→</span></a>
+							<a href="terraform.html">Terraform IaC <em class="phase-note">in progress</em> <span aria-hidden="true">→</span></a>
+						</div>
+					</article>
+				</div>
 				<p class="section__more"><a class="btn btn--ink" href="Project.html">Full challenge overview</a></p>
 			</section>
+			</main>
 
 			{{> footer }}
 		</div>

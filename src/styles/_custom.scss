@@ -1,5 +1,22 @@
 // Small site tweaks on top of Northline.
 
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.35rem;
+  background: var(--ink);
+  color: var(--paper) !important;
+  transform: translateY(-200%);
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .project-icon {
   height: 80px;
   object-fit: contain;
@@ -142,6 +159,23 @@
     0 12px 28px color-mix(in srgb, var(--ink) 10%, transparent);
 }
 
+.project-card__visual {
+  aspect-ratio: 2 / 1;
+  margin: -0.25rem -0.25rem 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  background: #eef1f2;
+}
+
+.project-card__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
 .project-card h3 {
   margin: 0 !important;
   font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
@@ -164,15 +198,21 @@
 .project-card__meta span {
   display: inline-flex;
   align-items: center;
-  padding: 0.38rem 0.7rem;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.5rem;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 0.65rem;
   background: color-mix(in srgb, var(--paper-2) 70%, transparent);
   color: var(--ink-soft);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+}
+
+.project-card__meta img {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
 }
 
 .project-links {
@@ -205,6 +245,40 @@ html[data-theme='dark'] .project-card {
   background:
     linear-gradient(180deg, color-mix(in srgb, #fff 6%, transparent), transparent),
     color-mix(in srgb, #fff 4%, transparent);
+}
+
+html[data-theme='dark'] .project-card h3,
+html[data-theme='dark'] .project-card p,
+html[data-theme='dark'] .project-card__meta span,
+html[data-theme='dark'] .spotlight__caption {
+  color: #f4faf7 !important;
+}
+
+html[data-theme='dark'] .project-card p {
+  color: #c8d5cf !important;
+}
+
+html[data-theme='dark'] .project-card__meta span {
+  background: #edf5f1 !important;
+  border-color: rgba(244, 250, 247, 0.4) !important;
+}
+
+html[data-theme='dark'] .project-links a {
+  display: inline-flex !important;
+  position: static !important;
+  width: auto !important;
+  min-width: 0 !important;
+  color: #0c1411 !important;
+  background: #6ed4a8 !important;
+  border-color: #6ed4a8 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap;
+}
+
+html[data-theme='dark'] .project-links a.secondary {
+  color: #f4faf7 !important;
+  background: transparent !important;
+  border-color: rgba(244, 250, 247, 0.35) !important;
 }
 
 html[data-theme='dark'] .project-links a.secondary {

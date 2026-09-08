@@ -101,7 +101,7 @@ function initMobileNav() {
 
   const titleBar = document.createElement('div');
   titleBar.id = 'titleBar';
-  titleBar.innerHTML = '<a href="#navPanel" class="toggle" aria-label="Open menu"></a>';
+  titleBar.innerHTML = '<button type="button" class="toggle" aria-label="Open menu" aria-controls="navPanel" aria-expanded="false"></button>';
   body.appendChild(titleBar);
 
   const panel = document.createElement('div');
@@ -109,10 +109,16 @@ function initMobileNav() {
   panel.innerHTML = `<nav>${buildNavListHtml(nav)}</nav>`;
   body.appendChild(panel);
 
-  const toggle = () => body.classList.toggle('navPanel-visible');
-  const hide = () => body.classList.remove('navPanel-visible');
+  const menuButton = titleBar.querySelector('.toggle');
+  const setVisible = (visible) => {
+    body.classList.toggle('navPanel-visible', visible);
+    menuButton.setAttribute('aria-expanded', visible ? 'true' : 'false');
+    menuButton.setAttribute('aria-label', visible ? 'Close menu' : 'Open menu');
+  };
+  const toggle = () => setVisible(!body.classList.contains('navPanel-visible'));
+  const hide = () => setVisible(false);
 
-  titleBar.querySelector('.toggle').addEventListener('click', (event) => {
+  menuButton.addEventListener('click', (event) => {
     event.preventDefault();
     toggle();
   });

@@ -27,6 +27,11 @@
 						<p>This project is a serverless CRUD application built on AWS, with Terraform used to provision and manage the infrastructure in a repeatable and production-friendly way.</p>
 						<p>The goal was to move beyond manually creating AWS resources in the console and instead define the architecture as code so it could be deployed consistently and scaled cleanly.</p>
 
+						<figure class="journey-visual">
+							<img src="/images/aws-serverless-crud-architecture.png" alt="AWS Serverless CRUD architecture diagram" width="1600" height="800" loading="lazy" decoding="async" />
+							<figcaption>Serverless CRUD architecture — API Gateway, Lambda, DynamoDB, and Terraform-managed AWS infrastructure.</figcaption>
+						</figure>
+
 						<h3>Architecture</h3>
 						<p><code>Client → API Gateway → Lambda → DynamoDB</code></p>
 						<p>The application follows a clean serverless pattern where:</p>

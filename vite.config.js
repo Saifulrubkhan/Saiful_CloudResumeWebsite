@@ -9,6 +9,23 @@ const pagesDir = resolve(root, 'src/pages');
 
 const htmlPages = readdirSync(pagesDir).filter((f) => f.endsWith('.html'));
 
+const pageDescriptions = {
+  'index.html': 'Portfolio of Saiful Khan, a DevOps Engineer and AWS Solutions Architect building secure, scalable cloud platforms.',
+  'aws_serverless_crud.html': 'A serverless CRUD application using API Gateway, Lambda, DynamoDB, Python, and Terraform.',
+  'Project.html': 'A production-style AWS Cloud Resume Challenge covering hosting, HTTPS, CI/CD, serverless APIs, and infrastructure as code.',
+  'resume.html': 'Resume, experience, certifications, and technical skills for Saiful Khan, DevOps Engineer and AWS Solutions Architect.',
+  'journey.html': 'Saiful Khan\'s journey from cloud fundamentals to DevOps, platform engineering, and AWS architecture.',
+  'contact_form.html': 'A serverless contact form built with API Gateway, Lambda, DynamoDB, and AWS SES.',
+  'visitor_counter.html': 'A serverless visitor counter built with API Gateway, Lambda, and DynamoDB.',
+  'terraform.html': 'Terraform infrastructure as code used to provision and manage the AWS Cloud Resume Challenge.',
+  'github.html': 'GitHub Actions CI/CD and OIDC deployment for the AWS Cloud Resume Challenge.',
+  'cost_optimization.html': 'AWS cost monitoring and optimization practices applied to a production-style cloud resume website.',
+  'aws-cloudfront.html': 'CloudFront HTTPS delivery for the AWS Cloud Resume Challenge.',
+  'aws_route53.html': 'Route 53 domain configuration for the AWS Cloud Resume Challenge.',
+  'awss3Hosting.html': 'Static website hosting with Amazon S3 for the AWS Cloud Resume Challenge.',
+  'vscode.html': 'The VS Code workflow used to build and maintain the AWS Cloud Resume Challenge.',
+};
+
 const input = Object.fromEntries(
   htmlPages.map((file) => [basename(file, '.html'), resolve(pagesDir, file)])
 );
@@ -34,6 +51,22 @@ function flattenHtmlOutput() {
   };
 }
 
+function devRootPage() {
+  return {
+    name: 'dev-root-page',
+    configureServer(server) {
+      server.middlewares.use((request, _response, next) => {
+        if (request.url === '/') {
+          request.url = '/src/pages/index.html';
+        } else if (request.url && htmlPages.includes(request.url.slice(1))) {
+          request.url = `/src/pages/${request.url.slice(1)}`;
+        }
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig({
   plugins: [
     handlebars({
@@ -44,12 +77,15 @@ export default defineConfig({
         return {
           isHome,
           pageFile: file,
+          canonicalPath: isHome ? '/' : `/${file}`,
+          description: pageDescriptions[file],
           showContactNav: true,
           loadQuotes: isHome,
         };
       },
     }),
     flattenHtmlOutput(),
+    devRootPage(),
   ],
   publicDir: resolve(root, 'public'),
   build: {

@@ -1,7 +1,40 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="description" content="{{#if description}}{{description}}{{else}}Saiful Khan, DevOps and Solutions Architect building secure, scalable AWS and multi-cloud platforms.{{/if}}" />
+<link rel="canonical" href="https://khansaiful.com{{canonicalPath}}" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0f5c45" />
+<meta property="og:title" content="{{title}}" />
+<meta property="og:description" content="{{#if description}}{{description}}{{else}}Saiful Khan, DevOps and Solutions Architect building secure, scalable AWS and multi-cloud platforms.{{/if}}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://khansaiful.com{{canonicalPath}}" />
+<meta property="og:image" content="https://khansaiful.com/images/profile_image.jpg" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{title}}" />
+<meta name="twitter:description" content="{{#if description}}{{description}}{{else}}Saiful Khan, DevOps and Solutions Architect building secure, scalable AWS and multi-cloud platforms.{{/if}}" />
+<meta name="twitter:image" content="https://khansaiful.com/images/profile_image.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+<link rel="dns-prefetch" href="https://cdn.simpleicons.org" />
+<link rel="icon" href="/images/profile_image.jfif" type="image/jpeg" />
 <title>{{title}}</title>
+{{#if isHome}}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Saiful Khan",
+    "jobTitle": "DevOps Engineer and AWS Solutions Architect",
+    "url": "https://khansaiful.com/",
+    "image": "https://khansaiful.com/images/profile_image.jpg",
+    "sameAs": [
+      "https://github.com/Saifulrubkhan",
+      "https://www.linkedin.com/in/saiful-khan-29810426b/"
+    ]
+  }
+</script>
+{{/if}}
 <script>
   (function () {
     var saved = localStorage.getItem('theme');
