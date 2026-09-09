@@ -50,12 +50,13 @@
 
 							<h3>Best practices</h3>
 							<p>The core challenge controls protect access and data, but a production bucket also needs resilience, governance, and ongoing visibility.</p>
+							<p><strong>Official AWS guidance:</strong> <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html" target="_blank" rel="noopener noreferrer">Amazon S3 security best practices</a></p>
 							<ul>
-								<li><strong>Enable versioning early.</strong> Versioning preserves earlier object versions so accidental overwrites and deletes can be recovered. Once enabled, it can be suspended for new uploads, but existing versions remain until they are explicitly removed.</li>
-								<li><strong>Use lifecycle policies.</strong> Transition older versions to lower-cost storage or expire them according to retention requirements. Lifecycle rules keep versioning from creating uncontrolled storage costs.</li>
-								<li><strong>Consider Object Lock.</strong> For regulated or backup data, retention modes and legal holds can prevent objects from being deleted or overwritten before their retention period ends.</li>
-								<li><strong>Prefer private service access.</strong> Use an S3 VPC endpoint for workloads inside a VPC so requests can stay on the AWS network instead of traversing the public internet.</li>
-								<li><strong>Audit and monitor access.</strong> Use CloudTrail data events for object-level activity and CloudWatch metrics or alarms to identify unusual request patterns and failed access attempts.</li>
+								<li><strong>Enable versioning early.</strong> Versioning preserves earlier object versions so accidental overwrites and deletes can be recovered. See the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html" target="_blank" rel="noopener noreferrer">AWS S3 Versioning documentation</a> for lifecycle considerations.</li>
+								<li><strong>Use lifecycle policies.</strong> Transition older versions to lower-cost storage or expire them according to retention requirements. Lifecycle rules keep versioning from creating uncontrolled storage costs. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html" target="_blank" rel="noopener noreferrer">Managing your storage lifecycle</a>.</li>
+								<li><strong>Consider Object Lock.</strong> For regulated or backup data, retention modes and legal holds can prevent objects from being deleted or overwritten before their retention period ends. Read the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html" target="_blank" rel="noopener noreferrer">AWS S3 Object Lock documentation</a>.</li>
+								<li><strong>Prefer private service access.</strong> Use an S3 VPC endpoint for workloads inside a VPC so requests can stay on the AWS network instead of traversing the public internet. AWS documents this under <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html" target="_blank" rel="noopener noreferrer">Amazon S3 VPC endpoints</a>.</li>
+								<li><strong>Audit and monitor access.</strong> Use CloudTrail data events for object-level activity and CloudWatch metrics or alarms to identify unusual request patterns and failed access attempts. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudtrail-logging.html" target="_blank" rel="noopener noreferrer">Logging Amazon S3 API calls using AWS CloudTrail</a>.</li>
 								<li><strong>Keep permissions narrow.</strong> Avoid wildcard actions and resources in production policies. Grant only the actions, prefixes, principals, and conditions each workload requires.</li>
 							</ul>
 
