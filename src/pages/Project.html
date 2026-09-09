@@ -95,6 +95,11 @@
 									<p>I extended the serverless work with a separate CRUD application. It exposes REST-style endpoints through API Gateway, runs create, read, update, and delete logic in Lambda, and stores application records in DynamoDB.</p>
 									<p>Infrastructure is managed with Terraform for repeatable deployments. <a href="aws_serverless_crud.html">View the full CRUD project details →</a></p>
 								</li>
+								<li>
+									<strong>Phase 8 - S3 Security Challenge</strong>
+									<p>I hardened a deliberately vulnerable S3 bucket by removing public access, restricting reads to a Lambda execution role, enforcing HTTPS, and enabling encryption at rest. The exercise made defense in depth and least privilege concrete through hands-on testing.</p>
+									<strong>Phase 8 guide: <a href="s3_security_challenge.html">Secure the Bucket</a></strong>
+								</li>
 							</ul>
 
 							<h3>High-Level Architecture</h3>

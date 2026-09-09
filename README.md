@@ -21,6 +21,12 @@ The goal of this project is to design, secure, and deploy a personal website on 
 - Infrastructure managed with code-first principles (Terraform migration in progress)
 - Cloud architecture documentation and operational practices
 
+### Website knowledge base
+
+The public website knowledge base is stored at [`public/data/knowledge-base.json`](public/data/knowledge-base.json). It contains concise, factual information about the profile, skills, certifications, experience, projects, FAQs, and assistant response rules.
+
+It can support a free browser-based FAQ assistant immediately, or be read by a future API Gateway and Lambda function before sending a question to a low-cost AI provider. Keep the knowledge base limited to public portfolio information and never add credentials, private contact data, or secrets.
+
 ---
 
 ## Architecture

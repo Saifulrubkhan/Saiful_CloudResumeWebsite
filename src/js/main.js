@@ -196,6 +196,19 @@ function initBackToTop() {
   toggle();
 }
 
+function initProjectMarquee() {
+  const marquee = document.querySelector('.project-marquee');
+  const track = marquee?.querySelector('.project-grid');
+  if (!marquee || !track || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  [...track.children].forEach((card) => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.querySelectorAll('a').forEach((link) => link.setAttribute('tabindex', '-1'));
+    track.appendChild(clone);
+  });
+}
+
 export function initChrome() {
   initScrollTopOnLoad();
   removePreload();
@@ -203,6 +216,7 @@ export function initChrome() {
   initMobileNav();
   initReveal();
   initBackToTop();
+  initProjectMarquee();
 }
 
 function initReveal() {

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		{{> head title="S3 Security Challenge - Saiful Khan" }}
+	</head>
+	<body class="challenge no-sidebar is-preload">
+		<div id="page-wrapper">
+			{{> header }}
+			<div id="wrapper">
+				<div id="main">
+					<article class="post">
+						<header>
+							<div class="title">
+								<h2>S3 Security Challenge</h2>
+								<p>Progressively hardening a vulnerable bucket with AWS security controls</p>
+							</div>
+						</header>
+						<section class="project">
+							<p>This hands-on challenge started with a deliberately vulnerable Amazon S3 bucket containing sensitive sample data. The goal was to understand how an exposed bucket can be abused, then apply layered controls until only the intended application can read it securely.</p>
+							<figure class="journey-visual security-challenge-visual">
+								<img src="/images/s3-security-challenge.png" alt="S3 security progression from public access to HTTPS-only least-privilege Lambda access" width="1879" height="767" loading="lazy" decoding="async" />
+								<figcaption>S3 security progression — from public access to HTTPS-only, least-privilege Lambda access.</figcaption>
+							</figure>
+
+							<h3>Security progression</h3>
+							<ol>
+								<li><strong>Remove public access.</strong> I enabled S3 Block Public Access so anonymous users could no longer retrieve objects through public URLs. Testing the original object URL changed the result from exposed content to <code>403 Forbidden</code>.</li>
+								<li><strong>Apply least privilege.</strong> I replaced the permissive <code>Principal: "*"</code> bucket policy with a policy scoped to the Lambda execution role. Direct access from CloudShell was denied, while the intended application principal retained read access.</li>
+								<li><strong>Use an IAM role.</strong> The demo Lambda function uses an execution role limited to <code>s3:GetObject</code> and <code>s3:ListBucket</code> for the challenge bucket. It can list the sample folder and read a test object without distributing long-lived credentials.</li>
+								<li><strong>Enforce HTTPS.</strong> A bucket-policy deny condition on <code>aws:SecureTransport</code> blocks requests made over unencrypted transport. This protects data while it moves between clients, AWS services, and the bucket.</li>
+								<li><strong>Encrypt at rest.</strong> I configured default bucket encryption with SSE-KMS. New objects are encrypted automatically, and an S3 Bucket Key can reduce the number of KMS requests and their associated cost.</li>
+							</ol>
+
+							<h3>Policy design</h3>
+							<p>The final design uses explicit denies for the conditions that must never be true, followed by a narrow allow for the application role. In a real deployment, the bucket name, account ID, role ARN, and KMS key ARN would be supplied from infrastructure configuration rather than copied into a public document.</p>
+							<ul>
+								<li><strong>Block Public Access:</strong> prevents accidental public ACLs and public bucket-policy access.</li>
+								<li><strong>Bucket policy:</strong> controls which principals can reach this bucket and denies insecure transport.</li>
+								<li><strong>IAM role policy:</strong> limits what the Lambda function can do and which bucket resources it can read.</li>
+								<li><strong>SSE-KMS:</strong> protects object data at rest with a managed encryption key.</li>
+							</ul>
+
+							<h3>Validation</h3>
+							<p>I validated the controls from two different access paths:</p>
+							<ul>
+								<li>CloudShell access to the sample object returned <code>AccessDenied</code>, confirming that a human session could not bypass the application boundary.</li>
+								<li>The demo Lambda test completed successfully, proving that the approved role could still list and read the required S3 data.</li>
+							</ul>
+							<p>This contrast demonstrates defense in depth: S3 resource policy and IAM identity policy work together, while transport and encryption controls protect the data across its lifecycle.</p>
+
+							<h3>Further hardening</h3>
+							<ul>
+								<li>Enable versioning and lifecycle rules to recover from accidental changes and manage older versions.</li>
+								<li>Use S3 Object Lock where retention and deletion protection are required.</li>
+								<li>Prefer an S3 VPC endpoint for private access from VPC workloads.</li>
+								<li>Use CloudTrail and CloudWatch to audit access and monitor unusual activity.</li>
+							</ul>
+
+							<p><strong>Key takeaway:</strong> S3 security is not one checkbox. Public access controls, explicit resource policies, least-privilege IAM roles, HTTPS-only transport, and encryption at rest reinforce one another.</p>
+							<strong>Related project:</strong> <a href="Project.html">AWS Cloud Resume Challenge</a>
+						</section>
+					</article>
+				</div>
+			</div>
+			{{> footer }}
+		</div>
+	</body>
+</html>

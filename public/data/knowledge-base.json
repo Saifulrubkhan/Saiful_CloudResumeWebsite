@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.0",
+  "updated": "2026-09-08",
+  "profile": {
+    "name": "Saiful Khan",
+    "headline": "Senior DevOps / Site Reliability Engineer and AWS Solutions Architect",
+    "location": "Toronto, Canada",
+    "availability": "Available for selected opportunities",
+    "summary": "Saiful Khan focuses on AWS, platform engineering, automation, secure cloud architecture, event-driven systems, CI/CD, and infrastructure that can be operated in production.",
+    "website": "https://khansaiful.com",
+    "linkedin": "https://www.linkedin.com/in/saiful-khan-29810426b/",
+    "github": "https://github.com/Saifulrubkhan"
+  },
+  "skills": {
+    "cloud": ["AWS", "Azure", "Google Cloud"],
+    "platform": ["Kubernetes", "Docker", "Amazon ECS", "Amazon EKS", "Amazon ECR"],
+    "infrastructureAsCode": ["Terraform", "AWS CDK", "CloudFormation"],
+    "automationAndCiCd": ["GitHub Actions", "GitLab CI", "Jenkins", "Ansible", "Python", "Node.js"],
+    "observability": ["CloudWatch", "Prometheus", "Grafana", "ELK"],
+    "serverless": ["API Gateway", "Lambda", "DynamoDB", "S3", "EventBridge", "Step Functions"]
+  },
+  "certifications": [
+    "AWS Certified Solutions Architect - Associate",
+    "AWS Certified AI Practitioner",
+    "Kubernetes and Cloud Native Associate (KCNA)",
+    "Cisco Certified Network Associate (CCNA)"
+  ],
+  "currentlyStudying": ["Certified Kubernetes Administrator (CKA)"],
+  "experience": [
+    {
+      "title": "Senior DevOps Engineer",
+      "company": "Wood Mackenzie",
+      "location": "Edmonton, Canada",
+      "period": "2023-05 to 2026-07",
+      "highlights": [
+        "Built serverless credential management using Lambda, Secrets Manager, EventBridge, and CloudFormation StackSets.",
+        "Operated ECS Fargate and EKS platforms with ECR pipelines, EFS storage, ALB ingress, and autoscaling.",
+        "Created reusable GitHub Actions workflows adopted by more than 20 business-critical applications.",
+        "Implemented multi-cloud AI infrastructure using AWS Bedrock, Azure AI Foundry, and Google Cloud Vertex AI.",
+        "Improved observability and automation, contributing to a 40 percent MTTR improvement."
+      ]
+    },
+    {
+      "title": "DevOps Engineer",
+      "company": "Amazon",
+      "location": "Canada",
+      "period": "2022-03 to 2023-05",
+      "highlights": [
+        "Built serverless applications with API Gateway, Lambda, DynamoDB, S3, and Aurora.",
+        "Implemented event-driven deployment automation and container delivery pipelines.",
+        "Provisioned AWS networking, IAM, databases, messaging, and compute with CloudFormation and Terraform."
+      ]
+    },
+    {
+      "title": "Infra Engineer",
+      "company": "GlobalLogic (Rogers)",
+      "location": "Canada",
+      "period": "2021-07 to 2021-10",
+      "highlights": [
+        "Designed highly available AWS infrastructure and automated operations with Lambda and Python.",
+        "Managed ECS workloads, blue-green deployments, networking, IAM, monitoring, and alerting."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "AWS Serverless CRUD with Terraform",
+      "summary": "A serverless CRUD application using API Gateway, Lambda, DynamoDB, Python, IAM, and Terraform.",
+      "architecture": "Client -> API Gateway -> Lambda -> DynamoDB",
+      "services": ["API Gateway", "AWS Lambda", "DynamoDB", "IAM", "Terraform", "Python"],
+      "detailsUrl": "https://khansaiful.com/aws_serverless_crud.html",
+      "repository": "https://github.com/Saifulrubkhan/aws-serverless-crud-terraform-tuned",
+      "dataStored": "Application records are stored in DynamoDB. Terraform configuration defines the infrastructure, and Lambda validates and processes CRUD requests."
+    },
+    {
+      "name": "AWS Cloud Resume Challenge",
+      "summary": "A production-style personal website hosted on AWS with secure delivery, serverless APIs, CI/CD, and infrastructure as code in progress.",
+      "architecture": "Route 53 -> CloudFront -> S3; API Gateway -> Lambda -> DynamoDB",
+      "services": ["S3", "CloudFront", "Route 53", "ACM", "API Gateway", "Lambda", "DynamoDB", "GitHub Actions", "Terraform"],
+      "detailsUrl": "https://khansaiful.com/Project.html",
+      "repository": "https://github.com/Saifulrubkhan/Saiful_CloudResumeWebsite",
+      "dataStored": "The visitor counter stores a visit count in DynamoDB. The contact form API can store submitted contact messages in DynamoDB."
+    }
+  ],
+  "frequentlyAskedQuestions": [
+    {
+      "question": "What AWS projects has Saiful built?",
+      "answer": "Saiful built the AWS Cloud Resume Challenge and an AWS Serverless CRUD application using API Gateway, Lambda, DynamoDB, and Terraform."
+    },
+    {
+      "question": "What does the CRUD project store in the database?",
+      "answer": "The CRUD project stores application records in DynamoDB. Lambda handles validation and create, read, update, and delete operations."
+    },
+    {
+      "question": "What technologies does Saiful use?",
+      "answer": "His main technologies include AWS, Terraform, Kubernetes, Docker, Python, GitHub Actions, Lambda, API Gateway, DynamoDB, CloudWatch, Prometheus, and Grafana."
+    },
+    {
+      "question": "Is Saiful available for work?",
+      "answer": "Saiful is available for selected opportunities. Visitors can use the contact form or LinkedIn profile on the website."
+    },
+    {
+      "question": "Where can I find the source code?",
+      "answer": "The website and project repositories are linked from the homepage and project detail pages on khansaiful.com."
+    }
+  ],
+  "assistantRules": [
+    "Answer only from this knowledge base and the linked public project pages.",
+    "Do not invent employers, dates, certifications, technologies, metrics, or project capabilities.",
+    "If the answer is not present, say that the information is not available in this portfolio.",
+    "Keep answers concise and link to the relevant project or resume page when useful.",
+    "Do not request or expose private credentials, personal contact data, or secrets."
+  ]
+}
