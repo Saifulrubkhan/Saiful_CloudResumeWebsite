@@ -48,12 +48,15 @@
 							</ul>
 							<p>This contrast demonstrates defense in depth: S3 resource policy and IAM identity policy work together, while transport and encryption controls protect the data across its lifecycle.</p>
 
-							<h3>Further hardening</h3>
+							<h3>Best practices</h3>
+							<p>The core challenge controls protect access and data, but a production bucket also needs resilience, governance, and ongoing visibility.</p>
 							<ul>
-								<li>Enable versioning and lifecycle rules to recover from accidental changes and manage older versions.</li>
-								<li>Use S3 Object Lock where retention and deletion protection are required.</li>
-								<li>Prefer an S3 VPC endpoint for private access from VPC workloads.</li>
-								<li>Use CloudTrail and CloudWatch to audit access and monitor unusual activity.</li>
+								<li><strong>Enable versioning early.</strong> Versioning preserves earlier object versions so accidental overwrites and deletes can be recovered. Once enabled, it can be suspended for new uploads, but existing versions remain until they are explicitly removed.</li>
+								<li><strong>Use lifecycle policies.</strong> Transition older versions to lower-cost storage or expire them according to retention requirements. Lifecycle rules keep versioning from creating uncontrolled storage costs.</li>
+								<li><strong>Consider Object Lock.</strong> For regulated or backup data, retention modes and legal holds can prevent objects from being deleted or overwritten before their retention period ends.</li>
+								<li><strong>Prefer private service access.</strong> Use an S3 VPC endpoint for workloads inside a VPC so requests can stay on the AWS network instead of traversing the public internet.</li>
+								<li><strong>Audit and monitor access.</strong> Use CloudTrail data events for object-level activity and CloudWatch metrics or alarms to identify unusual request patterns and failed access attempts.</li>
+								<li><strong>Keep permissions narrow.</strong> Avoid wildcard actions and resources in production policies. Grant only the actions, prefixes, principals, and conditions each workload requires.</li>
 							</ul>
 
 							<p><strong>Key takeaway:</strong> S3 security is not one checkbox. Public access controls, explicit resource policies, least-privilege IAM roles, HTTPS-only transport, and encryption at rest reinforce one another.</p>
