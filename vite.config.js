@@ -12,6 +12,7 @@ const htmlPages = readdirSync(pagesDir).filter((f) => f.endsWith('.html'));
 const pageDescriptions = {
   'index.html': 'Portfolio of Saiful Khan, a DevOps Engineer and AWS Solutions Architect building secure, scalable cloud platforms.',
   'aws_serverless_crud.html': 'A serverless CRUD application using API Gateway, Lambda, DynamoDB, Python, and Terraform.',
+	'aws_employee_management.html': 'An authenticated serverless employee management application using Cognito, API Gateway, Lambda, DynamoDB, CloudFront, CloudWatch, and SNS.',
   's3_security_challenge.html': 'A hands-on S3 security challenge covering public access blocking, least privilege, IAM roles, HTTPS enforcement, and encryption at rest.',
   'Project.html': 'A production-style AWS Cloud Resume Challenge covering hosting, HTTPS, CI/CD, serverless APIs, and infrastructure as code.',
   'resume.html': 'Resume, experience, certifications, and technical skills for Saiful Khan, DevOps Engineer and AWS Solutions Architect.',

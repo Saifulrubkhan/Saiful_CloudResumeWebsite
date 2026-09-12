@@ -80,12 +80,21 @@
       "detailsUrl": "https://khansaiful.com/Project.html",
       "repository": "https://github.com/Saifulrubkhan/Saiful_CloudResumeWebsite",
       "dataStored": "The visitor counter stores a visit count in DynamoDB. The contact form API can store submitted contact messages in DynamoDB."
+    },
+    {
+      "name": "AWS Employee Management Application",
+      "summary": "An authenticated serverless CRUD application for employee records using Cognito, API Gateway, Lambda, DynamoDB, CloudFront, CloudWatch, and SNS.",
+      "architecture": "CloudFront -> S3; Cognito -> API Gateway -> Lambda -> DynamoDB; CloudWatch -> SNS",
+      "services": ["S3", "CloudFront", "Cognito", "API Gateway", "Lambda", "DynamoDB", "IAM", "CloudWatch", "SNS"],
+      "detailsUrl": "https://khansaiful.com/aws_employee_management.html",
+      "repository": "https://github.com/Saifulrubkhan/aws_employee_management_project",
+      "dataStored": "DynamoDB stores employeeId, name, email, department, designation, and joiningDate."
     }
   ],
   "frequentlyAskedQuestions": [
     {
       "question": "What AWS projects has Saiful built?",
-      "answer": "Saiful built the AWS Cloud Resume Challenge and an AWS Serverless CRUD application using API Gateway, Lambda, DynamoDB, and Terraform."
+      "answer": "Saiful built the AWS Cloud Resume Challenge, an AWS Serverless CRUD application using API Gateway, Lambda, DynamoDB, and Terraform, and an authenticated employee management application using Cognito and serverless AWS services."
     },
     {
       "question": "What does the CRUD project store in the database?",

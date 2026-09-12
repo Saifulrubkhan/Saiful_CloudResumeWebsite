@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		{{> head title="AWS Employee Management Application - Saiful Khan" }}
+	</head>
+	<body class="challenge no-sidebar is-preload">
+		<div id="page-wrapper">
+			{{> header }}
+			<div id="wrapper">
+				<div id="main">
+					<article class="post">
+						<header>
+							<div class="title">
+								<h2>AWS Employee Management Application</h2>
+								<p>Part 10 — extending the Cloud Resume Challenge with authenticated serverless CRUD</p>
+							</div>
+						</header>
+						<section class="project">
+							<p><strong>GitHub Repository:</strong> <a href="https://github.com/Saifulrubkhan/aws_employee_management_project" target="_blank" rel="noopener noreferrer">aws_employee_management_project</a></p>
+
+							<p>This project is a serverless employee management application for authenticated users. It provides a browser-based interface for creating, viewing, updating, searching, and deleting employee records without managing traditional application servers.</p>
+
+							<pre class="mermaid">
+flowchart TD
+  User[Authenticated user] --> CloudFront[Amazon CloudFront]
+  CloudFront --> S3[Amazon S3 frontend]
+  User --> Cognito[Amazon Cognito]
+  Cognito --> API[Amazon API Gateway]
+  API --> Lambda[AWS Lambda CRUD functions]
+  Lambda --> DynamoDB[Amazon DynamoDB Employees table]
+  Lambda --> Logs[Amazon CloudWatch]
+  Logs --> Alarms[CloudWatch alarms]
+  Alarms --> SNS[Amazon SNS notifications]
+							</pre>
+
+							<h3>What I built</h3>
+							<p>The frontend is a static HTML, CSS, and JavaScript application hosted in Amazon S3 and delivered globally through CloudFront over HTTPS. Amazon Cognito provides user authentication, while API Gateway protects the application API and routes requests to dedicated Lambda functions.</p>
+							<ul>
+								<li><strong>Create:</strong> add a new employee record and generate a unique employee ID</li>
+								<li><strong>Read:</strong> list employees or retrieve one employee by ID</li>
+								<li><strong>Update:</strong> change employee details such as department, designation, or joining date</li>
+								<li><strong>Delete:</strong> remove an employee record by its exact ID</li>
+							</ul>
+
+							<h3>Request flow</h3>
+							<p><code>Authenticated browser → API Gateway → Lambda → DynamoDB</code></p>
+							<p>API Gateway exposes REST-style routes under <code>/employees</code> and <code>/employees/{id}</code>. Each operation has its own Python 3.12 Lambda function: list, create, get, update, and delete. Lambda validates request data, performs the corresponding DynamoDB operation, and returns an appropriate API response.</p>
+
+							<h3>First-time access</h3>
+							<p>If the application opens a login page, select the option to create an account. Use an email address you can access because Amazon Cognito sends a one-time verification code during account creation. If the code does not appear in your inbox, check your Spam or Junk folder. Complete verification, then return to the login page and sign in with the new account.</p>
+
+							<h3>Data and security design</h3>
+							<p>Employee records use <code>employeeId</code> as the DynamoDB partition key, with fields for name, email, department, designation, and joining date. DynamoDB encryption at rest protects stored records.</p>
+							<ul>
+								<li>Amazon Cognito authenticates users before they call protected CRUD routes.</li>
+								<li>Each Lambda function uses an IAM role limited to the DynamoDB action it needs.</li>
+								<li>CloudFront provides HTTPS delivery for the frontend.</li>
+								<li>CORS is configured for browser requests while leaving preflight requests unauthenticated.</li>
+								<li>No AWS credentials are embedded in the frontend source.</li>
+						</ul>
+
+							<h3>Observability</h3>
+							<p>CloudWatch collects Lambda logs and API metrics such as request volume, latency, and failures. CloudWatch alarms can notify an SNS topic when operational thresholds are exceeded, giving the application a clear path from request handling to alerting.</p>
+
+							<h3>Core technologies</h3>
+							<ul>
+								<li>Amazon S3 and CloudFront</li>
+								<li>Amazon Cognito</li>
+								<li>Amazon API Gateway</li>
+								<li>AWS Lambda with Python</li>
+								<li>Amazon DynamoDB</li>
+								<li>IAM, CloudWatch, and SNS</li>
+							</ul>
+
+							<h3>Why this project matters</h3>
+							<p>This project extends the serverless patterns from my Cloud Resume Challenge into a practical internal business application. It brings together authentication, API design, least-privilege access, encrypted persistence, static hosting, and operational monitoring in one deployable workflow.</p>
+							<p>The main lesson is that a useful business application does not require a continuously running server. Managed AWS services can provide the delivery, identity, compute, storage, and visibility while keeping the application architecture focused and scalable.</p>
+
+							<strong>Live application:</strong> <a href="https://app.khansaiful.com/" target="_blank" rel="noopener noreferrer">app.khansaiful.com</a>
+							<br />
+							<strong>Related project:</strong> <a href="Project.html">AWS Cloud Resume Challenge</a>
+						</section>
+					</article>
+				</div>
+			</div>
+			{{> footer }}
+		</div>
+	</body>
+</html>
