@@ -743,6 +743,8 @@ button.button,
 
 .hero__copy {
   min-width: 0;
+  align-self: start;
+  justify-self: start;
   opacity: 0;
   animation: rise-in 0.8s ease 0.08s forwards;
 }
