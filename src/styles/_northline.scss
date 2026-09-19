@@ -731,7 +731,7 @@ button.button,
 .hero__inner--split {
   display: grid;
   gap: clamp(2rem, 5vw, 3.5rem);
-  align-items: center;
+  align-items: start;
 }
 
 @media (min-width: 980px) {
